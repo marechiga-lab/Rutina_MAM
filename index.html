@@ -120,14 +120,14 @@
             </p>
         </header>
 
-        <!-- SECCIÓN 1: INFOGRAFÍA DE ENLACES (Contenido de infografia_entrenamiento.html) -->
+        <!-- SECCIÓN 1: INFOGRAFÍA DE ENLACES -->
         <section id="links" class="mb-16">
             <h2 class="text-3xl font-bold text-center primary-color mb-8">Enlaces de Apoyo Rápido</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 <!-- 1. Tricep (Cyan) -->
-                <a href="https://youtu.be/8Nkfuhxsl-0?si=lCc2G_S9WaiY4XUD" target="_blank" 
+                <a href="https://youtu.be/8Nkfuhxsl-0?si=lCc2G_S9aiY4XUD" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-cyan-500 shadow-xl">
                     <div class="flex items-center space-x-4">
                         <svg class="w-10 h-10 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -229,7 +229,7 @@
         </section>
 
 
-        <!-- SECCIÓN 2: ANÁLISIS DEL PLAN (Contenido de tu_plan_de_entrenamiento.html) -->
+        <!-- SECCIÓN 2: ANÁLISIS DEL PLAN (Reducida a un solo gráfico) -->
         <section id="plan-analysis" class="mb-16">
             <h2 class="text-3xl font-bold text-center primary-color mb-8">Análisis de Tu Rutina Semanal (6x PPL)</h2>
             
@@ -248,28 +248,12 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Gráfica de Volumen -->
-                <div class="lg:col-span-1 bg-card rounded-lg shadow-md p-6">
+            <div class="max-w-xl mx-auto">
+                <!-- Gráfica de Volumen (Única) -->
+                <div class="bg-card rounded-lg shadow-md p-6">
                     <h3 class="text-2xl font-bold primary-color text-center mb-6">Volumen Semanal (Series)</h3>
-                    <div class="chart-container">
+                    <div class="chart-container" style="height: 300px;">
                         <canvas id="volumeChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Gráfica de Repeticiones -->
-                <div class="lg:col-span-1 bg-card rounded-lg shadow-md p-6">
-                    <h3 class="text-2xl font-bold primary-color text-center mb-6">Rangos de Repeticiones</h3>
-                    <div class="chart-container">
-                        <canvas id="repChart"></canvas>
-                    </div>
-                </div>
-                
-                <!-- Gráfica de Intensidad -->
-                <div class="lg:col-span-1 bg-card rounded-lg shadow-md p-6">
-                    <h3 class="text-2xl font-bold primary-color text-center mb-6">Técnicas de Intensidad</h3>
-                    <div class="chart-container">
-                        <canvas id="intensityChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -278,7 +262,7 @@
 
         <!-- SECCIÓN 3: CALENDARIO -->
         <section id="calendar" class="mb-16">
-            <h2 class="text-3xl font-bold text-center primary-color mb-8">Calendario de 30 Días (Inicio: Nov 15, 2025)</h2>
+            <h2 class="text-3xl font-bold text-center primary-color mb-8">Calendario de 30 Días (Inicio: Nov 28, 2025 - H2)</h2>
             <p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-6">El patrón de entrenamiento es: **3 Días Activos / 1 Día de Descanso**.</p>
 
             <div class="bg-card rounded-lg shadow-xl p-6 md:p-8">
@@ -482,6 +466,7 @@
                 }
             };
             
+            // La función wrapChartLabels ya no es necesaria, pero se mantiene por si acaso.
             const wrapChartLabels = (label, maxWidth = 16) => {
                 if (label.length <= maxWidth) {
                     return label;
@@ -501,11 +486,18 @@
                 return lines;
             };
 
-            // --- Inicialización de Gráficas ---
+            // --- Inicialización de Gráficas (Solo Volumen) ---
 
             function initVolumeChart() {
                 const ctx = document.getElementById('volumeChart')?.getContext('2d');
                 if (!ctx) return;
+
+                // Asegurar que el contenedor del gráfico tenga una altura definida
+                const container = document.querySelector('#volumeChart').closest('.chart-container');
+                if (container) {
+                    container.style.height = '350px'; 
+                }
+
 
                 new Chart(ctx, {
                     type: 'bar',
@@ -515,12 +507,12 @@
                             label: 'Series Semanales',
                             data: [21, 20, 22, 18, 18, 31],
                             backgroundColor: [
-                                '#34d399', 
-                                '#059669', 
-                                '#16a34a', 
-                                '#a3e635', 
-                                '#eab308',
-                                '#f59e0b'
+                                '#34d399', /* Lima Claro */
+                                '#059669', /* Verde Medio */
+                                '#16a34a', /* Verde Oscuro */
+                                '#a3e635', /* Lima */
+                                '#eab308', /* Amarillo */
+                                '#f59e0b'  /* Naranja */
                             ],
                             borderColor: '#111827',
                             borderWidth: 2
@@ -562,92 +554,7 @@
                 });
             }
 
-            function initIntensityChart() {
-                const ctx = document.getElementById('intensityChart')?.getContext('2d');
-                if (!ctx) return;
-
-                new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Al Fallo', 'Parciales', 'Excéntricas', 'Drop Set', 'Trampa'],
-                        datasets: [{
-                            label: 'Técnicas de Intensidad',
-                            data: [25, 3, 1, 1, 1],
-                            backgroundColor: [
-                                '#39E7B3', // Principal
-                                '#f59e0b',
-                                '#eab308',
-                                '#a3e635',
-                                '#16a34a'
-                            ],
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    color: '#e5e7eb'
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    title: tooltipTitleCallback
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            function initRepChart() {
-                const ctx = document.getElementById('repChart')?.getContext('2d');
-                if (!ctx) return;
-
-                const rawLabels = ['Fuerza (5-8 reps)', 'Hipertrofia (8-12 reps)', 'Resistencia (12+ reps)'];
-
-                new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: rawLabels.map(label => wrapChartLabels(label, 15)),
-                        datasets: [{
-                            label: 'Distribución de Reps',
-                            data: [40, 50, 10],
-                            backgroundColor: [
-                                '#34d399',
-                                '#059669',
-                                '#16a34a'
-                            ],
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    color: '#e5e7eb',
-                                    font: {
-                                        size: 10
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    title: tooltipTitleCallback
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            // --- Lógica del Acordeón (Actualizada para Morado) ---
+            // --- Lógica del Acordeón (Sin Cambios, mantiene el color morado) ---
 
             function initAccordion() {
                 const accordionContainer = document.getElementById('accordion-container');
@@ -665,19 +572,24 @@
 
                     // Cierra otros paneles y remueve el color morado/gris
                     allButtons.forEach(btn => {
-                        btn.setAttribute('aria-expanded', 'false');
-                        // Asegura que solo se eliminen las clases de color activo, no las de hover
-                        btn.classList.remove('active-day', 'rest-day'); 
-                        // Restaura la clase base si no es el botón clickeado
-                        if (btn.textContent.includes('Descanso (R)')) {
-                            btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
-                        } else {
-                            btn.classList.add('hover:bg-gray-700');
+                        if (btn !== button) {
+                            btn.setAttribute('aria-expanded', 'false');
+                            btn.classList.remove('active-day', 'rest-day'); 
+                            
+                            // Restaura la clase base
+                            if (btn.textContent.includes('Descanso (R)')) {
+                                btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+                            } else {
+                                btn.classList.add('hover:bg-gray-700');
+                                btn.classList.remove('bg-gray-700'); // Asegura que no tenga el gris base si es activo
+                            }
                         }
                     });
                     
                     allPanels.forEach(pnl => {
-                        pnl.classList.add('hidden');
+                        if (pnl !== panel) {
+                            pnl.classList.add('hidden');
+                        }
                     });
                     
                     // Toggle del panel actual y aplica el color morado (o gris para descanso)
@@ -688,43 +600,45 @@
                         // Si se va a expandir, aplica la clase de día activo (morado) o descanso (gris)
                         if (button.textContent.includes('Descanso (R)')) {
                              button.classList.add('rest-day');
-                             button.classList.remove('bg-gray-700', 'hover:bg-gray-600'); // Quita las clases base para que se aplique el estilo [aria-expanded="true"] en CSS
+                             button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
                         } else {
                             // Días de trabajo (E1, H1, P1, E2, H2, P2)
                             button.classList.add('active-day');
-                            button.classList.remove('hover:bg-gray-700'); // Quita las clases base
+                            button.classList.remove('hover:bg-gray-700'); 
                         }
                     }
                 });
             }
 
-            // --- Lógica del Calendario ---
+            // --- Lógica del Calendario (Actualizada para empezar en H2, Nov 28) ---
 
             function initCalendar() {
                 const calendarGrid = document.getElementById('calendar-grid-content');
                 if (!calendarGrid) return;
 
-                // Fecha de inicio: Noviembre 15, 2025 (Sábado)
-                const startDate = new Date('2025-11-15T00:00:00'); 
+                // Nueva fecha de inicio: Noviembre 28, 2025 (Viernes)
+                const startDate = new Date('2025-11-28T00:00:00'); 
                 const totalDays = 30;
                 
-                // *** SECUENCIA DE RUTINAS ACTUALIZADA (P1, R, E2, H2, P2, R, E1, H1) ***
+                // *** SECUENCIA DE RUTINAS AJUSTADA (Comienza en H2) ***
+                // Patrón estándar: E1, H1, P1, R, E2, H2, P2, R
+                // Secuencia nueva: H2, P2, R, E1, H1, P1, R, E2
                 const routines = [
-                    { label: 'P1: Pierna 1', class: 'P1' }, // Nov 15
-                    { label: 'Descanso', class: 'R' },      // Nov 16
-                    { label: 'E2: Empuje 2', class: 'E2' },
-                    { label: 'H2: Halón 2', class: 'H2' },
-                    { label: 'P2: Pierna 2', class: 'P2' },
-                    { label: 'Descanso', class: 'R' },
-                    { label: 'E1: Empuje 1', class: 'E1' },
-                    { label: 'H1: Halón 1', class: 'H1' },
+                    { label: 'H2: Halón 2', class: 'H2' },      // Día 1
+                    { label: 'P2: Pierna 2', class: 'P2' },     // Día 2
+                    { label: 'Descanso', class: 'R' },          // Día 3
+                    { label: 'E1: Empuje 1', class: 'E1' },     // Día 4
+                    { label: 'H1: Halón 1', class: 'H1' },      // Día 5
+                    { label: 'P1: Pierna 1', class: 'P1' },     // Día 6
+                    { label: 'Descanso', class: 'R' },          // Día 7
+                    { label: 'E2: Empuje 2', class: 'E2' },     // Día 8
                 ];
                 const patternLength = 8; 
 
-                // 1. Calcular el número de slots vacíos antes del día 15
-                // Date.getDay() retorna 6 para Sábado (Nov 15).
+                // 1. Calcular el número de slots vacíos antes del día 28
+                // Date.getDay() retorna 5 para Viernes (Nov 28). (0=Dom, 1=Lun, ..., 5=Vie)
                 const startDayOfWeek = startDate.getDay(); 
-                // Si es Sábado (6), slots vacíos para Lunes (1) a Viernes (5) = 5 slots.
+                // Slots vacíos para Lunes (1) a Jueves (4) = 4 slots.
                 const emptySlots = (startDayOfWeek === 0) ? 6 : startDayOfWeek - 1; 
 
                 // 2. Agregar celdas vacías
@@ -769,8 +683,6 @@
 
             // Ejecución de la inicialización
             initVolumeChart();
-            initIntensityChart();
-            initRepChart();
             initAccordion();
             initCalendar(); 
         });
