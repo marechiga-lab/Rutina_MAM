@@ -27,82 +27,80 @@
         }
 
         /* --- ESTILOS DE ACORDEÓN --- */
-
-        /* Estilo base del botón (color de fondo alternativo para separación) */
         .accordion-button {
+            /* Estilo base para todos los botones contraídos */
             background-color: #1f2937; /* gray-800 */
         }
         
-        /* ESTILO PARA CUANDO EL ACORDEÓN ESTÁ DESPLEGADO (Día de TRABAJO) */
+        /* Estilo para DÍA DE EJERCICIO activo expandido (Violeta 600) */
         .accordion-button.active-day[aria-expanded="true"] {
             background-color: #7c3aed; /* violet-600 */
             color: white; 
             box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
         }
-        
-        /* ESTILO PARA DÍA DE DESCANSO DESPLEGADO (Mantiene el gris oscuro) */
+        /* Estilo para DÍA DE DESCANSO expandido */
         .accordion-button.rest-day[aria-expanded="true"] {
              background-color: #4b5563; /* gray-600 */
+             box-shadow: 0 4px 10px rgba(75, 85, 99, 0.4);
         }
-
+        
+        /* Rotar flecha cuando está expandido */
         .accordion-button[aria-expanded="true"] .accordion-arrow {
             transform: rotate(180deg);
         }
         .accordion-arrow {
             transition: transform 0.2s ease-in-out;
         }
+        
+        /* Estilo por defecto del botón de DESCANSO (contraído) */
+        .accordion-button.R {
+            background-color: #374151; /* gray-700 un poco más claro para el descanso contraído */
+        }
+        
 
         /* --- Estilos del Calendario --- */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+            gap: 2px;
         }
         .calendar-day {
-            min-height: 80px;
+            min-height: 80px; /* Reducido para simplificación */
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 4px;
+            justify-content: center; /* Centrado vertical */
+            padding: 8px 4px; /* Aumentado el padding */
             border-radius: 8px;
             text-align: center;
             font-weight: 600;
             box-shadow: 0 1px 3px rgba(0,0,0,0.3);
             transition: transform 0.1s, box-shadow 0.1s;
+            position: relative;
         }
         .calendar-day:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         }
         .day-number {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 2px;
         }
         .day-label {
             font-size: 0.8rem;
             line-height: 1.1;
         }
+
         /* Colores de Rutina adaptados al modo oscuro */
-        .E1, .E2 { background-color: #166534; color: white; } /* Empuje - Verde Oscuro */
-        .H1, .H2 { background-color: #059669; color: white; } /* Halón - Verde Medio */
-        .P1, .P2 { background-color: #34d399; color: #111827; } /* Pierna/Hombro - Verde Lima */
-        .R { background-color: #4b5563; color: white; } /* Descanso - Gris Oscuro */
-        
-        /* Ajuste de tipografía para el calendario */
-        .E1 .day-number, .E2 .day-number,
-        .H1 .day-number, .H2 .day-number,
-        .P1 .day-number, .P2 .day-number,
-        .R .day-number { font-size: 1.2rem; }
-        .E1 .day-label, .E2 .day-label,
-        .H1 .day-label, .H2 .day-label,
-        .P1 .day-label, .P2 .day-label,
-        .R .day-label { font-size: 0.75rem; }
+        .E1, .E2 { background-color: #166534; color: white; } /* Verde oscuro */
+        .H1, .H2 { background-color: #059669; color: white; } /* Verde medio */
+        .P1, .P2 { background-color: #34d399; color: #111827; } /* Verde claro */
+        .R { background-color: #4b5563; color: white; } /* Gris para descanso */
 
         .day-header {
-            color: #39E7B3; /* Verde Brillante */
+            color: #39E7B3;
             font-weight: 700;
-            padding: 8px 4px;
+            padding: 8px 2px;
         }
     </style>
 </head>
@@ -126,7 +124,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                <!-- 1. Tricep (Cyan) -->
+                <!-- 1. Tricep -->
                 <a href="https://youtu.be/8Nkfuhxsl-0?si=lCc2G_S9aiY4XUD" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-cyan-500 shadow-xl">
                     <div class="flex items-center space-x-4">
@@ -140,7 +138,7 @@
                     </div>
                 </a>
 
-                <!-- 2. Pecho (Lime) -->
+                <!-- 2. Pecho -->
                 <a href="https://youtu.be/CNusBc4kElM?si=oYUlay1Jam2cw3m" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-lime-500 shadow-xl">
                     <div class="flex items-center space-x-4">
@@ -154,7 +152,7 @@
                     </div>
                 </a>
 
-                <!-- 3. Espalda (Violet) -->
+                <!-- 3. Espalda -->
                 <a href="https://youtu.be/dOIy_izhvjc?si=04ZRFlTuNdv_0RAb" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-violet-500 shadow-xl">
                     <div class="flex items-center space-x-4">
@@ -168,7 +166,7 @@
                     </div>
                 </a>
 
-                <!-- 4. BICEP (Cyan) -->
+                <!-- 4. BICEP -->
                 <a href="https://youtu.be/QO1qtm6ftOc?si=GzSDxsXYhRDbKlk5" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-cyan-500 shadow-xl">
                     <div class="flex items-center space-x-4">
@@ -182,9 +180,9 @@
                     </div>
                 </a>
                 
-                <!-- 5. Hombro (Lime) -->
+                <!-- 5. Hombro -->
                 <a href="https://youtu.be/zEf4pKoKc70?si=7PSjU27sLdxsqrlr" target="_blank" 
-                   class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-lime-500 shadow-xl">
+                   class="class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-lime-500 shadow-xl">
                     <div class="flex items-center space-x-4">
                         <svg class="w-10 h-10 text-lime-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/>
@@ -196,7 +194,7 @@
                     </div>
                 </a>
 
-                <!-- 6. PIERNA (Violet) -->
+                <!-- 6. PIERNA -->
                 <a href="https://youtu.be/9cQKrDmBrHE?si=xjr3TIsRi6VaiOgE" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-violet-500 shadow-xl">
                     <div class="flex items-center space-x-4">
@@ -229,7 +227,7 @@
         </section>
 
 
-        <!-- SECCIÓN 2: ANÁLISIS DEL PLAN (Reducida a un solo gráfico) -->
+        <!-- SECCIÓN 2: ANÁLISIS DEL PLAN (Gráfica y Resumen) -->
         <section id="plan-analysis" class="mb-16">
             <h2 class="text-3xl font-bold text-center primary-color mb-8">Análisis de Tu Rutina Semanal (6x PPL)</h2>
             
@@ -262,7 +260,7 @@
 
         <!-- SECCIÓN 3: CALENDARIO -->
         <section id="calendar" class="mb-16">
-            <h2 class="text-3xl font-bold text-center primary-color mb-8">Calendario de 30 Días (Inicio: Nov 28, 2025 - H2)</h2>
+            <h2 class="text-3xl font-bold text-center primary-color mb-8">Calendario de 30 Días (P2 Hoy, Descanso Mañana, E1 Martes)</h2>
             <p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-6">El patrón de entrenamiento es: **3 Días Activos / 1 Día de Descanso**.</p>
 
             <div class="bg-card rounded-lg shadow-xl p-6 md:p-8">
@@ -296,152 +294,7 @@
         <section id="daily-plan" class="mb-12">
             <h2 class="text-3xl font-bold text-center primary-color mb-8">Tu Plan Diario Detallado (Rutinas)</h2>
             <div id="accordion-container" class="space-y-4">
-                
-                <!-- Día 1: Empuje 1 -->
-                <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
-                    <button class="accordion-button active-day w-full text-left p-6 font-semibold text-xl text-white flex justify-between items-center transition-colors duration-200 hover:bg-gray-700" aria-expanded="false">
-                        <span>Día 1: Empuje 1 (E1) - Pecho I + Tríceps I</span>
-                        <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
-                    </button>
-                    <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-3 text-gray-300">
-                            <li><b>Calentamiento:</b> Rotación Externa con Banda (1-2x10)</li>
-                            <li><b>Pecho:</b> Press Banca Inclinado (3x 5-8 + parciales)</li>
-                            <li><b>Tríceps:</b> Jalón Cuerda (2-3x 6-8 FALLO)</li>
-                            <li><b>Pecho:</b> Crossover (3x 10-12 + excéntricas)</li>
-                            <li><b>Tríceps:</b> Press Banca Mancuernas (2-3x 8-10 + FALLO)</li>
-                            <li><b>Pecho:</b> Fly Suelo Mancuerna (2x 8-10 + parciales)</li>
-                            <li><b>Tríceps:</b> Patada Mancuerna/Cable (2-3x 10-12 + FALLO)</li>
-                            <li><b>Pecho:</b> Flexiones con Mancuerna (1 serie)</li>
-                            <li><b>Pecho & Tríceps:</b> Fondos (1 serie)</li>
-                            <li><b>Tríceps:</b> Cobra Lagartijas (1 serie FALLO)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Día 2: Halón 1 -->
-                <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
-                    <button class="accordion-button active-day w-full text-left p-6 font-semibold text-xl text-white flex justify-between items-center transition-colors duration-200 hover:bg-gray-700" aria-expanded="false">
-                        <span>Día 2: Halón 1 (H1) - Espalda I + Bíceps I</span>
-                        <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
-                    </button>
-                    <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-3 text-gray-300">
-                            <li><b>Calentamiento:</b> Jalón Barra Poco Peso Abierta (10-15 reps)</li>
-                            <li><b>Espalda:</b> Remo Agarre Amplio (2-3x 6-8 FALLO)</li>
-                            <li><b>Bíceps:</b> Barra Z Pared (2-3x 6-8 FALLO)</li>
-                            <li><b>Espalda:</b> Jalón Cerrado Agarre Corto (2-3x 10-12 + FALLO)</li>
-                            <li><b>Bíceps:</b> Mancuerna Curl Cruzado Martillo (2-3x 10-12 FALLO)</li>
-                            <li><b>Espalda:</b> Jalón Dorsal (2-3x 8-10 + FALLO)</li>
-                            <li><b>Bíceps:</b> Curl Cable Polea Baja (1x 10 FALLO)</li>
-                            <li><b>Espalda:</b> Pullover Banca Mancuerna (1 serie)</li>
-                            <li><b>Espalda:</b> Dominadas (1 serie + FALLO)</li>
-                            <li><b>Bíceps:</b> Jalones Barra Larga Agarre Cerrado (1x 10)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Día 3: Pierna/Hombro 1 -->
-                <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
-                    <button class="accordion-button active-day w-full text-left p-6 font-semibold text-xl text-white flex justify-between items-center transition-colors duration-200 hover:bg-gray-700" aria-expanded="false">
-                        <span>Día 3: Pierna/Hombro 1 (P1) - Pierna I + Hombro I</span>
-                        <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
-                    </button>
-                    <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-3 text-gray-300">
-                            <li><b>Calentamiento:</b> Hiper Extensión (1-2x 10-15 SUBMAX)</li>
-                            <li><b>Hombro:</b> Press a un Brazo Mancuerna (2-3x 6-8 FALLO)</li>
-                            <li><b>Pierna:</b> Peso Muerto (3-5x 10 @ 80% MAX)</li>
-                            <li><b>Hombro:</b> Elevaciones Laterales (Drop Set Mecánico) (3-4 series)</li>
-                            <li><b>Pierna:</b> Sentadilla (3-5x 10 @ 80% MAX)</li>
-                            <li><b>Hombro:</b> Remo Deltoides Posterior (2x 10-12)</li>
-                            <li><b>Pierna:</b> Zancada Reversa Mancuernas (2-3x 10/pierna)</li>
-                            <li><b>Pierna:</b> Curl Isquiotibial (1 serie FALLO + Drop Set)</li>
-                            <li><b>Pierna:</b> Pantorrillas (Parado/Sentado) (2-3 series)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Día 4: Descanso -->
-                <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
-                    <button class="accordion-button rest-day w-full text-left p-6 font-semibold text-xl text-white bg-gray-700 flex justify-between items-center transition-colors duration-200 hover:bg-gray-600" aria-expanded="false">
-                        <span>Día 4: Descanso (R) - ¡Recuperación Activa!</span>
-                        <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
-                    </button>
-                    <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-3 text-gray-300">
-                            <li><b>Recomendación:</b> Enfatizar la hidratación y el sueño.</li>
-                            <li><b>Opcional:</b> 30 minutos de actividad cardiovascular ligera (caminata, yoga suave) para fomentar el flujo sanguíneo y la recuperación.</li>
-                            <li><b>Nutrición:</b> Mantener una ingesta alta de proteínas para la reparación muscular.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Día 5: Empuje 2 -->
-                <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
-                    <button class="accordion-button active-day w-full text-left p-6 font-semibold text-xl text-white flex justify-between items-center transition-colors duration-200 hover:bg-gray-700" aria-expanded="false">
-                        <span>Día 5: Empuje 2 (E2) - Pecho II + Tríceps II</span>
-                        <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
-                    </button>
-                    <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-3 text-gray-300">
-                            <li><b>Calentamiento:</b> Extensión Espalda con Liga (SUBMAX)</li>
-                            <li><b>Pecho:</b> Press Banca Mancuerna/Barra (3x 5-8 FALLO)</li>
-                            <li><b>Tríceps:</b> PRJ Press Banca Mancuerna (2-3x 6-8 FALLO)</li>
-                            <li><b>Pecho:</b> Crossover Up-Down (3x 10-12 FALLO + parciales)</li>
-                            <li><b>Tríceps:</b> Cable Extensión Cuerda Polea Alta (2-3x 10-12)</li>
-                            <li><b>Pecho:</b> Press Cable (2-3x 8-10 + FALLO)</li>
-                            <li><b>Tríceps:</b> Crossover Inverso Jalón Cable (2-3x 10-12)</li>
-                            <li><b>Pecho:</b> Fondos (1 serie FALLO)</li>
-                            <li><b>Pecho:</b> Flexiones Rápidas (1 serie FALLO)</li>
-                            <li><b>Tríceps:</b> Fondos con Banca (1 serie FALLO)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Día 6: Halón 2 -->
-                <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
-                    <button class="accordion-button active-day w-full text-left p-6 font-semibold text-xl text-white flex justify-between items-center transition-colors duration-200 hover:bg-gray-700" aria-expanded="false">
-                        <span>Día 6: Halón 2 (H2) - Espalda II + Bíceps II</span>
-                        <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
-                    </button>
-                    <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-3 text-gray-300">
-                            <li><b>Calentamiento:</b> Jalones a la Cara (15 reps SUBMAX)</li>
-                            <li><b>Espalda:</b> Remo con Barra Banco Inclinado (2-3x 6-8 FALLO)</li>
-                            <li><b>Bíceps:</b> Barras Agarre Cerrado (Motion) (2-3x 6-8 FALLO)</li>
-                            <li><b>Espalda:</b> Jalón Abierto Agarre Amplio (2-3x 10-12)</li>
-                            <li><b>Bíceps:</b> Spider Curl (Banca Inclinada Inversa) (2-3x 10-12 FALLO)</li>
-                            <li><b>Espalda:</b> Jalón Amplio Mancuerna (2-3x 8-10 FALLO)</li>
-                            <li><b>Bíceps:</b> Curl Mancuerna Banca Inclinada (2-3x 10-12 FALLO)</li>
-                            <li><b>Espalda:</b> Cable Alto Unilateral Dorsal (1 serie/brazo FALLO Escalera)</li>
-                            <li><b>Espalda:</b> Remo Invertido (1 serie FALLO + PARCIAL)</li>
-                            <li><b>Bíceps:</b> Curl Mancuerna Parado Abiertas (1x 10 FALLO)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Día 7: Pierna/Hombro 2 -->
-                <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
-                    <button class="accordion-button active-day w-full text-left p-6 font-semibold text-xl text-white flex justify-between items-center transition-colors duration-200 hover:bg-gray-700" aria-expanded="false">
-                        <span>Día 7: Pierna/Hombro 2 (P2) - Pierna II + Hombro II</span>
-                        <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
-                    </button>
-                    <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden">
-                        <ul class="list-disc list-inside space-y-3 text-gray-300">
-                            <li><b>Calentamiento:</b> Banda Sobrecabeza Squat (1-2x 10-15 SUBMAX)</li>
-                            <li><b>Hombro:</b> Elevación Lateral "TRAMPEANDO" (3-4x 6-8 FALLO)</li>
-                            <li><b>Pierna:</b> Sentadilla (Esquema 3x7 @ 70%)</li>
-                            <li><b>Hombro:</b> Elevación Frontal Inclinada (2-3x 10-12 FALLO + Parciales)</li>
-                            <li><b>Pierna:</b> Hip Thrust Libre (3-4x 10 REPS @ 70%)</li>
-                            <li><b>Hombro:</b> Face Pull (2x 10-12)</li>
-                            <li><b>Pierna:</b> Banda Rodilla Squat Mancuerna (2-3x 10 REPS)</li>
-                            <li><b>Pierna:</b> Barra Z - Curl Isquio (1 serie)</li>
-                            <li><b>Pierna:</b> Pantorrillas (2-3 series)</li>
-                        </ul>
-                    </div>
-                </div>
-
+                <!-- Contenido del Acordeón generado por JavaScript -->
             </div>
         </section>
 
@@ -453,238 +306,300 @@
 
     <!-- CÓDIGO JAVASCRIPT: Gráficas, Acordeón y Calendario -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // --- Datos de Rutinas (para generar el acordeón dinámicamente) ---
+        const routineData = {
+            'E1': { title: 'Día 1: Empuje 1 (E1) - Pecho I + Tríceps I', exercises: [
+                'Calentamiento: Rotación Externa con Banda (1-2x10)',
+                'Pecho: Press Banca Inclinado (3x 5-8 + parciales)',
+                'Tríceps: Jalón Cuerda (2-3x 6-8 FALLO)',
+                'Pecho: Crossover (3x 10-12 + excéntricas)',
+                'Tríceps: Press Banca Mancuernas (2-3x 8-10 + FALLO)',
+                'Pecho: Fly Suelo Mancuerna (2x 8-10 + parciales)',
+                'Tríceps: Patada Mancuerna/Cable (2-3x 10-12 + FALLO)',
+                'Pecho: Flexiones con Mancuerna (1 serie)',
+                'Pecho & Tríceps: Fondos (1 serie)',
+                'Tríceps: Cobra Lagartijas (1 serie FALLO)'
+            ]},
+            'H1': { title: 'Día 2: Halón 1 (H1) - Espalda I + Bíceps I', exercises: [
+                'Calentamiento: Jalón Barra Poco Peso Abierta (10-15 reps)',
+                'Espalda: Remo Agarre Amplio (2-3x 6-8 FALLO)',
+                'Bíceps: Barra Z Pared (2-3x 6-8 FALLO)',
+                'Espalda: Jalón Cerrado Agarre Corto (2-3x 10-12 + FALLO)',
+                'Bíceps: Mancuerna Curl Cruzado Martillo (2-3x 10-12 FALLO)',
+                'Espalda: Jalón Dorsal (2-3x 8-10 + FALLO)',
+                'Bíceps: Curl Cable Polea Baja (1x 10 FALLO)',
+                'Espalda: Pullover Banca Mancuerna (1 serie)',
+                'Espalda: Dominadas (1 serie + FALLO)',
+                'Bíceps: Jalones Barra Larga Agarre Cerrado (1x 10)'
+            ]},
+            'P1': { title: 'Día 3: Pierna/Hombro 1 (P1) - Pierna I + Hombro I', exercises: [
+                'Calentamiento: Hiper Extensión (1-2x 10-15 SUBMAX)',
+                'Hombro: Press a un Brazo Mancuerna (2-3x 6-8 FALLO)',
+                'Pierna: Peso Muerto (3-5x 10 @ 80% MAX)',
+                'Hombro: Elevaciones Laterales (Drop Set Mecánico) (3-4 series)',
+                'Pierna: Sentadilla (3-5x 10 @ 80% MAX)',
+                'Hombro: Remo Deltoides Posterior (2x 10-12)',
+                'Pierna: Zancada Reversa Mancuernas (2-3x 10/pierna)',
+                'Pierna: Curl Isquiotibial (1 serie FALLO + Drop Set)',
+                'Pierna: Pantorrillas (Parado/Sentado) (2-3 series)'
+            ]},
+            'R': { title: 'Día 4: Descanso (R) - ¡Recuperación Activa!', exercises: [
+                'Recomendación: Enfatizar la hidratación y el sueño.',
+                'Opcional: 30 minutos de actividad cardiovascular ligera (caminata, yoga suave).',
+                'Nutrición: Mantener una ingesta alta de proteínas para la reparación muscular.'
+            ]},
+            'E2': { title: 'Día 5: Empuje 2 (E2) - Pecho II + Tríceps II', exercises: [
+                'Calentamiento: Extensión Espalda con Liga (SUBMAX)',
+                'Pecho: Press Banca Mancuerna/Barra (3x 5-8 FALLO)',
+                'Tríceps: PRJ Press Banca Mancuerna (2-3x 6-8 FALLO)',
+                'Pecho: Crossover Up-Down (3x 10-12 FALLO + parciales)',
+                'Tríceps: Cable Extensión Cuerda Polea Alta (2-3x 10-12)',
+                'Pecho: Press Cable (2-3x 8-10 + FALLO)',
+                'Tríceps: Crossover Inverso Jalón Cable (2-3x 10-12)',
+                'Pecho: Fondos (1 serie FALLO)',
+                'Pecho: Flexiones Rápidas (1 serie FALLO)',
+                'Tríceps: Fondos con Banca (1 serie FALLO)'
+            ]},
+            'H2': { title: 'Día 6: Halón 2 (H2) - Espalda II + Bíceps II', exercises: [
+                'Calentamiento: Jalones a la Cara (15 reps SUBMAX)',
+                'Espalda: Remo con Barra Banco Inclinado (2-3x 6-8 FALLO)',
+                'Bíceps: Barras Agarre Cerrado (Motion) (2-3x 6-8 FALLO)',
+                'Espalda: Jalón Abierto Agarre Amplio (2-3x 10-12)',
+                'Bíceps: Spider Curl (Banca Inclinada Inversa) (2-3x 10-12 FALLO)',
+                'Espalda: Jalón Amplio Mancuerna (2-3x 8-10 FALLO)',
+                'Bíceps: Curl Mancuerna Banca Inclinada (2-3x 10-12 FALLO)',
+                'Espalda: Cable Alto Unilateral Dorsal (1 serie/brazo FALLO Escalera)',
+                'Espalda: Remo Invertido (1 serie FALLO + PARCIAL)',
+                'Bíceps: Curl Mancuerna Parado Abiertas (1x 10 FALLO)'
+            ]},
+            'P2': { title: 'Día 7: Pierna/Hombro 2 (P2) - Pierna II + Hombro II', exercises: [
+                'Calentamiento: Banda Sobrecabeza Squat (1-2x 10-15 SUBMAX)',
+                'Hombro: Elevación Lateral "TRAMPEANDO" (3-4x 6-8 FALLO)',
+                'Pierna: Sentadilla (Esquema 3x7 @ 70%)',
+                'Hombro: Elevación Frontal Inclinada (2-3x 10-12 FALLO + Parciales)',
+                'Pierna: Hip Thrust Libre (3-4x 10 REPS @ 70%)',
+                'Hombro: Face Pull (2x 10-12)',
+                'Pierna: Banda Rodilla Squat Mancuerna (2-3x 10 REPS)',
+                'Pierna: Barra Z - Curl Isquio (1 serie)',
+                'Pierna: Pantorrillas (2-3 series)'
+            ]}
+        };
+        
+        // --- Lógica del Calendario (Fechas) - SIN CHECKBOXES ---
 
-            // --- Funciones Auxiliares para Gráficas ---
-            const tooltipTitleCallback = (tooltipItems) => {
-                const item = tooltipItems[0];
-                let label = item.chart.data.labels[item.dataIndex];
-                if (Array.isArray(label)) {
-                    return label.join(' ');
-                } else {
-                    return label;
-                }
-            };
+        function initCalendar() {
+            const calendarGrid = document.getElementById('calendar-grid-content');
+            if (!calendarGrid) return;
+
+            calendarGrid.innerHTML = ''; 
+
+            // Asumiendo que P2 (índice 6) es HOY (30 de noviembre de 2025)
+            const startDate = new Date('2025-11-30T00:00:00'); 
+            const totalDays = 30;
             
-            // La función wrapChartLabels ya no es necesaria, pero se mantiene por si acaso.
-            const wrapChartLabels = (label, maxWidth = 16) => {
-                if (label.length <= maxWidth) {
-                    return label;
-                }
-                const words = label.split(' ');
-                const lines = [];
-                let currentLine = '';
-                for (const word of words) {
-                    if ((currentLine + word).length <= maxWidth) {
-                        currentLine += word + ' ';
-                    } else {
-                        lines.push(currentLine.trim());
-                        currentLine = word + ' ';
-                    }
-                }
-                lines.push(currentLine.trim());
-                return lines;
-            };
+            const routines = [
+                { label: 'E1: Empuje 1', class: 'E1', id: 'E1' },     
+                { label: 'H1: Halón 1', class: 'H1', id: 'H1' },      
+                { label: 'P1: Pierna 1', class: 'P1', id: 'P1' },     
+                { label: 'Descanso', class: 'R', id: 'R' },          
+                { label: 'E2: Empuje 2', class: 'E2', id: 'E2' },     
+                { label: 'H2: Halón 2', class: 'H2', id: 'H2' },      
+                { label: 'P2: Pierna 2', class: 'P2', id: 'P2' },     
+                { label: 'Descanso', class: 'R', id: 'R' },          
+            ];
+            const patternLength = 8; 
+            
+            // Offset: P2 (index 6) el día 0 del loop.
+            const startingOffset = 6; 
 
-            // --- Inicialización de Gráficas (Solo Volumen) ---
+            // 30 de noviembre de 2025 es Domingo (0). 
+            // Queremos que el 30/11 caiga en el último slot. (Lun=1, Dom=0)
+            const startDayOfWeek = startDate.getDay(); // 0 para Domingo
+            const emptySlots = (startDayOfWeek === 0) ? 6 : startDayOfWeek - 1; 
 
-            function initVolumeChart() {
-                const ctx = document.getElementById('volumeChart')?.getContext('2d');
-                if (!ctx) return;
-
-                // Asegurar que el contenedor del gráfico tenga una altura definida
-                const container = document.querySelector('#volumeChart').closest('.chart-container');
-                if (container) {
-                    container.style.height = '350px'; 
-                }
-
-
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Pecho', 'Tríceps', 'Espalda', 'Bíceps', 'Hombro', 'Pierna'],
-                        datasets: [{
-                            label: 'Series Semanales',
-                            data: [21, 20, 22, 18, 18, 31],
-                            backgroundColor: [
-                                '#34d399', /* Lima Claro */
-                                '#059669', /* Verde Medio */
-                                '#16a34a', /* Verde Oscuro */
-                                '#a3e635', /* Lima */
-                                '#eab308', /* Amarillo */
-                                '#f59e0b'  /* Naranja */
-                            ],
-                            borderColor: '#111827',
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    title: tooltipTitleCallback
-                                }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                grid: {
-                                    color: '#374151'
-                                },
-                                ticks: {
-                                    color: '#e5e7eb'
-                                }
-                            },
-                            x: {
-                                grid: {
-                                    display: false
-                                },
-                                ticks: {
-                                    color: '#e5e7eb'
-                                }
-                            }
-                        }
-                    }
-                });
+            // Agregar celdas vacías
+            for (let i = 0; i < emptySlots; i++) {
+                calendarGrid.insertAdjacentHTML('beforeend', 
+                    `<div class="calendar-day bg-gray-800 text-gray-500 shadow-inner"></div>`
+                );
             }
+            
+            let currentDate = new Date(startDate);
+            
+            for (let i = 0; i < totalDays; i++) {
+                const routineIndex = (i + startingOffset) % patternLength; 
+                const routine = routines[routineIndex];
+                const dayNumber = currentDate.getDate();
+                const month = currentDate.toLocaleString('es-ES', { month: 'short' }).replace('.', ''); 
+                
+                const dayHtml = document.createElement('div');
+                dayHtml.className = `calendar-day ${routine.class} text-center`;
+                
+                // Contenido simplificado del día
+                dayHtml.innerHTML = `
+                    <span class="day-number">${dayNumber}</span>
+                    <span class="day-label font-light">${month.toUpperCase()}</span>
+                    <span class="day-label font-semibold">${routine.label.split(':')[0]}</span>
+                `;
 
-            // --- Lógica del Acordeón (Sin Cambios, mantiene el color morado) ---
-
-            function initAccordion() {
-                const accordionContainer = document.getElementById('accordion-container');
-                if (!accordionContainer) return;
-
-                accordionContainer.addEventListener('click', function(e) {
-                    const button = e.target.closest('.accordion-button');
-                    if (!button) return;
-
-                    const panel = button.nextElementSibling;
-                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-                    const allButtons = accordionContainer.querySelectorAll('.accordion-button');
-                    const allPanels = accordionContainer.querySelectorAll('.accordion-panel');
-
-                    // Cierra otros paneles y remueve el color morado/gris
-                    allButtons.forEach(btn => {
-                        if (btn !== button) {
-                            btn.setAttribute('aria-expanded', 'false');
-                            btn.classList.remove('active-day', 'rest-day'); 
-                            
-                            // Restaura la clase base
-                            if (btn.textContent.includes('Descanso (R)')) {
-                                btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
-                            } else {
-                                btn.classList.add('hover:bg-gray-700');
-                                btn.classList.remove('bg-gray-700'); // Asegura que no tenga el gris base si es activo
-                            }
-                        }
-                    });
-                    
-                    allPanels.forEach(pnl => {
-                        if (pnl !== panel) {
-                            pnl.classList.add('hidden');
-                        }
-                    });
-                    
-                    // Toggle del panel actual y aplica el color morado (o gris para descanso)
-                    button.setAttribute('aria-expanded', !isExpanded);
-                    panel.classList.toggle('hidden');
-
-                    if (!isExpanded) {
-                        // Si se va a expandir, aplica la clase de día activo (morado) o descanso (gris)
-                        if (button.textContent.includes('Descanso (R)')) {
-                             button.classList.add('rest-day');
-                             button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
-                        } else {
-                            // Días de trabajo (E1, H1, P1, E2, H2, P2)
-                            button.classList.add('active-day');
-                            button.classList.remove('hover:bg-gray-700'); 
-                        }
-                    }
-                });
+                calendarGrid.appendChild(dayHtml);
+                currentDate.setDate(currentDate.getDate() + 1);
             }
+        }
 
-            // --- Lógica del Calendario (Actualizada para empezar en H2, Nov 28) ---
+        // --- Lógica del Acordeón (Generación y Eventos) ---
 
-            function initCalendar() {
-                const calendarGrid = document.getElementById('calendar-grid-content');
-                if (!calendarGrid) return;
+        function generateAccordionContent() {
+            const accordionContainer = document.getElementById('accordion-container');
+            let htmlContent = '';
 
-                // Nueva fecha de inicio: Noviembre 28, 2025 (Viernes)
-                const startDate = new Date('2025-11-28T00:00:00'); 
-                const totalDays = 30;
+            // Iterar sobre las rutinas definidas
+            Object.keys(routineData).forEach(routineKey => {
+                const data = routineData[routineKey];
                 
-                // *** SECUENCIA DE RUTINAS AJUSTADA (Comienza en H2) ***
-                // Patrón estándar: E1, H1, P1, R, E2, H2, P2, R
-                // Secuencia nueva: H2, P2, R, E1, H1, P1, R, E2
-                const routines = [
-                    { label: 'H2: Halón 2', class: 'H2' },      // Día 1
-                    { label: 'P2: Pierna 2', class: 'P2' },     // Día 2
-                    { label: 'Descanso', class: 'R' },          // Día 3
-                    { label: 'E1: Empuje 1', class: 'E1' },     // Día 4
-                    { label: 'H1: Halón 1', class: 'H1' },      // Día 5
-                    { label: 'P1: Pierna 1', class: 'P1' },     // Día 6
-                    { label: 'Descanso', class: 'R' },          // Día 7
-                    { label: 'E2: Empuje 2', class: 'E2' },     // Día 8
-                ];
-                const patternLength = 8; 
+                // Las clases específicas de rutina (E1, H1, R, etc.) deben ir en el botón
+                // La clase 'active-day' o 'rest-day' se agrega/quita dinámicamente en JS
+                const buttonClasses = `accordion-button ${routineKey} w-full text-left p-6 font-semibold text-xl text-white flex justify-between items-center transition-colors duration-200 hover:bg-gray-700`;
 
-                // 1. Calcular el número de slots vacíos antes del día 28
-                // Date.getDay() retorna 5 para Viernes (Nov 28). (0=Dom, 1=Lun, ..., 5=Vie)
-                const startDayOfWeek = startDate.getDay(); 
-                // Slots vacíos para Lunes (1) a Jueves (4) = 4 slots.
-                const emptySlots = (startDayOfWeek === 0) ? 6 : startDayOfWeek - 1; 
+                // Contenido del panel
+                let panelContent = `<ul class="list-disc list-inside space-y-2 text-gray-300">`;
+                data.exercises.forEach(exercise => {
+                    panelContent += `<li>${exercise}</li>`;
+                });
+                panelContent += `</ul>`;
 
-                // 2. Agregar celdas vacías
-                for (let i = 0; i < emptySlots; i++) {
-                    calendarGrid.insertAdjacentHTML('beforeend', 
-                        `<div class="calendar-day bg-gray-800 text-gray-500 shadow-inner"></div>`
-                    );
-                }
-                
-                let currentDate = new Date(startDate);
-                
-                // 3. Iterar a través de los 30 días de la rutina
-                for (let i = 0; i < totalDays; i++) {
-                    const routineIndex = i % patternLength; // 0 to 7
-                    const routine = routines[routineIndex];
-                    const dayNumber = currentDate.getDate();
-                    // Obtener nombre corto del mes, remover el punto/periodo si existe
-                    const month = currentDate.toLocaleString('es-ES', { month: 'short' }).replace('.', ''); 
-
-                    const dayHtml = `
-                        <div class="calendar-day ${routine.class}">
-                            <span class="day-number">${dayNumber}</span>
-                            <span class="day-label font-light">${month.toUpperCase()}</span>
-                            <span class="day-label font-semibold">${routine.label.split(':')[0]}</span>
+                htmlContent += `
+                    <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
+                        <!-- El botón contiene la clave de la rutina y el estado expandido/contraído -->
+                        <button class="${buttonClasses}" aria-expanded="false" data-routine="${routineKey}">
+                            <span>${data.title}</span>
+                            <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
+                        </button>
+                        <!-- El panel inicia con la clase 'hidden' de Tailwind -->
+                        <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden" data-routine-key="${routineKey}">
+                            ${panelContent}
                         </div>
-                    `;
-                    calendarGrid.insertAdjacentHTML('beforeend', dayHtml);
+                    </div>
+                `;
+            });
 
-                    // Mover a la siguiente fecha
-                    currentDate.setDate(currentDate.getDate() + 1);
-                }
+            accordionContainer.innerHTML = htmlContent;
+        }
+
+        function initAccordion() {
+            generateAccordionContent(); // Generar el contenido
+
+            const accordionContainer = document.getElementById('accordion-container');
+            if (!accordionContainer) return;
+
+            // Delegación de eventos en el contenedor
+            accordionContainer.addEventListener('click', function(e) {
+                // 1. Identificar el botón que fue clicado (o si el clic fue en un hijo del botón)
+                const button = e.target.closest('.accordion-button');
+                if (!button) return; // Si no es un botón de acordeón, ignorar
+
+                const panel = button.nextElementSibling;
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                const routineKey = button.dataset.routine;
+                const isRestDay = routineKey === 'R';
                 
-                // 4. Agregar celdas vacías restantes en la última semana
-                const totalCells = emptySlots + totalDays;
-                const remainingInGrid = (7 - (totalCells % 7)) % 7;
-                for (let i = 0; i < remainingInGrid; i++) {
-                    calendarGrid.insertAdjacentHTML('beforeend', 
-                        `<div class="calendar-day bg-gray-800 text-gray-500 shadow-inner"></div>`
-                    );
+                // 2. Contraer todos los demás y resetear sus estilos
+                accordionContainer.querySelectorAll('.accordion-button').forEach(btn => {
+                    if (btn !== button) {
+                        btn.setAttribute('aria-expanded', 'false');
+                        // Asegura que se quite el color violeta/gris
+                        btn.classList.remove('active-day', 'rest-day'); 
+                    }
+                });
+                
+                accordionContainer.querySelectorAll('.accordion-panel').forEach(pnl => {
+                    if (pnl !== panel) {
+                        pnl.classList.add('hidden');
+                    }
+                });
+                
+                // 3. Expandir o contraer el actual
+                if (isExpanded) {
+                    // Acción: Contraer
+                    button.setAttribute('aria-expanded', 'false');
+                    panel.classList.add('hidden'); // Ocultar
+                    button.classList.remove('active-day', 'rest-day'); // Resetear color
+                } else {
+                    // Acción: Expandir
+                    button.setAttribute('aria-expanded', 'true');
+                    panel.classList.remove('hidden'); // Mostrar (esto hace el despliegue)
+                    
+                    // Aplicar clases de estilo para el color (violeta si es ejercicio, gris si es descanso)
+                    if (isRestDay) {
+                         button.classList.add('rest-day');
+                    } else {
+                        // Aplica el color violeta 600 gracias a la regla CSS [aria-expanded="true"]
+                        button.classList.add('active-day'); 
+                    }
                 }
+            });
+        }
+
+
+        // --- Funciones Auxiliares para Gráficas ---
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        
+        function initVolumeChart() {
+            const ctx = document.getElementById('volumeChart')?.getContext('2d');
+            if (!ctx) return;
+
+            const container = document.querySelector('#volumeChart').closest('.chart-container');
+            if (container) {
+                container.style.height = '350px'; 
             }
 
-            // Ejecución de la inicialización
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Pecho', 'Tríceps', 'Espalda', 'Bíceps', 'Hombro', 'Pierna'],
+                    datasets: [{
+                        label: 'Series Semanales',
+                        data: [21, 20, 22, 18, 18, 31],
+                        backgroundColor: [
+                            '#34d399', 
+                            '#059669', 
+                            '#16a34a', 
+                            '#a3e635', 
+                            '#eab308', 
+                            '#f59e0b'  
+                        ],
+                        borderColor: '#111827',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#374151' }, ticks: { color: '#e5e7eb' } },
+                        x: { grid: { display: false }, ticks: { color: '#e5e7eb' } }
+                    }
+                }
+            });
+        }
+
+        // Ejecución de la inicialización principal
+        document.addEventListener('DOMContentLoaded', () => {
             initVolumeChart();
+            initCalendar();
             initAccordion();
-            initCalendar(); 
         });
     </script>
 </body>
