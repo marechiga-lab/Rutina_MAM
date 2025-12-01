@@ -10,67 +10,57 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            /* Fondo de la página: Gris oscuro */
-            background-color: #1f2937; 
+            background-color: #1f2937; /* Gris oscuro */
             color: #e5e7eb; /* Texto claro por defecto */
         }
-        /* Color principal de énfasis (Verde Brillante / Lima) */
-        .primary-color {
-            color: #39E7B3; 
-        }
-        /* Contenedores principales y cards */
-        .bg-card {
-            background-color: #111827; /* gray-900 */
-        }
-        .bg-card-alt {
-            background-color: #1f2937; /* gray-800 */
-        }
+        .primary-color { color: #39E7B3; } /* Verde Brillante / Lima */
+        .bg-card { background-color: #111827; } /* gray-900 */
+        .bg-card-alt { background-color: #1f2937; } /* gray-800 */
 
         /* --- ESTILOS DE ACORDEÓN --- */
-        .accordion-button {
-            /* Estilo base para todos los botones contraídos */
-            background-color: #1f2937; /* gray-800 */
-        }
-        
-        /* Estilo para DÍA DE EJERCICIO activo expandido (Violeta 600) */
+        .accordion-button { background-color: #1f2937; } /* gray-800 */
         .accordion-button.active-day[aria-expanded="true"] {
             background-color: #7c3aed; /* violet-600 */
             color: white; 
             box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
         }
-        /* Estilo para DÍA DE DESCANSO expandido */
         .accordion-button.rest-day[aria-expanded="true"] {
              background-color: #4b5563; /* gray-600 */
              box-shadow: 0 4px 10px rgba(75, 85, 99, 0.4);
         }
+        .accordion-button[aria-expanded="true"] .accordion-arrow { transform: rotate(180deg); }
+        .accordion-arrow { transition: transform 0.2s ease-in-out; }
+        .accordion-button.R { background-color: #374151; }
         
-        /* Rotar flecha cuando está expandido */
-        .accordion-button[aria-expanded="true"] .accordion-arrow {
-            transform: rotate(180deg);
+        /* --- ESTILO PARA TACHAR EJERCICIOS --- */
+        .exercise-item {
+            cursor: pointer;
+            padding: 4px 0;
+            transition: color 0.2s, text-decoration 0.2s;
+            display: list-item; /* Asegura el bullet point */
+            list-style-type: disc;
         }
-        .accordion-arrow {
-            transition: transform 0.2s ease-in-out;
+        .exercise-item:hover {
+            color: #39E7B3; /* Highlight on hover */
         }
-        
-        /* Estilo por defecto del botón de DESCANSO (contraído) */
-        .accordion-button.R {
-            background-color: #374151; /* gray-700 un poco más claro para el descanso contraído */
+        .exercise-item.completed {
+            text-decoration: line-through;
+            color: #4b5563; /* Gris más opaco */
         }
-        
 
-        /* --- Estilos del Calendario --- */
+        /* --- Estilos del Calendario (sin cambios significativos) --- */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 2px;
         }
         .calendar-day {
-            min-height: 80px; /* Reducido para simplificación */
+            min-height: 80px; 
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Centrado vertical */
-            padding: 8px 4px; /* Aumentado el padding */
+            justify-content: center; 
+            padding: 8px 4px; 
             border-radius: 8px;
             text-align: center;
             font-weight: 600;
@@ -82,20 +72,14 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         }
-        .day-number {
-            font-size: 1.2rem;
-            margin-bottom: 2px;
-        }
-        .day-label {
-            font-size: 0.8rem;
-            line-height: 1.1;
-        }
+        .day-number { font-size: 1.2rem; margin-bottom: 2px; }
+        .day-label { font-size: 0.8rem; line-height: 1.1; }
 
         /* Colores de Rutina adaptados al modo oscuro */
-        .E1, .E2 { background-color: #166534; color: white; } /* Verde oscuro */
-        .H1, .H2 { background-color: #059669; color: white; } /* Verde medio */
-        .P1, .P2 { background-color: #34d399; color: #111827; } /* Verde claro */
-        .R { background-color: #4b5563; color: white; } /* Gris para descanso */
+        .E1, .E2 { background-color: #166534; color: white; } 
+        .H1, .H2 { background-color: #059669; color: white; } 
+        .P1, .P2 { background-color: #34d399; color: #111827; } 
+        .R { background-color: #4b5563; color: white; } 
 
         .day-header {
             color: #39E7B3;
@@ -128,13 +112,8 @@
                 <a href="https://youtu.be/8Nkfuhxsl-0?si=lCc2G_S9aiY4XUD" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-cyan-500 shadow-xl">
                     <div class="flex items-center space-x-4">
-                        <svg class="w-10 h-10 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/>
-                        </svg>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">Tricep</h2>
-                            <p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de tríceps.</p>
-                        </div>
+                        <svg class="w-10 h-10 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/></svg>
+                        <div><h2 class="text-xl font-bold text-white">Tricep</h2><p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de tríceps.</p></div>
                     </div>
                 </a>
 
@@ -142,13 +121,8 @@
                 <a href="https://youtu.be/CNusBc4kElM?si=oYUlay1Jam2cw3m" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-lime-500 shadow-xl">
                     <div class="flex items-center space-x-4">
-                        <svg class="w-10 h-10 text-lime-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/>
-                        </svg>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">Pecho</h2>
-                            <p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de pecho.</p>
-                        </div>
+                        <svg class="w-10 h-10 text-lime-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/></svg>
+                        <div><h2 class="text-xl font-bold text-white">Pecho</h2><p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de pecho.</p></div>
                     </div>
                 </a>
 
@@ -156,13 +130,8 @@
                 <a href="https://youtu.be/dOIy_izhvjc?si=04ZRFlTuNdv_0RAb" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-violet-500 shadow-xl">
                     <div class="flex items-center space-x-4">
-                        <svg class="w-10 h-10 text-violet-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/>
-                        </svg>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">Espalda</h2>
-                            <p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de espalda.</p>
-                        </div>
+                        <svg class="w-10 h-10 text-violet-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/></svg>
+                        <div><h2 class="text-xl font-bold text-white">Espalda</h2><p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de espalda.</p></div>
                     </div>
                 </a>
 
@@ -170,13 +139,8 @@
                 <a href="https://youtu.be/QO1qtm6ftOc?si=GzSDxsXYhRDbKlk5" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-cyan-500 shadow-xl">
                     <div class="flex items-center space-x-4">
-                        <svg class="w-10 h-10 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/>
-                        </svg>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">BICEP</h2>
-                            <p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de bíceps.</p>
-                        </div>
+                        <svg class="w-10 h-10 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/></svg>
+                        <div><h2 class="text-xl font-bold text-white">BICEP</h2><p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de bíceps.</p></div>
                     </div>
                 </a>
                 
@@ -184,13 +148,8 @@
                 <a href="https://youtu.be/zEf4pKoKc70?si=7PSjU27sLdxsqrlr" target="_blank" 
                    class="class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-lime-500 shadow-xl">
                     <div class="flex items-center space-x-4">
-                        <svg class="w-10 h-10 text-lime-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/>
-                        </svg>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">Hombro</h2>
-                            <p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de hombro.</p>
-                        </div>
+                        <svg class="w-10 h-10 text-lime-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/></svg>
+                        <div><h2 class="text-xl font-bold text-white">Hombro</h2><p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de hombro.</p></div>
                     </div>
                 </a>
 
@@ -198,13 +157,8 @@
                 <a href="https://youtu.be/9cQKrDmBrHE?si=xjr3TIsRi6VaiOgE" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-violet-500 shadow-xl">
                     <div class="flex items-center space-x-4">
-                        <svg class="w-10 h-10 text-violet-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/>
-                        </svg>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">PIERNA</h2>
-                            <p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de pierna.</p>
-                        </div>
+                        <svg class="w-10 h-10 text-violet-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM10 15h2V9h-2v6zm4 0h2V9h-2v6z"/></svg>
+                        <div><h2 class="text-xl font-bold text-white">PIERNA</h2><p class="text-gray-400 mt-1">Video de entrenamiento para ejercicios de pierna.</p></div>
                     </div>
                 </a>
 
@@ -212,14 +166,8 @@
                 <a href="https://open.spotify.com/playlist/0AHnqlDH4VhAZO7UayBnTG?si=ce26d4b735e8493d" target="_blank" 
                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-6 bg-card-alt border-b-4 border-cyan-500 shadow-xl md:col-span-3">
                     <div class="flex items-center space-x-4 justify-center">
-                        <!-- Icono de Música -->
-                        <svg class="w-10 h-10 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.878 12.302c-.172.073-.377.02-.5-.102l-2.828-2.828c-.122-.122-.175-.328-.102-.5 1.05-2.43 2.5-4.5 3.535-5.535.122-.122.328-.175.5-.102 1.942.827 3.328 2.768 3.328 5.068 0 2.21-1.28 4.1-3.933 4.001zM8.835 8.941c-.172.073-.377.02-.5-.102l-1.828-1.828c-.122-.122-.175-.328-.102-.5 1.05-2.43 2.5-4.5 3.535-5.535.122-.122.328-.175.5-.102 1.942.827 3.328 2.768 3.328 5.068 0 2.21-1.28 4.1-3.933 4.001z"/>
-                        </svg>
-                        <div>
-                            <h2 class="text-xl font-bold text-white">Música para el Enfoque</h2>
-                            <p class="text-gray-400 mt-1">¡A darle! Playlist de Spotify para concentración profunda.</p>
-                        </div>
+                        <svg class="w-10 h-10 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.878 12.302c-.172.073-.377.02-.5-.102l-2.828-2.828c-.122-.122-.175-.328-.102-.5 1.05-2.43 2.5-4.5 3.535-5.535.122-.122.328-.175.5-.102 1.942.827 3.328 2.768 3.328 5.068 0 2.21-1.28 4.1-3.933 4.001zM8.835 8.941c-.172.073-.377.02-.5-.102l-1.828-1.828c-.122-.122-.175-.328-.102-.5 1.05-2.43 2.5-4.5 3.535-5.535.122-.122.328-.175.5-.102 1.942.827 3.328 2.768 3.328 5.068 0 2.21-1.28 4.1-3.933 4.001z"/></svg>
+                        <div><h2 class="text-xl font-bold text-white">Música para el Enfoque</h2><p class="text-gray-400 mt-1">¡A darle! Playlist de Spotify para concentración profunda.</p></div>
                     </div>
                 </a>
                 
@@ -304,9 +252,25 @@
         </footer>
     </div>
 
-    <!-- CÓDIGO JAVASCRIPT: Gráficas, Acordeón y Calendario -->
-    <script>
-        // --- Datos de Rutinas (para generar el acordeón dinámicamente) ---
+    <!-- CÓDIGO JAVASCRIPT: Firebase, Gráficas, Acordeón y Calendario -->
+    <script type="module">
+        // --- Importaciones de Firebase ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Configuración y Variables Globales ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        
+        let db = null;
+        let auth = null;
+        let userId = null;
+        let isAuthReady = false;
+        // Estado global: set de IDs de ejercicios completados ('E1-0', 'H1-5', etc.)
+        let completedExerciseIds = new Set(); 
+
         const routineData = {
             'E1': { title: 'Día 1: Empuje 1 (E1) - Pecho I + Tríceps I', exercises: [
                 'Calentamiento: Rotación Externa con Banda (1-2x10)',
@@ -384,16 +348,105 @@
                 'Pierna: Pantorrillas (2-3 series)'
             ]}
         };
-        
-        // --- Lógica del Calendario (Fechas) - SIN CHECKBOXES ---
+
+        // --- FIREBASE: Inicialización y Autenticación ---
+
+        async function initFirebase() {
+            try {
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.error("Firebase config no está disponible. La persistencia estará deshabilitada.");
+                    return;
+                }
+                
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Autenticar al usuario
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // Esperar a que el estado de autenticación se establezca
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        isAuthReady = true;
+                        console.log("Firebase Auth listo. UserID:", userId);
+                        // Iniciar la escucha de datos una vez autenticado
+                        listenForExerciseStatus();
+                    } else {
+                        console.log("Usuario no autenticado o cerrado sesión.");
+                        isAuthReady = true;
+                    }
+                });
+            } catch (error) {
+                console.error("Error al inicializar Firebase o autenticar:", error);
+            }
+        }
+
+        // --- FIREBASE: Carga de Estado (Listener en tiempo real) ---
+
+        function getProgressDocRef() {
+            if (!db || !userId) return null;
+            // Ruta de datos privada: /artifacts/{appId}/users/{userId}/exercise_status/progress
+            return doc(db, `artifacts/${appId}/users/${userId}/exercise_status/progress`);
+        }
+
+        function listenForExerciseStatus() {
+            const docRef = getProgressDocRef();
+            if (!docRef) {
+                console.error("No se pudo obtener la referencia del documento.");
+                return;
+            }
+
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    // El estado se guarda como un array de IDs completados
+                    const completedArray = data.completed || []; 
+                    completedExerciseIds = new Set(completedArray);
+                    console.log("Estado de ejercicios cargado:", completedExerciseIds);
+                } else {
+                    console.log("No hay datos de progreso previos, inicializando.");
+                    completedExerciseIds = new Set();
+                }
+                // Actualizar la UI del acordeón con el estado cargado/actualizado
+                updateAccordionUI();
+            }, (error) => {
+                console.error("Error al escuchar el estado de ejercicios:", error);
+            });
+        }
+
+        // --- FIREBASE: Guardar Estado ---
+
+        async function saveExerciseStatus() {
+            if (!isAuthReady || !userId || !db) {
+                console.error("No se puede guardar: Firebase no está listo o el usuario no está autenticado.");
+                return;
+            }
+            
+            const docRef = getProgressDocRef();
+            const completedArray = Array.from(completedExerciseIds);
+
+            try {
+                await setDoc(docRef, { completed: completedArray }, { merge: true });
+                // console.log("Estado de ejercicios guardado exitosamente.");
+            } catch (error) {
+                console.error("Error al guardar el estado de ejercicios:", error);
+            }
+        }
+
+
+        // --- Lógica del Calendario (Fechas) ---
 
         function initCalendar() {
             const calendarGrid = document.getElementById('calendar-grid-content');
             if (!calendarGrid) return;
 
             calendarGrid.innerHTML = ''; 
-
-            // Asumiendo que P2 (índice 6) es HOY (30 de noviembre de 2025)
             const startDate = new Date('2025-11-30T00:00:00'); 
             const totalDays = 30;
             
@@ -408,16 +461,11 @@
                 { label: 'Descanso', class: 'R', id: 'R' },          
             ];
             const patternLength = 8; 
-            
-            // Offset: P2 (index 6) el día 0 del loop.
             const startingOffset = 6; 
 
-            // 30 de noviembre de 2025 es Domingo (0). 
-            // Queremos que el 30/11 caiga en el último slot. (Lun=1, Dom=0)
-            const startDayOfWeek = startDate.getDay(); // 0 para Domingo
+            const startDayOfWeek = startDate.getDay(); 
             const emptySlots = (startDayOfWeek === 0) ? 6 : startDayOfWeek - 1; 
 
-            // Agregar celdas vacías
             for (let i = 0; i < emptySlots; i++) {
                 calendarGrid.insertAdjacentHTML('beforeend', 
                     `<div class="calendar-day bg-gray-800 text-gray-500 shadow-inner"></div>`
@@ -435,7 +483,6 @@
                 const dayHtml = document.createElement('div');
                 dayHtml.className = `calendar-day ${routine.class} text-center`;
                 
-                // Contenido simplificado del día
                 dayHtml.innerHTML = `
                     <span class="day-number">${dayNumber}</span>
                     <span class="day-label font-light">${month.toUpperCase()}</span>
@@ -447,35 +494,31 @@
             }
         }
 
-        // --- Lógica del Acordeón (Generación y Eventos) ---
+        // --- Lógica del Acordeón (Generación, Eventos y UI) ---
 
         function generateAccordionContent() {
             const accordionContainer = document.getElementById('accordion-container');
             let htmlContent = '';
 
-            // Iterar sobre las rutinas definidas
             Object.keys(routineData).forEach(routineKey => {
                 const data = routineData[routineKey];
                 
-                // Las clases específicas de rutina (E1, H1, R, etc.) deben ir en el botón
-                // La clase 'active-day' o 'rest-day' se agrega/quita dinámicamente en JS
                 const buttonClasses = `accordion-button ${routineKey} w-full text-left p-6 font-semibold text-xl text-white flex justify-between items-center transition-colors duration-200 hover:bg-gray-700`;
 
-                // Contenido del panel
                 let panelContent = `<ul class="list-disc list-inside space-y-2 text-gray-300">`;
-                data.exercises.forEach(exercise => {
-                    panelContent += `<li>${exercise}</li>`;
+                data.exercises.forEach((exercise, index) => {
+                    // ID ÚNICO para la persistencia
+                    const exerciseId = `${routineKey}-${index}`; 
+                    panelContent += `<li class="exercise-item" data-exercise-id="${exerciseId}">${exercise}</li>`;
                 });
                 panelContent += `</ul>`;
 
                 htmlContent += `
                     <div class="bg-card-alt rounded-lg shadow-md overflow-hidden">
-                        <!-- El botón contiene la clave de la rutina y el estado expandido/contraído -->
                         <button class="${buttonClasses}" aria-expanded="false" data-routine="${routineKey}">
                             <span>${data.title}</span>
                             <span class="accordion-arrow text-2xl transform transition-transform duration-200">&darr;</span>
                         </button>
-                        <!-- El panel inicia con la clase 'hidden' de Tailwind -->
                         <div class="accordion-panel p-6 bg-card border-t border-gray-700 hidden" data-routine-key="${routineKey}">
                             ${panelContent}
                         </div>
@@ -485,59 +528,86 @@
 
             accordionContainer.innerHTML = htmlContent;
         }
+        
+        // Aplica el estado de completado a la UI después de cargar de Firebase
+        function updateAccordionUI() {
+            document.querySelectorAll('.exercise-item').forEach(item => {
+                const id = item.dataset.exerciseId;
+                if (completedExerciseIds.has(id)) {
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+            });
+        }
+
+        function toggleExerciseCompletion(exerciseId, element) {
+            if (completedExerciseIds.has(exerciseId)) {
+                completedExerciseIds.delete(exerciseId);
+                element.classList.remove('completed');
+            } else {
+                completedExerciseIds.add(exerciseId);
+                element.classList.add('completed');
+            }
+            // Guarda el nuevo estado en Firestore
+            saveExerciseStatus();
+        }
+
 
         function initAccordion() {
-            generateAccordionContent(); // Generar el contenido
+            // Generar el contenido primero
+            generateAccordionContent(); 
 
             const accordionContainer = document.getElementById('accordion-container');
             if (!accordionContainer) return;
-
-            // Delegación de eventos en el contenedor
+            
+            // 1. Manejo del DESPLIEGUE (Acordeón)
             accordionContainer.addEventListener('click', function(e) {
-                // 1. Identificar el botón que fue clicado (o si el clic fue en un hijo del botón)
                 const button = e.target.closest('.accordion-button');
-                if (!button) return; // Si no es un botón de acordeón, ignorar
-
-                const panel = button.nextElementSibling;
-                const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                const routineKey = button.dataset.routine;
-                const isRestDay = routineKey === 'R';
+                const exerciseItem = e.target.closest('.exercise-item');
                 
-                // 2. Contraer todos los demás y resetear sus estilos
-                accordionContainer.querySelectorAll('.accordion-button').forEach(btn => {
-                    if (btn !== button) {
-                        btn.setAttribute('aria-expanded', 'false');
-                        // Asegura que se quite el color violeta/gris
-                        btn.classList.remove('active-day', 'rest-day'); 
-                    }
-                });
+                // Si el clic fue en un ejercicio (tachar/destachar)
+                if (exerciseItem) {
+                    const exerciseId = exerciseItem.dataset.exerciseId;
+                    toggleExerciseCompletion(exerciseId, exerciseItem);
+                    return; // Detener la ejecución para no colapsar el acordeón
+                }
                 
-                accordionContainer.querySelectorAll('.accordion-panel').forEach(pnl => {
-                    if (pnl !== panel) {
-                        pnl.classList.add('hidden');
-                    }
-                });
-                
-                // 3. Expandir o contraer el actual
-                if (isExpanded) {
-                    // Acción: Contraer
-                    button.setAttribute('aria-expanded', 'false');
-                    panel.classList.add('hidden'); // Ocultar
-                    button.classList.remove('active-day', 'rest-day'); // Resetear color
-                } else {
-                    // Acción: Expandir
-                    button.setAttribute('aria-expanded', 'true');
-                    panel.classList.remove('hidden'); // Mostrar (esto hace el despliegue)
+                // Si el clic fue en el botón del acordeón (desplegar/colapsar)
+                if (button) {
+                    const panel = button.nextElementSibling;
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    const routineKey = button.dataset.routine;
+                    const isRestDay = routineKey === 'R';
                     
-                    // Aplicar clases de estilo para el color (violeta si es ejercicio, gris si es descanso)
-                    if (isRestDay) {
-                         button.classList.add('rest-day');
+                    // Colapsar todos los demás
+                    accordionContainer.querySelectorAll('.accordion-button').forEach(btn => {
+                        if (btn !== button) {
+                            btn.setAttribute('aria-expanded', 'false');
+                            btn.classList.remove('active-day', 'rest-day'); 
+                            btn.nextElementSibling.classList.add('hidden');
+                        }
+                    });
+                    
+                    // Expandir o contraer el actual
+                    if (isExpanded) {
+                        button.setAttribute('aria-expanded', 'false');
+                        panel.classList.add('hidden');
+                        button.classList.remove('active-day', 'rest-day');
                     } else {
-                        // Aplica el color violeta 600 gracias a la regla CSS [aria-expanded="true"]
-                        button.classList.add('active-day'); 
+                        button.setAttribute('aria-expanded', 'true');
+                        panel.classList.remove('hidden');
+                        
+                        if (isRestDay) {
+                             button.classList.add('rest-day');
+                        } else {
+                            button.classList.add('active-day'); 
+                        }
                     }
                 }
             });
+            
+            // La actualización inicial de la UI se maneja dentro del listener de Firestore (onSnapshot)
         }
 
 
@@ -597,9 +667,10 @@
 
         // Ejecución de la inicialización principal
         document.addEventListener('DOMContentLoaded', () => {
+            initFirebase(); // Inicia Firebase y la autenticación
             initVolumeChart();
             initCalendar();
-            initAccordion();
+            initAccordion(); // Inicializa la estructura del acordeón
         });
     </script>
 </body>
