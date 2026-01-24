@@ -48,7 +48,7 @@
             color: #4b5563; /* Gris más opaco */
         }
 
-        /* --- Estilos del Calendario (sin cambios significativos) --- */
+        /* --- Estilos del Calendario --- */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -313,8 +313,8 @@
             if (!calendarGrid) return;
             calendarGrid.innerHTML = ''; 
             
-            // INICIO ACTUALIZADO: 7 de enero de 2026
-            const startDate = new Date('2026-01-07T00:00:00'); 
+            // --- AJUSTE MANUAL DE FECHA DE INICIO ---
+            const startDate = new Date('2026-01-24T00:00:00'); 
             const totalDays = 30;
             const routines = [
                 { label: 'E1', class: 'E1' }, { label: 'H1', class: 'H1' }, { label: 'P1', class: 'P1' }, { label: 'R', class: 'R' },
@@ -322,6 +322,7 @@
             ];
             
             const startDayOfWeek = startDate.getDay(); 
+            // Calcula cuadros vacíos (Lunes = 1, Domingo = 0)
             const emptySlots = (startDayOfWeek === 0) ? 6 : startDayOfWeek - 1; 
 
             for (let i = 0; i < emptySlots; i++) {
