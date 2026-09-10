@@ -246,7 +246,15 @@
         import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const firebaseConfig = {
+  apiKey: "AIzaSyCCY1cOiUA_x8-BS4MlRz7EVXLz95Cfjsk",
+  authDomain: "mam-gym.firebaseapp.com",
+  projectId: "mam-gym",
+  storageBucket: "mam-gym.firebasestorage.app",
+  messagingSenderId: "940450727373",
+  appId: "1:940450727373:web:5417c82476ea39ff187084",
+  measurementId: "G-GTP5L9KG4P"
+};
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
         
         let db = null;
