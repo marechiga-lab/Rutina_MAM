@@ -103,8 +103,8 @@
                 <button id="switch-key-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-xs font-semibold rounded-lg transition text-emerald-400 border border-emerald-500/30">
                     🔑 Vincular otro dispositivo
                 </button>
-                <button id="export-report-btn" class="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-xs font-semibold rounded-lg transition text-emerald-300 border border-emerald-500/50">
-                    📊 Exportar Reporte Fisio/Nutri
+                <button id="export-report-btn" class="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-xs font-semibold rounded-lg transition text-emerald-300 border border-emerald-500/50 flex items-center space-x-1">
+                    <span>📊 Reportes Fisio/Nutri</span>
                 </button>
             </div>
         </div>
@@ -169,7 +169,7 @@
                 <a href="https://youtu.be/8Nkfuhxsl-0?si=lCc2G_S9aiY4XUD" target="_blank"
                     class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-lime-500 shadow-xl flex flex-col items-center justify-center text-center">
                     <svg class="w-12 h-12 text-lime-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14.5 10c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5c-.84 0-1.5.66-1.5 1.5v3c0 .84.66 1.5 1.5 1.5h5zm-5 4c-.84 0-1.5.66-1.5 1.5v3c0 .84.66 1.5 1.5 1.5h5c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5zm-3 0h-2c-.84 0-1.5-.66-1.5-1.5v-3c0-.84.66-1.5 1.5-1.5h2m13 0h2c.84 0 1.5.66 1.5 1.5v3c0 .84.66 1.5-1.5 1.5h-2"/></svg>
+                        <path d="M14.5 10c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5c-.84 0-1.5.66-1.5 1.5v3c0 .84.66 1.5 1.5 1.5h5zm-5 4c-.84 0-1.5.66-1.5 1.5v3c0 .84.66 1.5 1.5 1.5h5c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5zm-3 0h-2c-.84 0-1.5-.66-1.5-1.5v-3c0-.84-.66-1.5 1.5-1.5h2m13 0h2c.84 0 1.5.66 1.5 1.5v3c0 .84.66 1.5-1.5 1.5h-2"/></svg>
                     <h2 class="text-2xl font-extrabold text-white">TRICEP</h2>
                 </a>
 
@@ -278,22 +278,38 @@
         </div>
     </div>
 
-    <!-- MODAL PARA MOSTRAR / COPIAR REPORTE -->
+    <!-- MODAL DE REPORTES MEJORADO CON 3 OPCIONES -->
     <div id="report-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-card border border-gray-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl max-h-[90vh] flex flex-col">
+        <div class="bg-card border border-gray-800 rounded-2xl max-w-3xl w-full p-6 shadow-2xl max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-bold text-white flex items-center space-x-2">
-                    <span>📊</span> <span>Reporte para Fisio & Nutrióloga</span>
+                    <span>📊</span> <span>Reportes para Fisio & Nutrióloga</span>
                 </h3>
                 <button id="close-report-btn" class="text-gray-400 hover:text-white text-xl">✕</button>
             </div>
-            <p class="text-sm text-gray-400 mb-3">
-                Este reporte resume tus registros de cargas y volúmenes guardados en la nube. Puedes copiarlo o descargarlo para enviarlo fácilmente por WhatsApp o correo.
+            
+            <!-- Pestañas de Selección de Reporte -->
+            <div class="flex flex-wrap gap-2 mb-4 bg-gray-900 p-1.5 rounded-xl border border-gray-800">
+                <button id="tab-report-cargas" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-emerald-500 text-gray-900 transition">
+                    🏋️ 1. Cargas por Grupo
+                </button>
+                <button id="tab-report-dias" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-gray-800 text-gray-300 hover:text-white transition">
+                    📅 2. Días Trabajados
+                </button>
+                <button id="tab-report-volumen" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-gray-800 text-gray-300 hover:text-white transition">
+                    📈 3. Volumen Plan vs Real
+                </button>
+            </div>
+
+            <p id="report-description" class="text-xs text-gray-400 mb-3">
+                Desglose de cargas máximas registradas por grupo muscular (P1/P2 Pierna-Hombro, H1/H2 Halón, E1/E2 Empuje).
             </p>
-            <textarea id="report-text-area" readonly class="w-full flex-grow bg-gray-800 border border-gray-700 text-emerald-300 rounded-lg p-4 font-mono text-xs focus:outline-none resize-none mb-4 min-h-[250px]"></textarea>
+
+            <textarea id="report-text-area" readonly class="w-full flex-grow bg-gray-800 border border-gray-700 text-emerald-300 rounded-lg p-4 font-mono text-xs focus:outline-none resize-none mb-4 min-h-[260px]"></textarea>
+
             <div class="flex justify-end space-x-3">
                 <button id="copy-report-text-btn" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold text-sm rounded-lg transition">
-                    📋 Copiar Texto
+                    📋 Copiar Reporte Activo
                 </button>
             </div>
         </div>
@@ -308,11 +324,11 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'mam-gym-app';
         
-        // CONFIGURACIÓN DE FIREBASE OFICIAL INTEGRADA
+        // CONFIGURACIÓN DE FIREBASE
         const firebaseConfig = {
           apiKey: "AIzaSyCCY1cOiUA_x8-BS4MlRz7EVXLz95Cfjsk",
           authDomain: "mam-gym.firebaseapp.com",
@@ -330,9 +346,9 @@
         let userId = null;
         let isAuthReady = false;
         
-        // Estado local de ejercicios completos y cargas
         let completedExerciseIds = new Set(); 
-        let exerciseLogs = {}; // Estrategia: { "P1-0": { weight: "40", reps: "10" } }
+        let exerciseLogs = {}; 
+        let activeReportType = 'cargas'; // 'cargas', 'dias', 'volumen'
 
         const routineData = {
             'P1': { title: 'Día 1: Pierna/Hombro 1 (P1) - Pierna I + Hombro I', exercises: ['Calentamiento: Hiper Extensión (1-2x 10-15 SUBMAX)', 'Hombro: Press a un Brazo Mancuerna (2-3x 6-8 FALLO)', 'Pierna: Peso Muerto (3-5x 10 @ 80% MAX)', 'Hombro: Elevaciones Laterales (Drop Set Mecánico) (3-4 series)', 'Pierna: Sentadilla (3-5x 10 @ 80% MAX)', 'Hombro: Remo Deltoides Posterior (2x 10-12)', 'Pierna: Zancada Reversa Mancuernas (2-3x 10/pierna)', 'Pierna: Curl Isquiotibial (1 serie FALLO + Drop Set)', 'Pierna: Pantorrillas (Parado/Sentado) (2-3 series)'] },
@@ -449,7 +465,7 @@
                     const historyColRef = collection(db, `artifacts/${appId}/users/${userId}/exercise_history`);
                     await addDoc(historyColRef, record);
                 } catch (err) {
-                    console.error("Error al guardar registro independiente en Firestore:", err);
+                    console.error("Error guardando en Firestore:", err);
                 }
             } else {
                 try {
@@ -638,7 +654,6 @@
                 }
             });
 
-            // Guardar cambios al salir de los campos numeric
             container.addEventListener('change', (e) => {
                 if (e.target.classList.contains('weight-input') || e.target.classList.contains('reps-input')) {
                     const id = e.target.dataset.id;
@@ -666,18 +681,16 @@
 
             const reportModal = document.getElementById('report-modal');
             const closeReportBtn = document.getElementById('close-report-btn');
-            const reportTextArea = document.getElementById('report-text-area');
             const copyReportTextBtn = document.getElementById('copy-report-text-btn');
+
+            const tabCargas = document.getElementById('tab-report-cargas');
+            const tabDias = document.getElementById('tab-report-dias');
+            const tabVolumen = document.getElementById('tab-report-volumen');
 
             if (copyKeyBtn) {
                 copyKeyBtn.addEventListener('click', () => {
                     if (userId) {
-                        const tempInput = document.createElement('input');
-                        tempInput.value = userId;
-                        document.body.appendChild(tempInput);
-                        tempInput.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(tempInput);
+                        navigator.clipboard.writeText(userId);
                         showToast("ID de usuario copiado");
                     }
                 });
@@ -711,8 +724,8 @@
             }
 
             if (exportReportBtn) {
-                exportReportBtn.addEventListener('click', () => {
-                    generateReportText();
+                exportReportBtn.addEventListener('click', async () => {
+                    setReportTab('cargas');
                     if (reportModal) reportModal.classList.remove('hidden');
                 });
             }
@@ -723,64 +736,229 @@
                 });
             }
 
-            if (copyReportTextBtn && reportTextArea) {
+            if (tabCargas) tabCargas.addEventListener('click', () => setReportTab('cargas'));
+            if (tabDias) tabDias.addEventListener('click', () => setReportTab('dias'));
+            if (tabVolumen) tabVolumen.addEventListener('click', () => setReportTab('volumen'));
+
+            if (copyReportTextBtn) {
                 copyReportTextBtn.addEventListener('click', () => {
-                    reportTextArea.select();
-                    document.execCommand('copy');
-                    showToast("Reporte copiado al portapapeles");
+                    const reportTextArea = document.getElementById('report-text-area');
+                    if (reportTextArea) {
+                        reportTextArea.select();
+                        document.execCommand('copy');
+                        showToast("Reporte copiado al portapapeles");
+                    }
                 });
             }
         }
 
-        function generateReportText() {
+        async function fetchHistoryRecords() {
+            let historyRecords = [];
+            if (db && userId) {
+                try {
+                    const colRef = collection(db, `artifacts/${appId}/users/${userId}/exercise_history`);
+                    const q = query(colRef, orderBy("timestamp", "asc"));
+                    const snap = await getDocs(q);
+                    snap.forEach(docSnap => historyRecords.push(docSnap.data()));
+                } catch (e) {
+                    console.log("Cargando desde almacenamiento local...");
+                }
+            }
+            if (historyRecords.length === 0) {
+                try {
+                    historyRecords = JSON.parse(localStorage.getItem('mam_exercise_history') || '[]');
+                } catch (e) {}
+            }
+            return historyRecords;
+        }
+
+        async function setReportTab(type) {
+            activeReportType = type;
+            const tabCargas = document.getElementById('tab-report-cargas');
+            const tabDias = document.getElementById('tab-report-dias');
+            const tabVolumen = document.getElementById('tab-report-volumen');
+            const desc = document.getElementById('report-description');
+
+            const activeClass = "bg-emerald-500 text-gray-900";
+            const inactiveClass = "bg-gray-800 text-gray-300 hover:text-white";
+
+            if (tabCargas) tabCargas.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'cargas' ? activeClass : inactiveClass}`;
+            if (tabDias) tabDias.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'dias' ? activeClass : inactiveClass}`;
+            if (tabVolumen) tabVolumen.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'volumen' ? activeClass : inactiveClass}`;
+
+            const historyRecords = await fetchHistoryRecords();
+
+            if (type === 'cargas') {
+                if (desc) desc.textContent = "Últimas cargas y repeticiones máximas registradas por cada grupo de entrenamiento.";
+                generateReportCargas();
+            } else if (type === 'dias') {
+                if (desc) desc.textContent = "Conteo de días trabajados efectivamente y bitácora de asistencia.";
+                generateReportDias(historyRecords);
+            } else if (type === 'volumen') {
+                if (desc) desc.textContent = "Comparativa de Volumen Esperado (Series/Repeticiones planificadas) vs. Volumen Real completado.";
+                generateReportVolumen(historyRecords);
+            }
+        }
+
+        // REPORT TYPE 1: CARGAS POR GRUPO (P1/P2, H1/H2, E1/E2)
+        function generateReportCargas() {
             const reportTextArea = document.getElementById('report-text-area');
             if (!reportTextArea) return;
 
-            let reportLines = [];
-            reportLines.push("========================================");
-            reportLines.push("    REPORTE DE ENTRENAMIENTO Y CARGAS");
-            reportLines.push("       Plan MAM (Pierna Primero)");
-            reportLines.push("========================================");
-            reportLines.push(`ID de Usuario: ${userId || 'N/A'}`);
-            reportLines.push(`Fecha de Emisión: ${new Date().toLocaleDateString('es-ES')}`);
-            reportLines.push("");
+            let lines = [];
+            lines.push("=================================================");
+            lines.push("  REPORTE 1: ÚLTIMAS CARGAS POR GRUPO (PPL)");
+            lines.push("=================================================");
+            lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
+            lines.push(`Fecha de Emisión: ${new Date().toLocaleDateString('es-ES')} ${new Date().toLocaleTimeString('es-ES')}`);
+            lines.push("");
 
-            let totalCompleted = completedExerciseIds.size;
-            reportLines.push(`Ejercicios Completados: ${totalCompleted}`);
-            reportLines.push("");
-            reportLines.push("--- DETALLE DE REGISTROS POR DÍA ---");
+            const groups = [
+                { name: "🦵 PIERNA Y HOMBRO (P1 / P2)", keys: ['P1', 'P2'] },
+                { name: "💪 HALÓN - ESPALDA Y BÍCEPS (H1 / H2)", keys: ['H1', 'H2'] },
+                { name: "🏋️ EMPUJE - PECHO Y TRÍCEPS (E1 / E2)", keys: ['E1', 'E2'] }
+            ];
 
-            Object.keys(routineData).forEach(key => {
-                if (key === 'R') return;
-                const routine = routineData[key];
-                reportLines.push("");
-                reportLines.push(`📌 ${routine.title}`);
-                
-                let hasRecords = false;
-                routine.exercises.forEach((ex, i) => {
-                    const id = `${key}-${i}`;
-                    const isDone = completedExerciseIds.has(id);
-                    const log = exerciseLogs[id];
+            groups.forEach(group => {
+                lines.push(`-------------------------------------------------`);
+                lines.push(group.name);
+                lines.push(`-------------------------------------------------`);
 
-                    if (isDone || (log && (log.weight || log.reps))) {
-                        hasRecords = true;
-                        const weightStr = (log && log.weight) ? `${log.weight} kg` : 'S/R';
-                        const repsStr = (log && log.reps) ? `${log.reps} reps` : 'S/R';
-                        const statusStr = isDone ? '✓' : '—';
-                        reportLines.push(`   [${statusStr}] ${ex} -> Peso: ${weightStr} | Reps: ${repsStr}`);
-                    }
+                group.keys.forEach(key => {
+                    const routine = routineData[key];
+                    if (!routine) return;
+                    lines.push(`  📌 ${routine.title}`);
+
+                    routine.exercises.forEach((ex, i) => {
+                        const id = `${key}-${i}`;
+                        const log = exerciseLogs[id];
+                        const isDone = completedExerciseIds.has(id);
+
+                        const weightStr = (log && log.weight) ? `${log.weight} kg` : 'Sin peso registrado';
+                        const repsStr = (log && log.reps) ? `${log.reps} reps` : 'Sin reps';
+                        const statusStr = isDone ? '[COMPLETADO]' : '[EN PROCESO]';
+
+                        lines.push(`     • ${ex}`);
+                        lines.push(`       ➔ Carga Actual: ${weightStr} | Reps: ${repsStr} ${statusStr}`);
+                    });
+                    lines.push("");
                 });
-
-                if (!hasRecords) {
-                    reportLines.push("   (Sin registros aún en este día)");
-                }
             });
 
-            reportLines.push("");
-            reportLines.push("========================================");
-            reportLines.push("Generado automáticamente desde Plan MAM.");
+            lines.push("=================================================");
+            reportTextArea.value = lines.join("\n");
+        }
 
-            reportTextArea.value = reportLines.join("\n");
+        // REPORT TYPE 2: DÍAS EFECTIVAMENTE TRABAJADOS
+        function generateReportDias(historyRecords) {
+            const reportTextArea = document.getElementById('report-text-area');
+            if (!reportTextArea) return;
+
+            let lines = [];
+            lines.push("=================================================");
+            lines.push("  REPORTE 2: DÍAS EFECTIVAMENTE TRABAJADOS");
+            lines.push("=================================================");
+            lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
+            lines.push(`Fecha de Emisión: ${new Date().toLocaleDateString('es-ES')}`);
+            lines.push("");
+
+            const dateMap = {};
+            
+            historyRecords.forEach(rec => {
+                const dateKey = rec.date || 'Sin Fecha';
+                if (!dateMap[dateKey]) {
+                    dateMap[dateKey] = {
+                        count: 0,
+                        exercises: new Set(),
+                        routines: new Set()
+                    };
+                }
+                dateMap[dateKey].count++;
+                if (rec.exerciseName) dateMap[dateKey].exercises.add(rec.exerciseName);
+                if (rec.routineKey) dateMap[dateKey].routines.add(rec.routineKey);
+            });
+
+            const uniqueDays = Object.keys(dateMap);
+            lines.push(`📊 RESUMEN DE ASISTENCIA:`);
+            lines.push(`   • Total de días activos registrados: ${uniqueDays.length} día(s)`);
+            lines.push(`   • Total de interacciones con ejercicios: ${historyRecords.length}`);
+            lines.push(`   • Ejercicios marcados actualmente como completos: ${completedExerciseIds.size}`);
+            lines.push("");
+            lines.push(`📅 HISTORIAL DETALLADO POR FECHA DE ENTRENAMIENTO:`);
+
+            if (uniqueDays.length === 0) {
+                lines.push("   (Aún no hay días registrados. Ingresa tus pesos y haz clic en 💾 para registrar tus días de entrenamiento).");
+            } else {
+                uniqueDays.forEach(date => {
+                    const info = dateMap[date];
+                    const routinesStr = Array.from(info.routines).join(", ") || 'Rutina';
+                    lines.push(`   🗓️ ${date} [Rutinas: ${routinesStr}]`);
+                    lines.push(`      - Ejercicios trabajados: ${info.exercises.size}`);
+                    lines.push(`      - Registros de carga realizados: ${info.count}`);
+                });
+            }
+
+            lines.push("");
+            lines.push("=================================================");
+            reportTextArea.value = lines.join("\n");
+        }
+
+        // REPORT TYPE 3: VOLUMEN ESPERADO VS DESARROLLADO REAL
+        function generateReportVolumen(historyRecords) {
+            const reportTextArea = document.getElementById('report-text-area');
+            if (!reportTextArea) return;
+
+            let lines = [];
+            lines.push("=================================================");
+            lines.push("  REPORTE 3: VOLUMEN ESPERADO VS DESARROLLADO");
+            lines.push("=================================================");
+            lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
+            lines.push(`Fecha: ${new Date().toLocaleDateString('es-ES')}`);
+            lines.push("");
+
+            // Definición de volumen semanal planificado (series)
+            const targetVolume = {
+                'Pecho': 21,
+                'Tríceps': 20,
+                'Espalda': 22,
+                'Bíceps': 18,
+                'Hombro': 18,
+                'Pierna': 31
+            };
+
+            let totalCompletedExercises = completedExerciseIds.size;
+            let totalRepsDone = 0;
+            let totalWeightLiftedKg = 0;
+
+            Object.keys(exerciseLogs).forEach(id => {
+                const log = exerciseLogs[id];
+                const reps = parseInt(log.reps || 0, 10);
+                const weight = parseFloat(log.weight || 0);
+
+                if (!isNaN(reps)) totalRepsDone += reps;
+                if (!isNaN(reps) && !isNaN(weight)) totalWeightLiftedKg += (reps * weight);
+            });
+
+            lines.push(`🎯 METRICAS GENERALES DE RENDIMIENTO:`);
+            lines.push(`   • Ejercicios Totales en el Plan: 54 ejercicios`);
+            lines.push(`   • Ejercicios Completados: ${totalCompletedExercises} / 54 (${Math.round((totalCompletedExercises/54)*100)}% de avance)`);
+            lines.push(`   • Repeticiones Totales Levantadas: ${totalRepsDone} reps`);
+            lines.push(`   • Tonnage Estimado (Peso x Reps): ${totalWeightLiftedKg.toLocaleString('es-ES')} kg acumulados`);
+            lines.push("");
+            lines.push(`📈 COMPARATIVA DE VOLUMEN DE SERIES SEMANALES:`);
+            lines.push(`-------------------------------------------------`);
+            lines.push(` Grupo Muscular   | Meta Semanal | Estado Activo`);
+            lines.push(`-------------------------------------------------`);
+
+            Object.keys(targetVolume).forEach(muscle => {
+                const target = targetVolume[muscle];
+                lines.push(` ${muscle.padEnd(16)} | ${target} series    | En seguimiento`);
+            });
+
+            lines.push("-------------------------------------------------");
+            lines.push("");
+            lines.push("=================================================");
+            reportTextArea.value = lines.join("\n");
         }
 
         document.addEventListener('DOMContentLoaded', () => {
