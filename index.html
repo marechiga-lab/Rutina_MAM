@@ -1,1659 +1,1547 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Completo de Entrenamiento MAM y Recursos (Pierna Primero)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1f2937; /* Dark Gray */
-            color: #e5e7eb; /* Light text default */
-        }
-        .primary-color { color: #39E7B3; } /* Bright Lime / Mint */
-        .bg-card { background-color: #111827; } /* gray-900 */
-        .bg-card-alt { background-color: #1f2937; } /* gray-800 */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Completo de Entrenamiento MAM y Recursos (Pierna Primero)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+background-color: #1f2937; /* Dark Gray */
+color: #e5e7eb; /* Light text default */
+}
+.primary-color { color: #39E7B3; } /* Bright Lime / Mint */
+.bg-card { background-color: #111827; } /* gray-900 */
+.bg-card-alt { background-color: #1f2937; } /* gray-800 */
 
-        /* --- ACCORDION STYLES --- */
-        .accordion-button { background-color: #1f2937; }
-        .accordion-button.active-day[aria-expanded="true"] {
-            background-color: #7c3aed; /* violet-600 */
-            color: white; 
-            box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
-        }
-        .accordion-button.rest-day[aria-expanded="true"] { 
-             background-color: #4b5563; /* gray-600 */ 
-             box-shadow: 0 4px 10px rgba(75, 85, 99, 0.4);
-        }
-        .accordion-button[aria-expanded="true"] .accordion-arrow { transform: rotate(180deg); }
-        .accordion-arrow { transition: transform 0.2s ease-in-out; }
-        .accordion-button.R { background-color: #374151; }
-        
-        /* --- EXERCISE ITEM STYLES --- */
-        .exercise-item-container {
-            border-bottom: 1px solid #374151;
-            padding: 12px 0;
-            transition: background-color 0.2s;
-        }
-        .exercise-item-container:last-child {
-            border-bottom: none;
-        }
-        .exercise-item-container.completed .exercise-title {
-            text-decoration: line-through;
-            color: #9ca3af;
-        }
+/* --- ACCORDION STYLES --- */
+.accordion-button { background-color: #1f2937; }
+.accordion-button.active-day[aria-expanded="true"] {
+background-color: #7c3aed; /* violet-600 */
+color: white;
+box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
+}
+.accordion-button.rest-day[aria-expanded="true"] {
+background-color: #4b5563; /* gray-600 */
+box-shadow: 0 4px 10px rgba(75, 85, 99, 0.4);
+}
+.accordion-button[aria-expanded="true"] .accordion-arrow { transform: rotate(180deg); }
+.accordion-arrow { transition: transform 0.2s ease-in-out; }
+.accordion-button.R { background-color: #374151; }
 
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-        }
-        .calendar-day {
-            min-height: 90px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center; 
-            padding: 8px 4px; 
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-            transition: transform 0.1s, box-shadow 0.1s;
-            position: relative;
-            cursor: pointer;
-        }
-        .calendar-day:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-        }
-        .day-number { font-size: 1.1rem; margin-bottom: 2px; }
-        .day-label { font-size: 0.75rem; line-height: 1.1; font-weight: 700; }
+/* --- EXERCISE ITEM STYLES --- */
+.exercise-item-container {
+border-bottom: 1px solid #374151;
+padding: 12px 0;
+transition: background-color 0.2s;
+}
+.exercise-item-container:last-child {
+border-bottom: none;
+}
+.exercise-item-container.completed .exercise-title {
+text-decoration: line-through;
+color: #9ca3af;
+}
 
-        /* Routine day color badges */
-        .E1, .E2 { background-color: #166534; color: white; } 
-        .H1, .H2 { background-color: #059669; color: white; } 
-        .P1, .P2 { background-color: #0d9488; color: white; } 
-        .R { background-color: #4b5563; color: white; } 
+.calendar-grid {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 4px;
+}
+.calendar-day {
+min-height: 85px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 8px 4px;
+border-radius: 8px;
+text-align: center;
+font-weight: 600;
+box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+transition: transform 0.1s, box-shadow 0.1s;
+position: relative;
+cursor: pointer;
+}
+.calendar-day:hover {
+transform: translateY(-2px);
+box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+.day-number { font-size: 1.1rem; margin-bottom: 2px; }
+.day-label { font-size: 0.75rem; line-height: 1.1; font-weight: 700; }
 
-        .day-header {
-            color: #39E7B3;
-            font-weight: 700;
-            padding: 8px 2px;
-            text-align: center;
-        }
+/* Routine day color badges */
+.E1, .E2 { background-color: #166534; color: white; }
+.H1, .H2 { background-color: #059669; color: white; }
+.P1, .P2 { background-color: #0d9488; color: white; }
+.R { background-color: #4b5563; color: white; }
 
-        /* Indicador de cambio manual en día */
-        .calendar-day.is-customized::before {
-            content: '•';
-            position: absolute;
-            top: 2px;
-            right: 4px;
-            font-size: 1.2rem;
-            color: #39E7B3;
-            line-height: 1;
-        }
+.day-header {
+color: #39E7B3;
+font-weight: 700;
+padding: 8px 2px;
+text-align: center;
+}
 
-        /* --- CALENDAR ATTENDANCE & TODAY HIGHLIGHT --- */
-        .calendar-day.is-today {
-            background-color: #0891b2 !important;
-            color: #ffffff !important;
-            border: 2px solid #a5f3fc !important;
-            box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
-        }
-        .calendar-day.is-today-label::after {
-            content: 'HOY';
-            position: absolute;
-            top: 2px;
-            left: 4px;
-            font-size: 0.55rem;
-            font-weight: 800;
-            color: #ffffff;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1px 4px;
-            border-radius: 4px;
-            letter-spacing: 0.05em;
-        }
-        .calendar-day.attended::after {
-            content: '✓';
-            position: absolute;
-            bottom: 2px;
-            right: 4px;
-            font-size: 0.85rem;
-            color: #39E7B3;
-            font-weight: 900;
-            background: rgba(17, 24, 39, 0.85);
-            border-radius: 9999px;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #39E7B3;
-        }
-    </style>
+/* --- CALENDAR ATTENDANCE & TODAY HIGHLIGHT --- */
+.calendar-day.is-today {
+background-color: #0891b2 !important;
+color: #ffffff !important;
+border: 2px solid #a5f3fc !important;
+box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+}
+.calendar-day.is-today::before {
+content: 'HOY';
+position: absolute;
+top: 2px;
+left: 4px;
+font-size: 0.55rem;
+font-weight: 800;
+color: #ffffff;
+background: rgba(0, 0, 0, 0.4);
+padding: 1px 4px;
+border-radius: 4px;
+letter-spacing: 0.05em;
+}
+.calendar-day.attended::after {
+content: '✓';
+position: absolute;
+bottom: 2px;
+right: 4px;
+font-size: 0.85rem;
+color: #39E7B3;
+font-weight: 900;
+background: rgba(17, 24, 39, 0.85);
+border-radius: 9999px;
+width: 18px;
+height: 18px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1px solid #39E7B3;
+}
+</style>
 </head>
 <body class="p-4 md:p-8">
 
-    <div class="container mx-auto max-w-7xl">
-        
-        <!-- BARRA DE SINCRONIZACIÓN, ESTADO DE SEGURIDAD Y USUARIO -->
-        <div class="mb-6 p-4 bg-card rounded-xl shadow-lg border border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex flex-wrap items-center gap-3 text-sm">
-                <span id="auth-status-dot" class="inline-block w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
-                <span id="auth-status-badge" class="font-medium text-yellow-300 bg-gray-800 px-2.5 py-1 rounded-md text-xs border border-yellow-500/30">
-                    👁️ Modo Lectura / Local
-                </span>
-                <span class="text-gray-400 text-xs hidden sm:inline">|</span>
-                <span class="text-gray-300 text-xs font-medium">ID Usuario:</span>
-                <span id="user-id-display" class="font-mono text-emerald-400 bg-gray-800 px-2 py-1 rounded text-xs select-all">Cargando...</span>
-            </div>
-            
-            <div class="flex flex-wrap items-center gap-2">
-                <button id="auth-action-btn" class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center space-x-1 shadow">
-                    <span>🔐 Iniciar Sesión</span>
-                </button>
-                <button id="demo-mode-btn" class="px-3 py-1.5 bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 text-xs font-semibold rounded-lg transition border border-purple-500/40 flex items-center space-x-1" title="Alternar modo demo para probar edición en la vista previa">
-                    <span>⚡ Probar Modo Admin (Demo)</span>
-                </button>
-                <button id="copy-key-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-xs font-semibold rounded-lg transition text-gray-200 border border-gray-700 flex items-center space-x-1">
-                    <span>📋 Copiar ID</span>
-                </button>
-                <button id="switch-key-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-xs font-semibold rounded-lg transition text-emerald-400 border border-emerald-500/30">
-                    🔑 Cambiar ID
-                </button>
-                <button id="export-report-btn" class="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-xs font-semibold rounded-lg transition text-emerald-300 border border-emerald-500/50 flex items-center space-x-1">
-                    <span>📊 Reportes</span>
-                </button>
-            </div>
-        </div>
-
-        <header class="text-center mb-12 p-6 bg-card rounded-xl shadow-lg">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2">
-                Plan de Entrenamiento MAM & Recursos
-            </h1>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                Rutina PPL 6x (Pierna Primero) - Análisis, registro de cargas, calendario interactivo y reportes.
-            </p>
-        </header>
-
-        <!-- SECCIÓN 1: INFOGRAFÍA DE ENLACES -->
-        <section id="links" class="mb-16">
-            <h2 class="text-3xl font-bold text-center primary-color mb-8">Enlaces de Apoyo Rápido</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <!-- 1. Pierna -->
-                <a href="https://youtu.be/9cQKrDmBrHE?si=xjr3TIsRi6VaiOgE" target="_blank"
-                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-cyan-500 shadow-xl flex flex-col items-center justify-center text-center">
-                    <svg class="w-12 h-12 text-cyan-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></polyline></svg>
-                    <h2 class="text-2xl font-extrabold text-white">PIERNA</h2>
-                </a>
-
-                <!-- 2. Hombro -->
-                <a href="https://youtu.be/zEf4pKoKc70?si=7PSjU27sLdxsqrlr" target="_blank"
-                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-cyan-500 shadow-xl flex flex-col items-center justify-center text-center">
-                    <svg class="w-12 h-12 text-cyan-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                    <h2 class="text-2xl font-extrabold text-white">HOMBRO</h2>
-                </a>
-
-                <!-- 3. Espalda -->
-                <a href="https://youtu.be/dOIy_izhvjc?si=04ZRFlTuNdv_0RAb" target="_blank"
-                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-violet-500 shadow-xl flex flex-col items-center justify-center text-center">
-                    <svg class="w-12 h-12 text-violet-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    <h2 class="text-2xl font-extrabold text-white">ESPALDA</h2>
-                </a>
-
-                <!-- 4. Bíceps -->
-                <a href="https://youtu.be/QO1qtm6ftOc?si=GzSDxsXYhRDbKlk5" target="_blank"
-                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-violet-500 shadow-xl flex flex-col items-center justify-center text-center">
-                    <svg class="w-12 h-12 text-violet-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12 15L15 12L12 9L9 12L12 15Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12 15L12 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <h2 class="text-2xl font-extrabold text-white">BICEP</h2>
-                </a>
-
-                <!-- 5. Pecho -->
-                <a href="https://www.youtube.com/watch?v=CNusBc4kElM" target="_blank"
-                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-lime-500 shadow-xl flex flex-col items-center justify-center text-center">
-                    <svg class="w-12 h-12 text-lime-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 12H20M4 12V6M20 12V6M6 6H18C19.1046 6 20 6.89543 20 8V16C20 17.1046 19.1046 18 18 18H6C4.89543 18 4 17.1046 4 16V8C4 6.89543 4.89543 6 6 6Z"/>
-                    </svg>
-                    <h2 class="text-2xl font-extrabold text-white">PECHO</h2>
-                </a>
-
-                <!-- 6. Tricep -->
-                <a href="https://youtu.be/8Nkfuhxsl-0?si=lCc2G_S9aiY4XUD" target="_blank"
-                    class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-lime-500 shadow-xl flex flex-col items-center justify-center text-center">
-                    <svg class="w-12 h-12 text-lime-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14.5 10c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5c-.84 0-1.5.66-1.5 1.5v3c0 .84 1.5 1.5 1.5 1.5h5zm-5 4c-.84 0-1.5.66-1.5 1.5v3c0 .84 1.5 1.5 1.5 1.5h5c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5zm-3 0h-2c-.84 0-1.5-.66-1.5-1.5v-3c0-.84-.66-1.5 1.5-1.5h2m13 0h2c.84 0 1.5.66 1.5 1.5v3c0 .84 1.5 1.5-1.5 1.5h-2"/></svg>
-                    <h2 class="text-2xl font-extrabold text-white">TRICEP</h2>
-                </a>
-
-                <div class="rounded-2xl p-6 bg-card-alt border-b-4 border-cyan-500 shadow-xl md:col-span-2">
-                    <h2 class="text-2xl font-bold text-center primary-color mb-4">Música para Entrenar</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <a href="https://open.spotify.com/playlist/4eGVx0yikldqhmowZqioHI?si=e7d2fcf94db54a9d" target="_blank"
-                           class="flex items-center space-x-4 p-4 rounded-xl bg-card transition duration-200 hover:bg-gray-700 hover:shadow-lg border-l-4 border-cyan-500">
-                            <svg class="w-8 h-8 text-cyan-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"/></svg>
-                            <div>
-                                <p class="font-semibold text-lg text-white">Meme trainning</p>
-                                <p class="text-gray-400 text-sm">Playlist #1.</p>
-                            </div>
-                        </a>
-                        <a href="https://open.spotify.com/playlist/0AHnqlDH4VhAZO7UayBnTG?si=ce26d4b735e8493d" target="_blank"
-                            class="flex items-center space-x-4 p-4 rounded-xl bg-card transition duration-200 hover:bg-gray-700 hover:shadow-lg border-l-4 border-cyan-500">
-                            <svg class="w-8 h-8 text-cyan-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"/></svg>
-                            <div>
-                                <p class="font-semibold text-lg text-white">GIMMAX</p>
-                                <p class="text-gray-400 text-sm">Playlist #2.</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="plan-analysis" class="mb-16">
-            <h2 class="text-3xl font-bold text-center primary-color mb-8">Análisis de Tu Rutina Semanal (6x PPL)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
-                <div class="bg-card rounded-lg shadow-md p-6 border-b-4 border-[#39E7B3]">
-                    <p class="text-6xl font-bold primary-color">6</p>
-                    <p class="text-2xl primary-color font-semibold">Días de Entrenamiento</p>
-                </div>
-                <div class="bg-card rounded-lg shadow-md p-6 border-b-4 border-cyan-500">
-                    <p class="text-6xl font-bold text-cyan-500">2x</p>
-                    <p class="text-2xl text-cyan-500 font-semibold">Frecuencia Semanal</p>
-                </div>
-                <div class="bg-card rounded-lg shadow-md p-6 border-b-4 border-violet-500">
-                    <p class="text-6xl font-bold text-violet-500">1</p>
-                    <p class="text-2xl text-violet-500 font-semibold">Día de Descanso</p>
-                </div>
-            </div>
-            <div class="max-w-xl mx-auto">
-                <div class="bg-card rounded-lg shadow-md p-6">
-                    <h3 class="text-2xl font-bold primary-color text-center mb-6">Volumen Semanal (Series)</h3>
-                    <div class="chart-container" style="height: 300px;">
-                        <canvas id="volumeChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="calendar" class="mb-16">
-            <h2 class="text-3xl font-bold text-center primary-color mb-8">Calendario de 30 Días (Interactivo)</h2>
-            <p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-6">
-                El patrón base es <strong>3 Días Activos / 1 Día de Descanso</strong> (Pierna -&gt; Halón -&gt; Empuje).
-                <br><span class="text-sm text-emerald-400">💡 Tip: Haz clic en cualquier día del calendario para cambiar la rutina realizada ese día.</span>
-            </p>
-            
-            <!-- CONTROLES DE FECHA DE INICIO DEL CICLO -->
-            <div class="mb-6 bg-gray-900/80 border border-gray-800 p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 max-w-2xl mx-auto">
-                <div class="flex items-center space-x-3">
-                    <span class="text-xl">📅</span>
-                    <div>
-                        <label for="cycle-start-date" class="block text-xs font-semibold text-emerald-400 uppercase tracking-wider">Fecha de Inicio del Ciclo</label>
-                        <p class="text-xs text-gray-400">Ajusta el primer día para rotar todo tu calendario.</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-2 w-full sm:w-auto">
-                    <input type="date" id="cycle-start-date" class="bg-gray-800 border border-gray-700 text-emerald-300 text-sm rounded-lg px-3 py-2 font-mono focus:outline-none focus:border-emerald-400 w-full sm:w-auto">
-                    <button id="reset-date-btn" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 border border-gray-700 rounded-lg transition" title="Restablecer al inicio del mes actual">
-                        Hoy/Mes
-                    </button>
-                </div>
-            </div>
-
-            <div class="bg-card rounded-lg shadow-xl p-6 md:p-8">
-                <div class="calendar-grid text-sm md:text-base mb-4">
-                    <div class="day-header">Lun</div>
-                    <div class="day-header">Mar</div>
-                    <div class="day-header">Mié</div>
-                    <div class="day-header">Jue</div>
-                    <div class="day-header">Vie</div>
-                    <div class="day-header">Sáb</div>
-                    <div class="day-header">Dom</div>
-                </div>
-                <div class="calendar-grid" id="calendar-grid-content"></div>
-                <div class="mt-8 flex flex-wrap justify-between items-center gap-4">
-                    <div>
-                        <h4 class="text-sm font-semibold primary-color mb-2">Clave de Rutinas:</h4>
-                        <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="px-3 py-1 rounded-full P1 shadow-sm font-bold">P1/P2: Pierna</span>
-                            <span class="px-3 py-1 rounded-full H1 shadow-sm font-bold">H1/H2: Halón</span>
-                            <span class="px-3 py-1 rounded-full E1 shadow-sm font-bold">E1/E2: Empuje</span>
-                            <span class="px-3 py-1 rounded-full R shadow-sm font-bold">R: Descanso</span>
-                        </div>
-                    </div>
-                    <button id="clear-custom-calendar-btn" class="text-xs text-gray-400 hover:text-red-400 underline transition">
-                        Restablecer personalizaciones del calendario
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="daily-plan" class="mb-12">
-            <h2 class="text-3xl font-bold text-center primary-color mb-8">Tu Plan Diario Detallado (Rutinas y Registro)</h2>
-            <div id="accordion-container" class="space-y-4"></div>
-        </section>
-
-        <footer class="mt-12 text-center text-gray-400 text-sm p-4 bg-card rounded-xl shadow-lg">
-            <p>© 2026 Plan optimizado de Entrenamiento MAM. Desarrollo de Software Integrado.</p>
-        </footer>
-    </div>
-
-    <!-- MODAL DE INICIO DE SESIÓN Y REGISTRO -->
-    <div id="login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
-            <h3 class="text-xl font-bold text-white mb-2 flex items-center space-x-2">
-                <span>🔐</span> <span id="login-modal-title">Iniciar Sesión de Administrador</span>
-            </h3>
-            <p class="text-sm text-gray-400 mb-4" id="login-modal-desc">
-                Ingresa tu correo y contraseña para habilitar los permisos de modificación e interactividad en la nube.
-            </p>
-            
-            <div id="login-error" class="hidden mb-4 p-3 bg-red-500/10 border border-red-500/30 text-red-400 text-xs rounded-lg"></div>
-
-            <div class="space-y-3 mb-4">
-                <div>
-                    <label class="block text-xs font-medium text-gray-400 mb-1">Correo Electrónico</label>
-                    <input type="email" id="login-email" placeholder="tu@correo.com" 
-                           class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-emerald-400 font-mono">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-gray-400 mb-1">Contraseña</label>
-                    <input type="password" id="login-password" placeholder="••••••••" 
-                           class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-emerald-400 font-mono">
-                </div>
-            </div>
-            <div class="flex justify-between items-center text-xs text-gray-400 mb-4 gap-2 flex-wrap">
-                <button id="toggle-auth-mode-btn" type="button" class="text-emerald-400 hover:underline">¿Primera vez? Crear cuenta de administrador</button>
-                <button id="reset-password-btn" type="button" class="text-gray-400 hover:text-emerald-400 hover:underline">¿Olvidaste tu contraseña?</button>
-            </div>
-
-            <div class="flex justify-end space-x-3">
-                <button id="cancel-login-btn" type="button" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm rounded-lg transition">Cancelar</button>
-                <button id="submit-login-btn" type="button" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold text-sm rounded-lg transition">Iniciar Sesión</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL PARA CAMBIAR / VINCULAR DISPOSITIVO -->
-    <div id="key-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
-            <h3 class="text-xl font-bold text-white mb-2 flex items-center space-x-2">
-                <span>🔑</span> <span>Vincular ID de Usuario</span>
-            </h3>
-            <p class="text-sm text-gray-400 mb-4">
-                Ingresa la clave de perfil para sincronizar pesos e historial específicos de ese usuario.
-            </p>
-            <input type="text" id="sync-key-input" placeholder="Ej. MaxArechiga" 
-                   class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-emerald-400 font-mono mb-4">
-            <div class="flex justify-end space-x-3">
-                <button id="cancel-key-btn" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm rounded-lg transition">Cancelar</button>
-                <button id="save-key-btn" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold text-sm rounded-lg transition">Sincronizar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE REPORTES MEJORADO CON 3 OPCIONES -->
-    <div id="report-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-card border border-gray-800 rounded-2xl max-w-3xl w-full p-6 shadow-2xl max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-white flex items-center space-x-2">
-                    <span>📊</span> <span>Reportes para Fisio & Nutrióloga</span>
-                </h3>
-                <button id="close-report-btn" class="text-gray-400 hover:text-white text-xl">✕</button>
-            </div>
-            
-            <!-- Pestañas de Selección de Reporte -->
-            <div class="flex flex-wrap gap-2 mb-4 bg-gray-900 p-1.5 rounded-xl border border-gray-800">
-                <button id="tab-report-cargas" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-emerald-500 text-gray-900 transition">
-                    🏋️ 1. Cargas por Grupo
-                </button>
-                <button id="tab-report-dias" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-gray-800 text-gray-300 hover:text-white transition">
-                    📅 2. Días Trabajados
-                </button>
-                <button id="tab-report-volumen" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-gray-800 text-gray-300 hover:text-white transition">
-                    📈 3. Volumen Plan vs Real
-                </button>
-            </div>
-
-            <p id="report-description" class="text-xs text-gray-400 mb-3">
-                Desglose de cargas máximas registradas por grupo muscular.
-            </p>
-
-            <textarea id="report-text-area" readonly class="w-full flex-grow bg-gray-800 border border-gray-700 text-emerald-300 rounded-lg p-4 font-mono text-xs focus:outline-none resize-none mb-4 min-h-[260px]"></textarea>
-
-            <div class="flex justify-end space-x-3">
-                <button id="copy-report-text-btn" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold text-sm rounded-lg transition">
-                    📋 Copiar Reporte Activo
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL PARA SELECCIONAR RUTINA DEL DÍA EN EL CALENDARIO -->
-    <div id="day-select-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
-            <div class="flex justify-between items-start mb-2">
-                <div>
-                    <h3 id="day-select-title" class="text-lg font-bold text-white flex items-center space-x-2">
-                        <span>🗓️</span> <span>Seleccionar Rutina Realizada</span>
-                    </h3>
-                    <p id="day-select-date" class="text-xs text-emerald-400 font-mono mt-0.5"></p>
-                </div>
-                <button id="close-day-modal-btn" class="text-gray-400 hover:text-white text-xl">✕</button>
-            </div>
-            
-            <p class="text-xs text-gray-400 mb-4">
-                Elige qué rutina o descanso realizaste este día específico.
-            </p>
-
-            <div class="grid grid-cols-1 gap-2 mb-4 max-h-[320px] overflow-y-auto pr-1">
-                <button data-key="P1" class="day-option-btn p-3 rounded-xl P1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>P1 - Pierna / Hombro</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Pierna 1</span>
-                </button>
-                <button data-key="H1" class="day-option-btn p-3 rounded-xl H1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>H1 - Halón - Espalda / Bíceps</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Halón 1</span>
-                </button>
-                <button data-key="E1" class="day-option-btn p-3 rounded-xl E1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>E1 - Empuje - Pecho / Tríceps</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Empuje 1</span>
-                </button>
-                <button data-key="P2" class="day-option-btn p-3 rounded-xl P2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>P2 - Pierna / Hombro</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Pierna 2</span>
-                </button>
-                <button data-key="H2" class="day-option-btn p-3 rounded-xl H2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>H2 - Halón - Espalda / Bíceps</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Halón 2</span>
-                </button>
-                <button data-key="E2" class="day-option-btn p-3 rounded-xl E2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>E2 - Empuje - Pecho / Tríceps</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Empuje 2</span>
-                </button>
-                <button data-key="R" class="day-option-btn p-3 rounded-xl R font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>R - Día de Descanso / Recuperación</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Descanso</span>
-                </button>
-            </div>
-
-            <!-- OPCIÓN DE REAJUSTE DE SECUENCIA -->
-            <div class="mb-4 bg-gray-900 p-3 rounded-xl border border-gray-800 flex items-center justify-between">
-                <div>
-                    <label for="shift-sequence-checkbox" class="text-xs font-semibold text-gray-200 cursor-pointer block">🔄 Reajustar secuencia en adelante</label>
-                    <p class="text-[11px] text-gray-400">Ajusta los días siguientes para continuar el ciclo 3-1 desde esta rutina.</p>
-                </div>
-                <input type="checkbox" id="shift-sequence-checkbox" class="w-4 h-4 rounded text-emerald-500 bg-gray-800 border-gray-700 cursor-pointer">
-            </div>
-
-            <div class="flex justify-between items-center pt-2 border-t border-gray-800 gap-2">
-                <button id="reset-day-default-btn" class="text-xs text-gray-400 hover:text-amber-400 underline transition">
-                    Restablecer al patrón base
-                </button>
-                <button id="jump-to-routine-btn" class="px-3 py-1.5 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 text-xs font-bold rounded-lg border border-emerald-500/40 transition flex items-center space-x-1">
-                    <span>🏋️ Ver Rutina</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- NOTIFICACIÓN TIPO TOAST -->
-    <div id="toast-msg" class="fixed bottom-6 right-6 bg-emerald-500 text-gray-950 font-bold px-4 py-3 rounded-xl shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 z-50 flex items-center space-x-2">
-        <span>✓</span>
-        <span id="toast-text">Guardado</span>
-    </div>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { 
-            getAuth, 
-            signInAnonymously, 
-            signInWithEmailAndPassword, 
-            createUserWithEmailAndPassword, 
-            sendPasswordResetEmail,
-            signOut, 
-            onAuthStateChanged 
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'mam-gym-app';
-        
-        // ESTRUCTURA DE RUTINAS PPL (PIERNA PRIMERO)
-        const routineData = {
-            P1: {
-                title: "Pierna / Hombro (P1)",
-                type: "P1",
-                exercises: [
-                    "Sentadilla Libre / Prensa (4x8-10)",
-                    "Peso Muerto Rumano (4x10-12)",
-                    "Prensa Inclinada / Zancadas (3x12-15)",
-                    "Extensiones de Cuádriceps (3x12-15)",
-                    "Curl Femoral Tumbado/Sentado (3x12-15)",
-                    "Elevación de Gemelos en Máquina (4x15-20)",
-                    "Press Militar con Mancuernas / Barra (4x8-10)",
-                    "Elevaciones Laterales (4x12-15)",
-                    "Pájaro / Deltoides Posterior en Polea (3x15)"
-                ]
-            },
-            H1: {
-                title: "Halón - Espalda / Bíceps (H1)",
-                type: "H1",
-                exercises: [
-                    "Jalón al Pecho Agarre Ancho (4x8-10)",
-                    "Remo con Barra o Gironda (4x10-12)",
-                    "Jalón Neutro / Agarre Cerrado (3x10-12)",
-                    "Pull-over con Polea / Cuerda (3x12-15)",
-                    "Encogimientos de Trapecio (3x12-15)",
-                    "Curl de Bíceps con Barra Z (4x10-12)",
-                    "Curl Martillo con Mancuernas (3x12-15)",
-                    "Curl Inclinado / Banco Pelícano (3x12-15)"
-                ]
-            },
-            E1: {
-                title: "Empuje - Pecho / Tríceps (E1)",
-                type: "E1",
-                exercises: [
-                    "Press Plano con Barra / Mancuernas (4x8-10)",
-                    "Press Inclinado con Mancuernas (4x10-12)",
-                    "Aperturas / Crossover en Polea (3x12-15)",
-                    "Fondos en Paralelas / Máquina (3x Al fallo)",
-                    "Press Francés con Barra Z (4x10-12)",
-                    "Extensión de Tríceps en Polea Cuerda (3x12-15)",
-                    "Extensión Unilateral Copa / Polea (3x12-15)"
-                ]
-            },
-            P2: {
-                title: "Pierna / Hombro (P2)",
-                type: "P2",
-                exercises: [
-                    "Sentadilla Búlgara / Prensa (4x10-12)",
-                    "Hip Thrust con Barra (4x10-12)",
-                    "Extensiones de Cuádriceps (3x12-15)",
-                    "Curl Femoral Sentado (3x12-15)",
-                    "Elevación de Gemelos (4x15-20)",
-                    "Press Arnold para Hombros (4x10-12)",
-                    "Elevaciones Laterales en Polea (4x12-15)",
-                    "Facepulls para Deltoides Posterior (4x15)"
-                ]
-            },
-            H2: {
-                title: "Halón - Espalda / Bíceps (H2)",
-                type: "H2",
-                exercises: [
-                    "Dominadas / Jalón al Pecho Agarre Neutro (4x8-10)",
-                    "Remo Unilateral con Mancuerna (4x10-12)",
-                    "Remo Pecho Apoyado en Banco (3x10-12)",
-                    "Jalón Brazo Recto en Polea (3x12-15)",
-                    "Curl de Bíceps en Banco Scott (4x10-12)",
-                    "Curl de Bíceps Concentrado (3x12-15)",
-                    "Curl Inverso con Barra Z (3x12-15)"
-                ]
-            },
-            E2: {
-                title: "Empuje - Pecho / Tríceps (E2)",
-                type: "E2",
-                exercises: [
-                    "Press Inclinado con Barra (4x8-10)",
-                    "Press Plano con Mancuernas (4x10-12)",
-                    "Peck Deck / Cruce de Poleas Bajas (3x12-15)",
-                    "Extensión de Tríceps Polea Alta Barra V (4x10-12)",
-                    "Extensión Trasnuca con Cuerda (3x12-15)",
-                    "Patada de Tríceps en Polea (3x15)"
-                ]
-            },
-            R: {
-                title: "Día de Descanso / Recuperación Activa",
-                type: "R",
-                exercises: [
-                    "Caminata ligera de 30-45 minutos",
-                    "Estiramientos dinámicos y movilidad articular",
-                    "Hidratación óptima y descanso adecuado"
-                ]
-            }
-        };
-
-        // Formateador seguro de fecha YYYY-MM-DD sin desfasamiento de zona horaria
-        function formatDateKey(d) {
-            const year = d.getFullYear();
-            const month = String(d.getMonth() + 1).padStart(2, '0');
-            const day = String(d.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-
-        const now = new Date();
-        const defaultStartDate = formatDateKey(new Date(now.getFullYear(), now.getMonth(), 1));
-        let calendarStartDate = localStorage.getItem('mam_cycle_start_date') || defaultStartDate;
-
-        // CONFIGURACIÓN DE FIREBASE
-        const firebaseConfig = {
-          apiKey: "AIzaSyCCY1cOiUA_x8-BS4MlRz7EVXLz95Cfjsk",
-          authDomain: "mam-gym.firebaseapp.com",
-          projectId: "mam-gym",
-          storageBucket: "mam-gym.firebasestorage.app",
-          messagingSenderId: "940450727373",
-          appId: "1:940450727373:web:5417c82476ea39ff187084",
-          measurementId: "G-GTP5L9KG4P"
-        };
-
-        let db = null;
-        let auth = null;
-        let userId = null;
-        let isAuthReady = false;
-        let isAdminLoggedIn = false; 
-        let isDemoAdmin = false; 
-        let isSignUpMode = false;
-        
-        let completedExerciseIds = new Set(); 
-        let exerciseLogs = {}; 
-        let calendarSelections = {};
-        let activeReportType = 'cargas'; 
-        let selectedDayDateStr = null;
-        let selectedDayRoutineKey = null;
-
-        function showToast(text) {
-            const toast = document.getElementById('toast-msg');
-            const toastText = document.getElementById('toast-text');
-            if (!toast || !toastText) return;
-            toastText.textContent = text;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        function updateUserIdDisplay() {
-            const el = document.getElementById('user-id-display');
-            if (el) el.textContent = userId || 'MaxArechiga';
-        }
-
-        function updateAuthStatusUI(user) {
-            const statusDot = document.getElementById('auth-status-dot');
-            const statusBadge = document.getElementById('auth-status-badge');
-            const authActionBtn = document.getElementById('auth-action-btn');
-            const demoBtn = document.getElementById('demo-mode-btn');
-
-            if ((user && !user.isAnonymous) || isDemoAdmin) {
-                isAdminLoggedIn = true;
-                const emailStr = isDemoAdmin ? 'admin.demo@mam-gym.app (Demo)' : (user ? user.email : 'Admin');
-                if (statusDot) statusDot.className = "inline-block w-3 h-3 rounded-full bg-emerald-400 animate-pulse";
-                if (statusBadge) {
-                    statusBadge.className = "font-medium text-emerald-300 bg-emerald-950/80 px-2.5 py-1 rounded-md text-xs border border-emerald-500/40";
-                    statusBadge.textContent = `🟢 Modo Edición (${emailStr})`;
-                }
-                if (authActionBtn) {
-                    authActionBtn.innerHTML = `<span>🚪 Cerrar Sesión</span>`;
-                    authActionBtn.className = "px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-red-400 border border-red-500/30 text-xs font-bold rounded-lg transition shadow";
-                }
-                if (demoBtn) {
-                    demoBtn.innerHTML = `<span>🔒 Salir Modo Demo</span>`;
-                    demoBtn.className = "px-3 py-1.5 bg-purple-900/60 hover:bg-purple-800/80 text-purple-200 text-xs font-semibold rounded-lg transition border border-purple-400/50 flex items-center space-x-1";
-                }
-            } else {
-                isAdminLoggedIn = false;
-                if (statusDot) statusDot.className = "inline-block w-3 h-3 rounded-full bg-yellow-400 animate-pulse";
-                if (statusBadge) {
-                    statusBadge.className = "font-medium text-yellow-300 bg-gray-800 px-2.5 py-1 rounded-md text-xs border border-yellow-500/30";
-                    statusBadge.textContent = "👁️ Modo Lectura / Local";
-                }
-                if (authActionBtn) {
-                    authActionBtn.innerHTML = `<span>🔐 Iniciar Sesión</span>`;
-                    authActionBtn.className = "px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center space-x-1 shadow";
-                }
-                if (demoBtn) {
-                    demoBtn.innerHTML = `<span>⚡ Probar Modo Admin (Demo)</span>`;
-                    demoBtn.className = "px-3 py-1.5 bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 text-xs font-semibold rounded-lg transition border border-purple-500/40 flex items-center space-x-1";
-                }
-            }
-        }
-
-        async function initFirebase() {
-            try {
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                userId = localStorage.getItem('mam_custom_user_id') || 'MaxArechiga';
-                updateUserIdDisplay();
-
-                onAuthStateChanged(auth, async (user) => {
-                    updateAuthStatusUI(user);
-                    if (!user) {
-                        try { await signInAnonymously(auth); } catch (e) {}
-                    }
-                    isAuthReady = true;
-                    listenForExerciseStatus();
-                });
-            } catch (error) { 
-                userId = localStorage.getItem('mam_custom_user_id') || 'MaxArechiga';
-                updateUserIdDisplay();
-                isAuthReady = true; 
-                listenForExerciseStatus(); 
-            }
-        }
-
-        function listenForExerciseStatus() {
-            if (!userId) return;
-
-            // Carga local previa
-            try {
-                const localData = JSON.parse(localStorage.getItem(`mam_exercise_data_${userId}`) || '{}');
-                completedExerciseIds = new Set(localData.completed || []);
-                exerciseLogs = localData.logs || {};
-                calendarSelections = localData.calendar || {};
-                updateUIState();
-            } catch(e) {}
-
-            if (db) {
-                try {
-                    const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
-                    onSnapshot(docRef, (docSnap) => {
-                        if (docSnap.exists()) {
-                            const data = docSnap.data();
-                            completedExerciseIds = new Set(data.completed || []);
-                            exerciseLogs = data.logs || {};
-                            calendarSelections = data.calendar || {};
-                            updateUIState();
-                        }
-                    }, (err) => {});
-                } catch(e) {}
-            }
-        }
-
-        function updateUIState() {
-            // Actualizar checks e inputs en el acordeón
-            Object.keys(routineData).forEach(routineKey => {
-                const routine = routineData[routineKey];
-                routine.exercises.forEach((_, index) => {
-                    const id = `${routineKey}-${index}`;
-                    const container = document.getElementById(`container-${id}`);
-                    const checkbox = document.getElementById(`check-${id}`);
-                    const weightInput = document.getElementById(`weight-${id}`);
-                    const repsInput = document.getElementById(`reps-${id}`);
-
-                    const isDone = completedExerciseIds.has(id);
-                    if (container) {
-                        if (isDone) container.classList.add('completed');
-                        else container.classList.remove('completed');
-                    }
-                    if (checkbox) checkbox.checked = isDone;
-
-                    if (exerciseLogs[id]) {
-                        if (weightInput && exerciseLogs[id].weight !== undefined) weightInput.value = exerciseLogs[id].weight;
-                        if (repsInput && exerciseLogs[id].reps !== undefined) repsInput.value = exerciseLogs[id].reps;
-                    }
-                });
-            });
-
-            initCalendar();
-        }
-
-        async function saveExerciseData(id, weight, reps, isCompleted, routineKey, exerciseName) {
-            if (isCompleted) {
-                completedExerciseIds.add(id);
-            } else {
-                completedExerciseIds.delete(id);
-            }
-
-            if (!exerciseLogs[id]) exerciseLogs[id] = {};
-            if (weight !== undefined) exerciseLogs[id].weight = weight;
-            if (reps !== undefined) exerciseLogs[id].reps = reps;
-
-            // Guardado Local
-            const saveData = {
-                completed: Array.from(completedExerciseIds),
-                logs: exerciseLogs,
-                calendar: calendarSelections
-            };
-            localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
-
-            const todayStr = formatDateKey(new Date());
-
-            // Guardar historial local
-            let history = [];
-            try {
-                history = JSON.parse(localStorage.getItem('mam_exercise_history') || '[]');
-            } catch(e) {}
-            
-            history.push({
-                exerciseId: id,
-                routineKey: routineKey,
-                exerciseName: exerciseName,
-                weight: weight,
-                reps: reps,
-                isCompleted: isCompleted,
-                date: todayStr,
-                timestamp: Date.now()
-            });
-            localStorage.setItem('mam_exercise_history', JSON.stringify(history));
-
-            // Firestore sync
-            if (db && userId) {
-                try {
-                    const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
-                    await setDoc(docRef, saveData, { merge: true });
-
-                    const colRef = collection(db, `artifacts/${appId}/users/${userId}/exercise_history`);
-                    await addDoc(colRef, {
-                        exerciseId: id,
-                        routineKey: routineKey,
-                        exerciseName: exerciseName,
-                        weight: weight,
-                        reps: reps,
-                        isCompleted: isCompleted,
-                        date: todayStr,
-                        timestamp: Date.now()
-                    });
-                } catch(e) {}
-            }
-
-            updateUIState();
-            showToast("💾 Datos guardados correctamente");
-        }
-
-        function initAccordion() {
-            const container = document.getElementById('accordion-container');
-            if (!container) return;
-            container.innerHTML = '';
-
-            const keys = ['P1', 'H1', 'E1', 'P2', 'H2', 'E2', 'R'];
-
-            keys.forEach((key) => {
-                const routine = routineData[key];
-                const card = document.createElement('div');
-                card.className = "bg-card rounded-xl overflow-hidden shadow-lg border border-gray-800";
-                card.id = `accordion-card-${key}`;
-
-                let exercisesHTML = '';
-                routine.exercises.forEach((ex, idx) => {
-                    const id = `${key}-${idx}`;
-                    exercisesHTML += `
-                        <div id="container-${id}" class="exercise-item-container px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
-                            <div class="flex items-center space-x-3 flex-1">
-                                <input type="checkbox" id="check-${id}" data-id="${id}" data-key="${key}" data-name="${ex}"
-                                       class="exercise-check w-5 h-5 rounded border-gray-700 text-emerald-500 focus:ring-emerald-400 bg-gray-800 cursor-pointer">
-                                <span class="exercise-title text-sm md:text-base font-semibold text-gray-200">${ex}</span>
-                            </div>
-                            ${key !== 'R' ? `
-                            <div class="flex items-center space-x-2 pl-8 md:pl-0">
-                                <div class="flex items-center space-x-1">
-                                    <input type="number" id="weight-${id}" placeholder="Kg" 
-                                           class="w-16 bg-gray-800 border border-gray-700 text-emerald-300 text-xs rounded px-2 py-1 focus:outline-none focus:border-emerald-400 font-mono">
-                                    <span class="text-xs text-gray-400">kg</span>
-                                </div>
-                                <div class="flex items-center space-x-1">
-                                    <input type="number" id="reps-${id}" placeholder="Reps" 
-                                           class="w-16 bg-gray-800 border border-gray-700 text-emerald-300 text-xs rounded px-2 py-1 focus:outline-none focus:border-emerald-400 font-mono">
-                                    <span class="text-xs text-gray-400">reps</span>
-                                </div>
-                                <button data-id="${id}" data-key="${key}" data-name="${ex}" 
-                                        class="save-ex-btn px-2.5 py-1 bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 text-xs font-bold rounded border border-emerald-500/40 transition">
-                                    💾
-                                </button>
-                            </div>
-                            ` : ''}
-                        </div>
-                    `;
-                });
-
-                card.innerHTML = `
-                    <button class="accordion-button ${key} w-full text-left p-4 md:p-5 flex justify-between items-center transition" aria-expanded="false" id="accordion-btn-${key}">
-                        <span class="font-extrabold text-base md:text-lg">${routine.title}</span>
-                        <span class="accordion-arrow text-xl">▼</span>
-                    </button>
-                    <div class="accordion-content hidden p-4 bg-gray-900/50" id="accordion-content-${key}">
-                        ${exercisesHTML}
-                    </div>
-                `;
-
-                container.appendChild(card);
-            });
-
-            // Event Listeners Acordeón
-            document.querySelectorAll('.accordion-button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const expanded = btn.getAttribute('aria-expanded') === 'true';
-                    btn.setAttribute('aria-expanded', !expanded);
-                    const content = btn.nextElementSibling;
-                    if (content) content.classList.toggle('hidden');
-                });
-            });
-
-            // Listeners para checkboxes
-            document.querySelectorAll('.exercise-check').forEach(chk => {
-                chk.addEventListener('change', (e) => {
-                    const id = e.target.dataset.id;
-                    const key = e.target.dataset.key;
-                    const name = e.target.dataset.name;
-                    const weightVal = document.getElementById(`weight-${id}`)?.value;
-                    const repsVal = document.getElementById(`reps-${id}`)?.value;
-                    saveExerciseData(id, weightVal, repsVal, e.target.checked, key, name);
-                });
-            });
-
-            // Listeners para botones de guardar
-            document.querySelectorAll('.save-ex-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = btn.dataset.id;
-                    const key = btn.dataset.key;
-                    const name = btn.dataset.name;
-                    const isChecked = document.getElementById(`check-${id}`)?.checked || false;
-                    const weightVal = document.getElementById(`weight-${id}`)?.value;
-                    const repsVal = document.getElementById(`reps-${id}`)?.value;
-                    saveExerciseData(id, weightVal, repsVal, isChecked, key, name);
-                });
-            });
-        }
-
-        function initCalendar() {
-            const grid = document.getElementById('calendar-grid-content');
-            const dateInput = document.getElementById('cycle-start-date');
-            if (!grid) return;
-
-            if (dateInput && !dateInput.value) {
-                dateInput.value = calendarStartDate;
-            }
-
-            grid.innerHTML = '';
-            const cyclePattern = ['P1', 'H1', 'E1', 'R', 'P2', 'H2', 'E2', 'R'];
-            
-            const startParts = calendarStartDate.split('-');
-            const start = new Date(parseInt(startParts[0]), parseInt(startParts[1]) - 1, parseInt(startParts[2]));
-            const todayStr = formatDateKey(new Date());
-
-            // Alineación con el día de la semana correspondiente (0 = Domingo, 1 = Lunes)
-            const startDayOfWeek = start.getDay(); 
-            const paddingDays = (startDayOfWeek + 6) % 7; // Ajustar para que Lunes sea columna 0
-
-            // Insertar celdas vacías previa para alinear el inicio del mes o ciclo
-            for (let p = 0; p < paddingDays; p++) {
-                const emptyEl = document.createElement('div');
-                emptyEl.className = 'calendar-day-empty opacity-20 border border-dashed border-gray-800 rounded-lg min-h-[90px] pointer-events-none';
-                grid.appendChild(emptyEl);
-            }
-
-            // Calculamos los 30 días basándonos en selecciones y desplazamientos
-            let currentPatternIndex = 0;
-
-            for (let i = 0; i < 30; i++) {
-                const currentDate = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
-                const dateStr = formatDateKey(currentDate);
-                const dayNum = currentDate.getDate();
-                
-                let defaultRoutineKey = cyclePattern[currentPatternIndex % cyclePattern.length];
-                let isCustomized = false;
-                let routineKey = defaultRoutineKey;
-
-                if (calendarSelections[dateStr]) {
-                    routineKey = calendarSelections[dateStr];
-                    isCustomized = true;
-                    // Si hubo una rutina personalizada, ajustamos el índice del patrón si es el punto de partida
-                    const customIndex = cyclePattern.indexOf(routineKey);
-                    if (customIndex !== -1) {
-                        currentPatternIndex = customIndex;
-                    }
-                }
-
-                const isToday = (dateStr === todayStr);
-
-                // Comprobar si hubo ejercicios completados para esta rutina
-                let isAttended = false;
-                if (routineData[routineKey] && routineData[routineKey].exercises) {
-                    routineData[routineKey].exercises.forEach((_, idx) => {
-                        if (completedExerciseIds.has(`${routineKey}-${idx}`)) isAttended = true;
-                    });
-                }
-
-                const dayEl = document.createElement('div');
-                dayEl.className = `calendar-day ${routineKey} ${isToday ? 'is-today is-today-label' : ''} ${isAttended ? 'attended' : ''} ${isCustomized ? 'is-customized' : ''}`;
-                dayEl.title = `Fecha: ${dateStr} - Rutina: ${routineData[routineKey] ? routineData[routineKey].title : routineKey} (Haz clic para cambiar)`;
-                
-                dayEl.innerHTML = `
-                    <span class="day-number font-mono">${dayNum}</span>
-                    <span class="day-label">${routineKey}</span>
-                `;
-
-                dayEl.addEventListener('click', () => {
-                    openDaySelectModal(dateStr, dayNum, routineKey, currentDate);
-                });
-
-                grid.appendChild(dayEl);
-                currentPatternIndex++;
-            }
-        }
-
-        function openDaySelectModal(dateStr, dayNum, currentRoutineKey, dateObj) {
-            selectedDayDateStr = dateStr;
-            selectedDayRoutineKey = currentRoutineKey;
-
-            const modal = document.getElementById('day-select-modal');
-            const titleEl = document.getElementById('day-select-title');
-            const dateEl = document.getElementById('day-select-date');
-            
-            if (titleEl) titleEl.textContent = `Seleccionar Rutina (Día ${dayNum})`;
-            if (dateEl) {
-                const options = { weekday: 'long', month: 'short', day: 'numeric' };
-                const formattedDate = dateObj ? dateObj.toLocaleDateString('es-ES', options) : dateStr;
-                dateEl.textContent = `📅 ${formattedDate}`;
-            }
-
-            document.querySelectorAll('.day-option-btn').forEach(btn => {
-                if (btn.dataset.key === currentRoutineKey) {
-                    btn.classList.add('ring-2', 'ring-emerald-400', 'scale-[1.02]');
-                } else {
-                    btn.classList.remove('ring-2', 'ring-emerald-400', 'scale-[1.02]');
-                }
-            });
-
-            if (modal) modal.classList.remove('hidden');
-        }
-
-        async function saveCalendarSelection(dateStr, selectedKey, shouldShiftSequence = false) {
-            const cyclePattern = ['P1', 'H1', 'E1', 'R', 'P2', 'H2', 'E2', 'R'];
-
-            if (selectedKey) {
-                calendarSelections[dateStr] = selectedKey;
-
-                // Si el usuario activó la casilla de reajustar la secuencia en adelante
-                if (shouldShiftSequence) {
-                    const startParts = calendarStartDate.split('-');
-                    const start = new Date(parseInt(startParts[0]), parseInt(startParts[1]) - 1, parseInt(startParts[2]));
-                    const targetParts = dateStr.split('-');
-                    const targetDate = new Date(parseInt(targetParts[0]), parseInt(targetParts[1]) - 1, parseInt(targetParts[2]));
-                    
-                    const daysDiff = Math.round((targetDate - start) / (1000 * 60 * 60 * 24));
-                    let currentPatternIdx = cyclePattern.indexOf(selectedKey);
-
-                    if (currentPatternIdx !== -1) {
-                        for (let i = daysDiff + 1; i < 60; i++) {
-                            currentPatternIdx = (currentPatternIdx + 1) % cyclePattern.length;
-                            const nextDate = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
-                            const nextDateStr = formatDateKey(nextDate);
-                            calendarSelections[nextDateStr] = cyclePattern[currentPatternIdx];
-                        }
-                    }
-                }
-            } else {
-                delete calendarSelections[dateStr];
-            }
-
-            // Guardado local inmediato
-            const saveData = {
-                completed: Array.from(completedExerciseIds),
-                logs: exerciseLogs,
-                calendar: calendarSelections
-            };
-            localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
-
-            // Sync con Firestore en segundo plano si está disponible
-            if (db && userId) {
-                try {
-                    const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
-                    await setDoc(docRef, saveData, { merge: true });
-                } catch(e) {}
-            }
-
-            initCalendar();
-            showToast(selectedKey ? `🗓️ Rutina actualizada a ${selectedKey}` : "🗓️ Día restablecido al patrón base");
-        }
-
-        function setupCalendarInteractions() {
-            const dateInput = document.getElementById('cycle-start-date');
-            const resetBtn = document.getElementById('reset-date-btn');
-            const clearCustomBtn = document.getElementById('clear-custom-calendar-btn');
-            const dayModal = document.getElementById('day-select-modal');
-            const closeDayModalBtn = document.getElementById('close-day-modal-btn');
-            const resetDefaultBtn = document.getElementById('reset-day-default-btn');
-            const jumpToRoutineBtn = document.getElementById('jump-to-routine-btn');
-            const shiftCheckbox = document.getElementById('shift-sequence-checkbox');
-
-            if (dateInput) {
-                dateInput.addEventListener('change', (e) => {
-                    calendarStartDate = e.target.value;
-                    localStorage.setItem('mam_cycle_start_date', calendarStartDate);
-                    initCalendar();
-                    showToast("📅 Fecha de inicio actualizada");
-                });
-            }
-
-            if (resetBtn) {
-                resetBtn.addEventListener('click', () => {
-                    calendarStartDate = defaultStartDate;
-                    if (dateInput) dateInput.value = defaultStartDate;
-                    localStorage.setItem('mam_cycle_start_date', defaultStartDate);
-                    initCalendar();
-                    showToast("📅 Calendario restablecido");
-                });
-            }
-
-            if (clearCustomBtn) {
-                clearCustomBtn.addEventListener('click', async () => {
-                    calendarSelections = {};
-                    const saveData = {
-                        completed: Array.from(completedExerciseIds),
-                        logs: exerciseLogs,
-                        calendar: calendarSelections
-                    };
-                    localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
-                    if (db && userId) {
-                        try {
-                            const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
-                            await setDoc(docRef, saveData, { merge: true });
-                        } catch(e) {}
-                    }
-                    initCalendar();
-                    showToast("🧹 Personalizaciones del calendario limpiadas");
-                });
-            }
-
-            if (closeDayModalBtn) {
-                closeDayModalBtn.addEventListener('click', () => {
-                    if (dayModal) dayModal.classList.add('hidden');
-                });
-            }
-
-            document.querySelectorAll('.day-option-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const key = btn.dataset.key;
-                    const shouldShift = shiftCheckbox ? shiftCheckbox.checked : false;
-                    if (selectedDayDateStr && key) {
-                        saveCalendarSelection(selectedDayDateStr, key, shouldShift);
-                    }
-                    if (dayModal) dayModal.classList.add('hidden');
-                });
-            });
-
-            if (resetDefaultBtn) {
-                resetDefaultBtn.addEventListener('click', () => {
-                    if (selectedDayDateStr) {
-                        saveCalendarSelection(selectedDayDateStr, null);
-                    }
-                    if (dayModal) dayModal.classList.add('hidden');
-                });
-            }
-
-            if (jumpToRoutineBtn) {
-                jumpToRoutineBtn.addEventListener('click', () => {
-                    if (dayModal) dayModal.classList.add('hidden');
-                    const key = selectedDayRoutineKey || 'P1';
-                    const accordionBtn = document.getElementById(`accordion-btn-${key}`);
-                    const accordionContent = document.getElementById(`accordion-content-${key}`);
-                    
-                    if (accordionBtn && accordionContent) {
-                        accordionBtn.setAttribute('aria-expanded', 'true');
-                        accordionContent.classList.remove('hidden');
-                        accordionBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                });
-            }
-        }
-
-        function setupAuthModals() {
-            const authActionBtn = document.getElementById('auth-action-btn');
-            const demoModeBtn = document.getElementById('demo-mode-btn');
-            const loginModal = document.getElementById('login-modal');
-            const cancelLoginBtn = document.getElementById('cancel-login-btn');
-            const submitLoginBtn = document.getElementById('submit-login-btn');
-            const toggleAuthModeBtn = document.getElementById('toggle-auth-mode-btn');
-            const resetPasswordBtn = document.getElementById('reset-password-btn');
-            const loginEmailInput = document.getElementById('login-email');
-            const loginPasswordInput = document.getElementById('login-password');
-            const loginErrorMsg = document.getElementById('login-error');
-            const modalTitle = document.getElementById('login-modal-title');
-            const modalDesc = document.getElementById('login-modal-desc');
-
-            if (demoModeBtn) {
-                demoModeBtn.addEventListener('click', () => {
-                    isDemoAdmin = !isDemoAdmin;
-                    updateAuthStatusUI(auth ? auth.currentUser : null);
-                    if (isDemoAdmin) {
-                        showToast("⚡ Modo Admin Demo Activado (puedes probar editar pesos y sincronizar)");
-                    } else {
-                        showToast("👁️ Volviste al Modo Lectura / Local");
-                    }
-                });
-            }
-
-            if (authActionBtn) {
-                authActionBtn.addEventListener('click', async () => {
-                    if (isAdminLoggedIn) {
-                        try {
-                            isDemoAdmin = false;
-                            if (auth && auth.currentUser && !auth.currentUser.isAnonymous) {
-                                await signOut(auth);
-                            }
-                            updateAuthStatusUI(null);
-                            showToast("Sesión cerrada (Modo Lectura)");
-                        } catch (e) {
-                            showToast("Error al cerrar sesión");
-                        }
-                    } else {
-                        if (loginErrorMsg) loginErrorMsg.classList.add('hidden');
-                        if (loginModal) loginModal.classList.remove('hidden');
-                    }
-                });
-            }
-
-            if (cancelLoginBtn) {
-                cancelLoginBtn.addEventListener('click', () => {
-                    if (loginModal) loginModal.classList.add('hidden');
-                });
-            }
-
-            if (toggleAuthModeBtn) {
-                toggleAuthModeBtn.addEventListener('click', () => {
-                    isSignUpMode = !isSignUpMode;
-                    if (isSignUpMode) {
-                        modalTitle.textContent = "Crear Cuenta de Administrador";
-                        modalDesc.textContent = "Crea una cuenta con tu correo personal para otorgarte acceso permanente de edición.";
-                        submitLoginBtn.textContent = "Registrarme";
-                        toggleAuthModeBtn.textContent = "¿Ya tienes cuenta? Iniciar Sesión";
-                    } else {
-                        modalTitle.textContent = "Iniciar Sesión de Administrador";
-                        modalDesc.textContent = "Ingresa tu correo y contraseña para habilitar los permisos de modificación y guardado en la nube.";
-                        submitLoginBtn.textContent = "Iniciar Sesión";
-                        toggleAuthModeBtn.textContent = "¿Primera vez? Crear cuenta de administrador";
-                    }
-                });
-            }
-
-            if (resetPasswordBtn) {
-                resetPasswordBtn.addEventListener('click', async () => {
-                    const email = loginEmailInput?.value.trim();
-                    if (!email) {
-                        if (loginErrorMsg) {
-                            loginErrorMsg.textContent = "Por favor escribe tu correo electrónico arriba para enviarte el enlace de recuperación.";
-                            loginErrorMsg.classList.remove('hidden');
-                        }
-                        return;
-                    }
-                    try {
-                        if (auth) {
-                            await sendPasswordResetEmail(auth, email);
-                            showToast("📧 Correo de restablecimiento enviado. Revisa tu bandeja de entrada.");
-                            if (loginErrorMsg) loginErrorMsg.classList.add('hidden');
-                        }
-                    } catch (err) {
-                        if (loginErrorMsg) {
-                            loginErrorMsg.textContent = "No se pudo enviar el correo de recuperación. Verifica la dirección ingresada.";
-                            loginErrorMsg.classList.remove('hidden');
-                        }
-                    }
-                });
-            }
-
-            if (submitLoginBtn) {
-                submitLoginBtn.addEventListener('click', async () => {
-                    const email = loginEmailInput?.value.trim();
-                    const password = loginPasswordInput?.value.trim();
-
-                    if (!email || !password) {
-                        if (loginErrorMsg) {
-                            loginErrorMsg.textContent = "Ingresa correo y contraseña.";
-                            loginErrorMsg.classList.remove('hidden');
-                        }
-                        return;
-                    }
-
-                    try {
-                        if (isSignUpMode) {
-                            await createUserWithEmailAndPassword(auth, email, password);
-                            showToast("¡Cuenta creada con éxito!");
-                        } else {
-                            await signInWithEmailAndPassword(auth, email, password);
-                            showToast("¡Sesión iniciada como Admin!");
-                        }
-                        if (loginModal) loginModal.classList.add('hidden');
-                        if (loginEmailInput) loginEmailInput.value = '';
-                        if (loginPasswordInput) loginPasswordInput.value = '';
-                    } catch (error) {
-                        if (loginErrorMsg) {
-                            let msg = "Error al autenticar.";
-                            if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-                                msg = "Correo o contraseña incorrectos.";
-                            } else if (error.code === 'auth/email-already-in-use') {
-                                msg = "Ese correo ya está registrado. Intenta iniciar sesión.";
-                            } else if (error.code === 'auth/weak-password') {
-                                msg = "La contraseña debe tener al menos 6 caracteres.";
-                            }
-                            loginErrorMsg.textContent = msg;
-                            loginErrorMsg.classList.remove('hidden');
-                        }
-                    }
-                });
-            }
-        }
-
-        function setupSyncAndReportModals() {
-            const copyKeyBtn = document.getElementById('copy-key-btn');
-            const switchKeyBtn = document.getElementById('switch-key-btn');
-            const exportReportBtn = document.getElementById('export-report-btn');
-            const keyModal = document.getElementById('key-modal');
-            const cancelKeyBtn = document.getElementById('cancel-key-btn');
-            const saveKeyBtn = document.getElementById('save-key-btn');
-            const syncKeyInput = document.getElementById('sync-key-input');
-
-            const reportModal = document.getElementById('report-modal');
-            const closeReportBtn = document.getElementById('close-report-btn');
-            const copyReportTextBtn = document.getElementById('copy-report-text-btn');
-
-            const tabCargas = document.getElementById('tab-report-cargas');
-            const tabDias = document.getElementById('tab-report-dias');
-            const tabVolumen = document.getElementById('tab-report-volumen');
-
-            if (copyKeyBtn) {
-                copyKeyBtn.addEventListener('click', () => {
-                    if (userId) {
-                        navigator.clipboard.writeText(userId);
-                        showToast("ID de usuario copiado");
-                    }
-                });
-            }
-
-            if (switchKeyBtn) {
-                switchKeyBtn.addEventListener('click', () => {
-                    if (syncKeyInput) syncKeyInput.value = userId || '';
-                    if (keyModal) keyModal.classList.remove('hidden');
-                });
-            }
-
-            if (cancelKeyBtn) {
-                cancelKeyBtn.addEventListener('click', () => {
-                    if (keyModal) keyModal.classList.add('hidden');
-                });
-            }
-
-            if (saveKeyBtn) {
-                saveKeyBtn.addEventListener('click', () => {
-                    const newKey = syncKeyInput ? syncKeyInput.value.trim() : '';
-                    if (newKey) {
-                        userId = newKey;
-                        localStorage.setItem('mam_custom_user_id', userId);
-                        updateUserIdDisplay();
-                        if (keyModal) keyModal.classList.add('hidden');
-                        listenForExerciseStatus();
-                        showToast("ID actualizado correctamente");
-                    }
-                });
-            }
-
-            if (exportReportBtn) {
-                exportReportBtn.addEventListener('click', async () => {
-                    setReportTab('cargas');
-                    if (reportModal) reportModal.classList.remove('hidden');
-                });
-            }
-
-            if (closeReportBtn) {
-                closeReportBtn.addEventListener('click', () => {
-                    if (reportModal) reportModal.classList.add('hidden');
-                });
-            }
-
-            if (tabCargas) tabCargas.addEventListener('click', () => setReportTab('cargas'));
-            if (tabDias) tabDias.addEventListener('click', () => setReportTab('dias'));
-            if (tabVolumen) tabVolumen.addEventListener('click', () => setReportTab('volumen'));
-
-            if (copyReportTextBtn) {
-                copyReportTextBtn.addEventListener('click', () => {
-                    const reportTextArea = document.getElementById('report-text-area');
-                    if (reportTextArea) {
-                        reportTextArea.select();
-                        document.execCommand('copy');
-                        showToast("Reporte copiado al portapapeles");
-                    }
-                });
-            }
-        }
-
-        async function fetchHistoryRecords() {
-            let historyRecords = [];
-            if (db && userId) {
-                try {
-                    const colRef = collection(db, `artifacts/${appId}/users/${userId}/exercise_history`);
-                    const q = query(colRef, orderBy("timestamp", "asc"));
-                    const snap = await getDocs(q);
-                    snap.forEach(docSnap => historyRecords.push(docSnap.data()));
-                } catch (e) {}
-            }
-            if (historyRecords.length === 0) {
-                try {
-                    historyRecords = JSON.parse(localStorage.getItem('mam_exercise_history') || '[]');
-                } catch (e) {}
-            }
-            return historyRecords;
-        }
-
-        async function setReportTab(type) {
-            activeReportType = type;
-            const tabCargas = document.getElementById('tab-report-cargas');
-            const tabDias = document.getElementById('tab-report-dias');
-            const tabVolumen = document.getElementById('tab-report-volumen');
-            const desc = document.getElementById('report-description');
-
-            const activeClass = "bg-emerald-500 text-gray-900";
-            const inactiveClass = "bg-gray-800 text-gray-300 hover:text-white";
-
-            if (tabCargas) tabCargas.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'cargas' ? activeClass : inactiveClass}`;
-            if (tabDias) tabDias.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'dias' ? activeClass : inactiveClass}`;
-            if (tabVolumen) tabVolumen.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'volumen' ? activeClass : inactiveClass}`;
-
-            const historyRecords = await fetchHistoryRecords();
-
-            if (type === 'cargas') {
-                if (desc) desc.textContent = "Últimas cargas y repeticiones máximas registradas por cada grupo de entrenamiento.";
-                generateReportCargas();
-            } else if (type === 'dias') {
-                if (desc) desc.textContent = "Conteo de días trabajados efectivamente y bitácora de asistencia.";
-                generateReportDias(historyRecords);
-            } else if (type === 'volumen') {
-                if (desc) desc.textContent = "Comparativa de Volumen Esperado (Series/Repeticiones planificadas) vs. Volumen Real completado.";
-                generateReportVolumen(historyRecords);
-            }
-        }
-
-        function generateReportCargas() {
-            const reportTextArea = document.getElementById('report-text-area');
-            if (!reportTextArea) return;
-
-            let lines = [];
-            lines.push("=================================================");
-            lines.push("  REPORTE 1: ÚLTIMAS CARGAS POR GRUPO (PPL)");
-            lines.push("=================================================");
-            lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
-            lines.push(`Fecha de Emisión: ${new Date().toLocaleDateString('es-ES')} ${new Date().toLocaleTimeString('es-ES')}`);
-            lines.push("");
-
-            const groups = [
-                { name: "🦵 PIERNA Y HOMBRO (P1 / P2)", keys: ['P1', 'P2'] },
-                { name: "💪 HALÓN - ESPALDA Y BÍCEPS (H1 / H2)", keys: ['H1', 'H2'] },
-                { name: "🏋️ EMPUJE - PECHO Y TRÍCEPS (E1 / E2)", keys: ['E1', 'E2'] }
-            ];
-
-            groups.forEach(group => {
-                lines.push(`-------------------------------------------------`);
-                lines.push(group.name);
-                lines.push(`-------------------------------------------------`);
-
-                group.keys.forEach(key => {
-                    const routine = routineData[key];
-                    if (!routine) return;
-                    lines.push(`  📌 ${routine.title}`);
-
-                    routine.exercises.forEach((ex, i) => {
-                        const id = `${key}-${i}`;
-                        const log = exerciseLogs[id];
-                        const isDone = completedExerciseIds.has(id);
-
-                        const weightStr = (log && log.weight) ? `${log.weight} kg` : 'Sin peso registrado';
-                        const repsStr = (log && log.reps) ? `${log.reps} reps` : 'Sin reps';
-                        const statusStr = isDone ? '[COMPLETADO]' : '[EN PROCESO]';
-
-                        lines.push(`     • ${ex}`);
-                        lines.push(`       ➔ Carga Actual: ${weightStr} | Reps: ${repsStr} ${statusStr}`);
-                    });
-                    lines.push("");
-                });
-            });
-
-            lines.push("=================================================");
-            reportTextArea.value = lines.join("\n");
-        }
-
-        function generateReportDias(historyRecords) {
-            const reportTextArea = document.getElementById('report-text-area');
-            if (!reportTextArea) return;
-
-            let lines = [];
-            lines.push("=================================================");
-            lines.push("  REPORTE 2: DÍAS EFECTIVAMENTE TRABAJADOS");
-            lines.push("=================================================");
-            lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
-            lines.push(`Fecha de Emisión: ${new Date().toLocaleDateString('es-ES')}`);
-            lines.push("");
-
-            const dateMap = {};
-            
-            historyRecords.forEach(rec => {
-                const dateKey = rec.date || 'Sin Fecha';
-                if (!dateMap[dateKey]) {
-                    dateMap[dateKey] = {
-                        count: 0,
-                        exercises: new Set(),
-                        routines: new Set()
-                    };
-                }
-                dateMap[dateKey].count++;
-                if (rec.exerciseName) dateMap[dateKey].exercises.add(rec.exerciseName);
-                if (rec.routineKey) dateMap[dateKey].routines.add(rec.routineKey);
-            });
-
-            const uniqueDays = Object.keys(dateMap);
-            lines.push(`📊 RESUMEN DE ASISTENCIA:`);
-            lines.push(`   • Total de días activos registrados: ${uniqueDays.length} día(s)`);
-            lines.push(`   • Total de interacciones con ejercicios: ${historyRecords.length}`);
-            lines.push(`   • Ejercicios marcados actualmente como completos: ${completedExerciseIds.size}`);
-            lines.push("");
-            lines.push(`📅 HISTORIAL DETALLADO POR FECHA DE ENTRENAMIENTO:`);
-
-            if (uniqueDays.length === 0) {
-                lines.push("   (Aún no hay días registrados. Ingresa tus pesos y haz clic en 💾 para registrar tus días de entrenamiento).");
-            } else {
-                uniqueDays.forEach(date => {
-                    const info = dateMap[date];
-                    const routinesStr = Array.from(info.routines).join(", ") || 'Rutina';
-                    lines.push(`   🗓️ ${date} [Rutinas: ${routinesStr}]`);
-                    lines.push(`      - Ejercicios trabajados: ${info.exercises.size}`);
-                    lines.push(`      - Registros de carga realizados: ${info.count}`);
-                });
-            }
-
-            lines.push("");
-            lines.push("=================================================");
-            reportTextArea.value = lines.join("\n");
-        }
-
-        function generateReportVolumen(historyRecords) {
-            const reportTextArea = document.getElementById('report-text-area');
-            if (!reportTextArea) return;
-
-            let lines = [];
-            lines.push("=================================================");
-            lines.push("  REPORTE 3: VOLUMEN ESPERADO VS DESARROLLADO");
-            lines.push("=================================================");
-            lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
-            lines.push(`Fecha: ${new Date().toLocaleDateString('es-ES')}`);
-            lines.push("");
-
-            const targetVolume = {
-                'Pecho': 21,
-                'Tríceps': 20,
-                'Espalda': 22,
-                'Bíceps': 18,
-                'Hombro': 18,
-                'Pierna': 31
-            };
-
-            let totalCompletedExercises = completedExerciseIds.size;
-            let totalRepsDone = 0;
-            let totalWeightLiftedKg = 0;
-
-            Object.keys(exerciseLogs).forEach(id => {
-                const log = exerciseLogs[id];
-                const reps = parseInt(log.reps || 0, 10);
-                const weight = parseFloat(log.weight || 0);
-
-                if (!isNaN(reps)) totalRepsDone += reps;
-                if (!isNaN(reps) && !isNaN(weight)) totalWeightLiftedKg += (reps * weight);
-            });
-
-            lines.push(`🎯 METRICAS GENERALES DE RENDIMIENTO:`);
-            lines.push(`   • Ejercicios Totales en el Plan: 54 ejercicios`);
-            lines.push(`   • Ejercicios Completados: ${totalCompletedExercises} / 54 (${Math.round((totalCompletedExercises/54)*100)}% de avance)`);
-            lines.push(`   • Repeticiones Totales Levantadas: ${totalRepsDone} reps`);
-            lines.push(`   • Tonnage Estimado (Peso x Reps): ${totalWeightLiftedKg.toLocaleString('es-ES')} kg acumulados`);
-            lines.push("");
-            lines.push(`📈 COMPARATIVA DE VOLUMEN DE SERIES SEMANALES:`);
-            lines.push(`-------------------------------------------------`);
-            lines.push(` Grupo Muscular   | Meta Semanal | Estado Activo`);
-            lines.push(`-------------------------------------------------`);
-
-            Object.keys(targetVolume).forEach(muscle => {
-                const target = targetVolume[muscle];
-                lines.push(` ${muscle.padEnd(16)} | ${target} series    | En seguimiento`);
-            });
-
-            lines.push("-------------------------------------------------");
-            lines.push("");
-            lines.push("=================================================");
-            reportTextArea.value = lines.join("\n");
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initFirebase();
-            
-            const ctx = document.getElementById('volumeChart')?.getContext('2d');
-            if (ctx) {
-                new Chart(ctx, { 
-                    type: 'bar', 
-                    data: {
-                        labels: ['Pecho', 'Tríceps', 'Espalda', 'Bíceps', 'Hombro', 'Pierna'], 
-                        datasets: [{ 
-                            label: 'Series', 
-                            data: [21, 20, 22, 18, 18, 31], 
-                            backgroundColor: ['#34d399', '#059669', '#16a34a', '#a3e635', '#eab308', '#f59e0b'] 
-                        }] 
-                    }, 
-                    options: { 
-                        responsive: true, 
-                        maintainAspectRatio: false, 
-                        plugins: { legend: { display: false } }, 
-                        scales: { 
-                            y: { beginAtZero: true, grid: { color: '#374151' }, ticks: { color: '#e5e7eb' } }, 
-                            x: { ticks: { color: '#e5e7eb' } } 
-                        } 
-                    } 
-                });
-            }
-
-            initCalendar();
-            setupCalendarInteractions();
-            initAccordion();
-            setupAuthModals();
-            setupSyncAndReportModals();
-        });
-    </script>
+<div class="container mx-auto max-w-7xl">
+
+<!-- BARRA DE SINCRONIZACIÓN, ESTADO DE SEGURIDAD Y USUARIO -->
+<div class="mb-6 p-4 bg-card rounded-xl shadow-lg border border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex flex-wrap items-center gap-3 text-sm">
+<span id="auth-status-dot" class="inline-block w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
+<span id="auth-status-badge" class="font-medium text-yellow-300 bg-gray-800 px-2.5 py-1 rounded-md text-xs border border-yellow-500/30">
+👁️ Modo Lectura (Invitado)
+</span>
+<span class="text-gray-400 text-xs hidden sm:inline">|</span>
+<span class="text-gray-300 text-xs font-medium">ID Usuario:</span>
+<span id="user-id-display" class="font-mono text-emerald-400 bg-gray-800 px-2 py-1 rounded text-xs select-all">Cargando...</span>
+</div>
+
+<div class="flex flex-wrap items-center gap-2">
+<button id="auth-action-btn" class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center space-x-1 shadow">
+<span>🔐 Iniciar Sesión</span>
+</button>
+<button id="demo-mode-btn" class="px-3 py-1.5 bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 text-xs font-semibold rounded-lg transition border border-purple-500/40 flex items-center space-x-1" title="Alternar modo demo para probar edición en la vista previa">
+<span>⚡ Probar Modo Admin (Demo)</span>
+</button>
+<button id="copy-key-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-xs font-semibold rounded-lg transition text-gray-200 border border-gray-700 flex items-center space-x-1">
+<span>📋 Copiar ID</span>
+</button>
+<button id="switch-key-btn" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-xs font-semibold rounded-lg transition text-emerald-400 border border-emerald-500/30">
+🔑 Cambiar ID
+</button>
+<button id="export-report-btn" class="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-xs font-semibold rounded-lg transition text-emerald-300 border border-emerald-500/50 flex items-center space-x-1">
+<span>📊 Reportes</span>
+</button>
+</div>
+</div>
+
+<header class="text-center mb-12 p-6 bg-card rounded-xl shadow-lg">
+<h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2">
+Plan de Entrenamiento MAM & Recursos
+</h1>
+<p class="text-xl text-gray-400 max-w-3xl mx-auto">
+Rutina PPL 6x (Pierna Primero) - Análisis, registro de cargas, calendario y reportes.
+</p>
+</header>
+
+<!-- SECCIÓN 1: INFOGRAFÍA DE ENLACES -->
+<section id="links" class="mb-16">
+<h2 class="text-3xl font-bold text-center primary-color mb-8">Enlaces de Apoyo Rápido</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+<!-- 1. Pierna -->
+<a href="https://youtu.be/9cQKrDmBrHE?si=xjr3TIsRi6VaiOgE" target="_blank"
+class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-cyan-500 shadow-xl flex flex-col items-center justify-center text-center">
+<svg class="w-12 h-12 text-cyan-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></polyline></svg>
+<h2 class="text-2xl font-extrabold text-white">PIERNA</h2>
+</a>
+
+<!-- 2. Hombro -->
+<a href="https://youtu.be/zEf4pKoKc70?si=7PSjU27sLdxsqrlr" target="_blank"
+class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-cyan-500 shadow-xl flex flex-col items-center justify-center text-center">
+<svg class="w-12 h-12 text-cyan-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+<h2 class="text-2xl font-extrabold text-white">HOMBRO</h2>
+</a>
+
+<!-- 3. Espalda -->
+<a href="https://youtu.be/dOIy_izhvjc?si=04ZRFlTuNdv_0RAb" target="_blank"
+class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-violet-500 shadow-xl flex flex-col items-center justify-center text-center">
+<svg class="w-12 h-12 text-violet-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+<h2 class="text-2xl font-extrabold text-white">ESPALDA</h2>
+</a>
+
+<!-- 4. Bíceps -->
+<a href="https://youtu.be/QO1qtm6ftOc?si=GzSDxsXYhRDbKlk5" target="_blank"
+class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-violet-500 shadow-xl flex flex-col items-center justify-center text-center">
+<svg class="w-12 h-12 text-violet-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 15L15 12L12 9L9 12L12 15Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 15L12 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<h2 class="text-2xl font-extrabold text-white">BICEP</h2>
+</a>
+
+<!-- 5. Pecho -->
+<a href="https://www.youtube.com/watch?v=CNusBc4kElM" target="_blank"
+class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-lime-500 shadow-xl flex flex-col items-center justify-center text-center">
+<svg class="w-12 h-12 text-lime-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 12H20M4 12V6M20 12V6M6 6H18C19.1046 6 20 6.89543 20 8V16C20 17.1046 19.1046 18 18 18H6C4.89543 18 4 17.1046 4 16V8C4 6.89543 4.89543 6 6 6Z"/>
+</svg>
+<h2 class="text-2xl font-extrabold text-white">PECHO</h2>
+</a>
+
+<!-- 6. Tricep -->
+<a href="https://youtu.be/8Nkfuhxsl-0?si=lCc2G_S9aiY4XUD" target="_blank"
+class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-lime-500 shadow-xl flex flex-col items-center justify-center text-center">
+<svg class="w-12 h-12 text-lime-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M14.5 10c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5c-.84 0-1.5.66-1.5 1.5v3c0 .84.66 1.5 1.5 1.5h5zm-5 4c-.84 0-1.5.66-1.5 1.5v3c0 .84 1.5 1.5 1.5 1.5h5c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5zm-3 0h-2c-.84 0-1.5-.66-1.5-1.5v-3c0-.84-.66-1.5 1.5-1.5h2m13 0h2c.84 0 1.5.66 1.5 1.5v3c0 .84 1.5 1.5-1.5 1.5h-2"/></svg>
+<h2 class="text-2xl font-extrabold text-white">TRICEP</h2>
+</a>
+
+<div class="rounded-2xl p-6 bg-card-alt border-b-4 border-cyan-500 shadow-xl md:col-span-2">
+<h2 class="text-2xl font-bold text-center primary-color mb-4">Música para Entrenar</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<a href="https://open.spotify.com/playlist/4eGVx0yikldqhmowZqioHI?si=e7d2fcf94db54a9d" target="_blank"
+class="flex items-center space-x-4 p-4 rounded-xl bg-card transition duration-200 hover:bg-gray-700 hover:shadow-lg border-l-4 border-cyan-500">
+<svg class="w-8 h-8 text-cyan-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"/></svg>
+<div>
+<p class="font-semibold text-lg text-white">Meme trainning</p>
+<p class="text-gray-400 text-sm">Playlist #1.</p>
+</div>
+</a>
+<a href="https://open.spotify.com/playlist/0AHnqlDH4VhAZO7UayBnTG?si=ce26d4b735e8493d" target="_blank"
+class="flex items-center space-x-4 p-4 rounded-xl bg-card transition duration-200 hover:bg-gray-700 hover:shadow-lg border-l-4 border-cyan-500">
+<svg class="w-8 h-8 text-cyan-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3v5zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"/></svg>
+<div>
+<p class="font-semibold text-lg text-white">GIMMAX</p>
+<p class="text-gray-400 text-sm">Playlist #2.</p>
+</div>
+</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="plan-analysis" class="mb-16">
+<h2 class="text-3xl font-bold text-center primary-color mb-8">Análisis de Tu Rutina Semanal (6x PPL)</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
+<div class="bg-card rounded-lg shadow-md p-6 border-b-4 border-[#39E7B3]">
+<p class="text-6xl font-bold primary-color">6</p>
+<p class="text-2xl primary-color font-semibold">Días de Entrenamiento</p>
+</div>
+<div class="bg-card rounded-lg shadow-md p-6 border-b-4 border-cyan-500">
+<p class="text-6xl font-bold text-cyan-500">2x</p>
+<p class="text-2xl text-cyan-500 font-semibold">Frecuencia Semanal</p>
+</div>
+<div class="bg-card rounded-lg shadow-md p-6 border-b-4 border-violet-500">
+<p class="text-6xl font-bold text-violet-500">1</p>
+<p class="text-2xl text-violet-500 font-semibold">Día de Descanso</p>
+</div>
+</div>
+<div class="max-w-xl mx-auto">
+<div class="bg-card rounded-lg shadow-md p-6">
+<h3 class="text-2xl font-bold primary-color text-center mb-6">Volumen Semanal (Series)</h3>
+<div class="chart-container" style="height: 300px;">
+<canvas id="volumeChart"></canvas>
+</div>
+</div>
+</div>
+</section>
+
+<section id="calendar" class="mb-16">
+<h2 class="text-3xl font-bold text-center primary-color mb-8">Calendario de 30 Días</h2>
+<p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-6">El patrón de entrenamiento es: <strong>3 Días Activos / 1 Día de Descanso</strong> (Pierna -&gt; Halón -&gt; Empuje).</p>
+
+<!-- CONTROLES DE FECHA DE INICIO DEL CICLO -->
+<div class="mb-6 bg-gray-900/80 border border-gray-800 p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 max-w-2xl mx-auto">
+<div class="flex items-center space-x-3">
+<span class="text-xl">📅</span>
+<div>
+<label for="cycle-start-date" class="block text-xs font-semibold text-emerald-400 uppercase tracking-wider">Fecha de Inicio del Ciclo</label>
+<p class="text-xs text-gray-400">Modifica la fecha aquí para ajustar el inicio de la rotación.</p>
+</div>
+</div>
+<div class="flex items-center space-x-2 w-full sm:w-auto">
+<input type="date" id="cycle-start-date" class="bg-gray-800 border border-gray-700 text-emerald-300 text-sm rounded-lg px-3 py-2 font-mono focus:outline-none focus:border-emerald-400 w-full sm:w-auto">
+<button id="reset-date-btn" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 border border-gray-700 rounded-lg transition" title="Restablecer al primer día del mes actual">
+Hoy/Mes
+</button>
+</div>
+</div>
+
+<div class="bg-card rounded-lg shadow-xl p-6 md:p-8">
+<div class="calendar-grid text-sm md:text-base mb-4">
+<div class="day-header">Lun</div>
+<div class="day-header">Mar</div>
+<div class="day-header">Mié</div>
+<div class="day-header">Jue</div>
+<div class="day-header">Vie</div>
+<div class="day-header">Sáb</div>
+<div class="day-header">Dom</div>
+</div>
+<div class="calendar-grid" id="calendar-grid-content"></div>
+<div class="mt-8">
+<h4 class="text-lg font-semibold primary-color mb-2">Clave de Rutinas:</h4>
+<div class="flex flex-wrap gap-4 text-sm">
+<span class="px-3 py-1 rounded-full P1 shadow-sm">P1/P2: Pierna/Hombro</span>
+<span class="px-3 py-1 rounded-full H1 shadow-sm">H1/H2: Halón</span>
+<span class="px-3 py-1 rounded-full E1 shadow-sm">E1/E2: Empuje</span>
+<span class="px-3 py-1 rounded-full R shadow-sm">R: Descanso</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="daily-plan" class="mb-12">
+<h2 class="text-3xl font-bold text-center primary-color mb-8">Tu Plan Diario Detallado (Rutinas y Registro)</h2>
+<div id="accordion-container" class="space-y-4"></div>
+</section>
+
+<footer class="mt-12 text-center text-gray-400 text-sm p-4 bg-card rounded-xl shadow-lg">
+<p>© 2026 Plan optimizado de Entrenamiento MAM. Desarrollo de Software Integrado.</p>
+</footer>
+</div>
+
+<!-- MODAL DE INICIO DE SESIÓN Y REGISTRO (AUTENTICACIÓN DE SEGURIDAD) -->
+<div id="login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+<div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+<h3 class="text-xl font-bold text-white mb-2 flex items-center space-x-2">
+<span>🔐</span> <span id="login-modal-title">Iniciar Sesión de Administrador</span>
+</h3>
+<p class="text-sm text-gray-400 mb-4" id="login-modal-desc">
+Ingresa tu correo y contraseña para habilitar los permisos de modificación y guardado en la nube.
+</p>
+
+<div id="login-error" class="hidden mb-4 p-3 bg-red-500/10 border border-red-500/30 text-red-400 text-xs rounded-lg"></div>
+
+<div class="space-y-3 mb-4">
+<div>
+<label class="block text-xs font-medium text-gray-400 mb-1">Correo Electrónico</label>
+<input type="email" id="login-email" placeholder="tu@correo.com"
+class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-emerald-400 font-mono">
+</div>
+<div>
+<label class="block text-xs font-medium text-gray-400 mb-1">Contraseña</label>
+<input type="password" id="login-password" placeholder="••••••••"
+class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-emerald-400 font-mono">
+</div>
+</div>
+<div class="flex justify-between items-center text-xs text-gray-400 mb-4 gap-2 flex-wrap">
+<button id="toggle-auth-mode-btn" type="button" class="text-emerald-400 hover:underline">¿Primera vez? Crear cuenta de administrador</button>
+<button id="reset-password-btn" type="button" class="text-gray-400 hover:text-emerald-400 hover:underline">¿Olvidaste tu contraseña?</button>
+</div>
+
+<div class="flex justify-end space-x-3">
+<button id="cancel-login-btn" type="button" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm rounded-lg transition">Cancelar</button>
+<button id="submit-login-btn" type="button" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold text-sm rounded-lg transition">Iniciar Sesión</button>
+</div>
+</div>
+</div>
+
+<!-- MODAL PARA CAMBIAR / VINCULAR DISPOSITIVO -->
+<div id="key-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+<div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+<h3 class="text-xl font-bold text-white mb-2 flex items-center space-x-2">
+<span>🔑</span> <span>Vincular ID de Usuario</span>
+</h3>
+<p class="text-sm text-gray-400 mb-4">
+Ingresa la clave de perfil para sincronizar pesos e historial específicos de ese usuario.
+</p>
+<input type="text" id="sync-key-input" placeholder="Ej. MaxArechiga"
+class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-emerald-400 font-mono mb-4">
+<div class="flex justify-end space-x-3">
+<button id="cancel-key-btn" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm rounded-lg transition">Cancelar</button>
+<button id="save-key-btn" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold text-sm rounded-lg transition">Sincronizar</button>
+</div>
+</div>
+</div>
+
+<!-- MODAL DE REPORTES MEJORADO CON 3 OPCIONES -->
+<div id="report-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+<div class="bg-card border border-gray-800 rounded-2xl max-w-3xl w-full p-6 shadow-2xl max-h-[90vh] flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-bold text-white flex items-center space-x-2">
+<span>📊</span> <span>Reportes para Fisio & Nutrióloga</span>
+</h3>
+<button id="close-report-btn" class="text-gray-400 hover:text-white text-xl">✕</button>
+</div>
+
+<!-- Pestañas de Selección de Reporte -->
+<div class="flex flex-wrap gap-2 mb-4 bg-gray-900 p-1.5 rounded-xl border border-gray-800">
+<button id="tab-report-cargas" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-emerald-500 text-gray-900 transition">
+🏋️ 1. Cargas por Grupo
+</button>
+<button id="tab-report-dias" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-gray-800 text-gray-300 hover:text-white transition">
+📅 2. Días Trabajados
+</button>
+<button id="tab-report-volumen" class="report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg bg-gray-800 text-gray-300 hover:text-white transition">
+📈 3. Volumen Plan vs Real
+</button>
+</div>
+
+<p id="report-description" class="text-xs text-gray-400 mb-3">
+Desglose de cargas máximas registradas por grupo muscular (P1/P2 Pierna-Hombro, H1/H2 Halón, E1/E2 Empuje).
+</p>
+
+<textarea id="report-text-area" readonly class="w-full flex-grow bg-gray-800 border border-gray-700 text-emerald-300 rounded-lg p-4 font-mono text-xs focus:outline-none resize-none mb-4 min-h-[260px]"></textarea>
+
+<div class="flex justify-end space-x-3">
+<button id="copy-report-text-btn" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-gray-900 font-bold text-sm rounded-lg transition">
+📋 Copiar Reporte Activo
+</button>
+</div>
+</div>
+</div>
+
+<!-- MODAL PARA SELECCIONAR RUTINA DEL DÍA EN EL CALENDARIO -->
+<div id="day-select-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+<div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+<div class="flex justify-between items-center mb-3">
+<h3 id="day-select-title" class="text-lg font-bold text-white flex items-center space-x-2">
+<span>🗓️</span> <span>Seleccionar Rutina Realizada</span>
+</h3>
+<button id="close-day-modal-btn" class="text-gray-400 hover:text-white text-xl">✕</button>
+</div>
+<p class="text-xs text-gray-400 mb-4">
+Elige la rutina que realizaste este día para personalizar tu calendario.
+</p>
+
+<div class="grid grid-cols-1 gap-2 mb-4">
+<button data-key="P1" class="day-option-btn p-3 rounded-xl P1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
+<span>P1 - Pierna / Hombro (P1)</span>
+<span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Pierna</span>
+</button>
+<button data-key="H1" class="day-option-btn p-3 rounded-xl H1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
+<span>H1 - Halón - Espalda / Bíceps (H1)</span>
+<span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Halón</span>
+</button>
+<button data-key="E1" class="day-option-btn p-3 rounded-xl E1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
+<span>E1 - Empuje - Pecho / Tríceps (E1)</span>
+<span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Empuje</span>
+</button>
+<button data-key="P2" class="day-option-btn p-3 rounded-xl P2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
+<span>P2 - Pierna / Hombro (P2)</span>
+<span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Pierna</span>
+</button>
+<button data-key="H2" class="day-option-btn p-3 rounded-xl H2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
+<span>H2 - Halón - Espalda / Bíceps (H2)</span>
+<span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Halón</span>
+</button>
+<button data-key="E2" class="day-option-btn p-3 rounded-xl E2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
+<span>E2 - Empuje - Pecho / Tríceps (E2)</span>
+<span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Empuje</span>
+</button>
+<button data-key="R" class="day-option-btn p-3 rounded-xl R font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
+<span>R - Día de Descanso / Recuperación</span>
+<span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Descanso</span>
+</button>
+</div>
+
+<div class="flex justify-between items-center pt-2 border-t border-gray-800">
+<button id="reset-day-default-btn" class="text-xs text-gray-400 hover:text-amber-400 underline transition">
+Restablecer al patrón
+</button>
+</div>
+</div>
+</div>
+
+<!-- NOTIFICACIÓN TIPO TOAST -->
+<div id="toast-msg" class="fixed bottom-6 right-6 bg-emerald-500 text-gray-950 font-bold px-4 py-3 rounded-xl shadow-xl transition-all duration-300 transform translate-y-20 opacity-0 z-50 flex items-center space-x-2">
+<span>✓</span>
+<span id="toast-text">Guardado</span>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import {
+getAuth,
+signInAnonymously,
+signInWithEmailAndPassword,
+createUserWithEmailAndPassword,
+sendPasswordResetEmail,
+signOut,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'mam-gym-app';
+
+// ESTRUCTURA DE RUTINAS PPL (PIERNA PRIMERO)
+const routineData = {
+P1: {
+title: "Pierna / Hombro (P1)",
+type: "P1",
+exercises: [
+"Sentadilla Libre / Prensa (4x8-10)",
+"Peso Muerto Rumano (4x10-12)",
+"Prensa Inclinada / Zancadas (3x12-15)",
+"Extensiones de Cuádriceps (3x12-15)",
+"Curl Femoral Tumbado/Sentado (3x12-15)",
+"Elevación de Gemelos en Máquina (4x15-20)",
+"Press Militar con Mancuernas / Barra (4x8-10)",
+"Elevaciones Laterales (4x12-15)",
+"Pájaro / Deltoides Posterior en Polea (3x15)"
+]
+},
+H1: {
+title: "Halón - Espalda / Bíceps (H1)",
+type: "H1",
+exercises: [
+"Jalón al Pecho Agarre Ancho (4x8-10)",
+"Remo con Barra o Gironda (4x10-12)",
+"Jalón Neutro / Agarre Cerrado (3x10-12)",
+"Pull-over con Polea / Cuerda (3x12-15)",
+"Encogimientos de Trapecio (3x12-15)",
+"Curl de Bíceps con Barra Z (4x10-12)",
+"Curl Martillo con Mancuernas (3x12-15)",
+"Curl Inclinado / Banco Pelícano (3x12-15)"
+]
+},
+E1: {
+title: "Empuje - Pecho / Tríceps (E1)",
+type: "E1",
+exercises: [
+"Press Plano con Barra / Mancuernas (4x8-10)",
+"Press Inclinado con Mancuernas (4x10-12)",
+"Aperturas / Crossover en Polea (3x12-15)",
+"Fondos en Paralelas / Máquina (3x Al fallo)",
+"Press Francés con Barra Z (4x10-12)",
+"Extensión de Tríceps en Polea Cuerda (3x12-15)",
+"Extensión Unilateral Copa / Polea (3x12-15)"
+]
+},
+P2: {
+title: "Pierna / Hombro (P2)",
+type: "P2",
+exercises: [
+"Sentadilla Búlgara / Prensa (4x10-12)",
+"Hip Thrust con Barra (4x10-12)",
+"Extensiones de Cuádriceps (3x12-15)",
+"Curl Femoral Sentado (3x12-15)",
+"Elevación de Gemelos (4x15-20)",
+"Press Arnold para Hombros (4x10-12)",
+"Elevaciones Laterales en Polea (4x12-15)",
+"Facepulls para Deltoides Posterior (4x15)"
+]
+},
+H2: {
+title: "Halón - Espalda / Bíceps (H2)",
+type: "H2",
+exercises: [
+"Dominadas / Jalón al Pecho Agarre Neutro (4x8-10)",
+"Remo Unilateral con Mancuerna (4x10-12)",
+"Remo Pecho Apoyado en Banco (3x10-12)",
+"Jalón Brazo Recto en Polea (3x12-15)",
+"Curl de Bíceps en Banco Scott (4x10-12)",
+"Curl de Bíceps Concentrado (3x12-15)",
+"Curl Inverso con Barra Z (3x12-15)"
+]
+},
+E2: {
+title: "Empuje - Pecho / Tríceps (E2)",
+type: "E2",
+exercises: [
+"Press Inclinado con Barra (4x8-10)",
+"Press Plano con Mancuernas (4x10-12)",
+"Peck Deck / Cruce de Poleas Bajas (3x12-15)",
+"Extensión de Tríceps Polea Alta Barra V (4x10-12)",
+"Extensión Trasnuca con Cuerda (3x12-15)",
+"Patada de Tríceps en Polea (3x15)"
+]
+},
+R: {
+title: "Día de Descanso / Recuperación Activa",
+type: "R",
+exercises: [
+"Caminata ligera de 30-45 minutos",
+"Estiramientos dinámicos y movilidad articular",
+"Hidratación óptima y descanso adecuado"
+]
+}
+};
+
+// FECHA DE INICIO CONFIGURABLE DEL CICLO (Formato YYYY-MM-DD)
+const defaultStartDate = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-01`;
+let calendarStartDate = localStorage.getItem('mam_cycle_start_date') || defaultStartDate;
+
+// CONFIGURACIÓN DE FIREBASE
+const firebaseConfig = {
+apiKey: "AIzaSyCCY1cOiUA_x8-BS4MlRz7EVXLz95Cfjsk",
+authDomain: "mam-gym.firebaseapp.com",
+projectId: "mam-gym",
+storageBucket: "mam-gym.firebasestorage.app",
+messagingSenderId: "940450727373",
+appId: "1:940450727373:web:5417c82476ea39ff187084",
+measurementId: "G-GTP5L9KG4P"
+};
+
+let db = null;
+let auth = null;
+let userId = null;
+let isAuthReady = false;
+let isAdminLoggedIn = false;
+let isDemoAdmin = false;
+let isSignUpMode = false;
+
+let completedExerciseIds = new Set();
+let exerciseLogs = {};
+let calendarSelections = {};
+let activeReportType = 'cargas';
+let selectedDayDateStr = null;
+
+function showToast(text) {
+const toast = document.getElementById('toast-msg');
+const toastText = document.getElementById('toast-text');
+if (!toast || !toastText) return;
+toastText.textContent = text;
+toast.classList.remove('translate-y-20', 'opacity-0');
+toast.classList.add('translate-y-0', 'opacity-100');
+setTimeout(() => {
+toast.classList.remove('translate-y-0', 'opacity-100');
+toast.classList.add('translate-y-20', 'opacity-0');
+}, 3000);
+}
+
+function updateUserIdDisplay() {
+const el = document.getElementById('user-id-display');
+if (el) el.textContent = userId || 'MaxArechiga';
+}
+
+function updateAuthStatusUI(user) {
+const statusDot = document.getElementById('auth-status-dot');
+const statusBadge = document.getElementById('auth-status-badge');
+const authActionBtn = document.getElementById('auth-action-btn');
+const demoBtn = document.getElementById('demo-mode-btn');
+
+if ((user && !user.isAnonymous) || isDemoAdmin) {
+isAdminLoggedIn = true;
+const emailStr = isDemoAdmin ? 'admin.demo@mam-gym.app (Demo)' : (user ? user.email : 'Admin');
+if (statusDot) statusDot.className = "inline-block w-3 h-3 rounded-full bg-emerald-400 animate-pulse";
+if (statusBadge) {
+statusBadge.className = "font-medium text-emerald-300 bg-emerald-950/80 px-2.5 py-1 rounded-md text-xs border border-emerald-500/40";
+statusBadge.textContent = `🟢 Modo Edición (${emailStr})`;
+}
+if (authActionBtn) {
+authActionBtn.innerHTML = `<span>🚪 Cerrar Sesión</span>`;
+authActionBtn.className = "px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-red-400 border border-red-500/30 text-xs font-bold rounded-lg transition shadow";
+}
+if (demoBtn) {
+demoBtn.innerHTML = `<span>🔒 Salir Modo Demo</span>`;
+demoBtn.className = "px-3 py-1.5 bg-purple-900/60 hover:bg-purple-800/80 text-purple-200 text-xs font-semibold rounded-lg transition border border-purple-400/50 flex items-center space-x-1";
+}
+} else {
+isAdminLoggedIn = false;
+if (statusDot) statusDot.className = "inline-block w-3 h-3 rounded-full bg-yellow-400 animate-pulse";
+if (statusBadge) {
+statusBadge.className = "font-medium text-yellow-300 bg-gray-800 px-2.5 py-1 rounded-md text-xs border border-yellow-500/30";
+statusBadge.textContent = "👁️ Modo Lectura (Invitado)";
+}
+if (authActionBtn) {
+authActionBtn.innerHTML = `<span>🔐 Iniciar Sesión</span>`;
+authActionBtn.className = "px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center space-x-1 shadow";
+}
+if (demoBtn) {
+demoBtn.innerHTML = `<span>⚡ Probar Modo Admin (Demo)</span>`;
+demoBtn.className = "px-3 py-1.5 bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 text-xs font-semibold rounded-lg transition border border-purple-500/40 flex items-center space-x-1";
+}
+}
+}
+
+async function initFirebase() {
+try {
+const app = initializeApp(firebaseConfig);
+db = getFirestore(app);
+auth = getAuth(app);
+
+userId = localStorage.getItem('mam_custom_user_id') || 'MaxArechiga';
+updateUserIdDisplay();
+
+onAuthStateChanged(auth, async (user) => {
+updateAuthStatusUI(user);
+if (!user) {
+try { await signInAnonymously(auth); } catch (e) {}
+}
+isAuthReady = true;
+listenForExerciseStatus();
+});
+} catch (error) {
+userId = localStorage.getItem('mam_custom_user_id') || 'MaxArechiga';
+updateUserIdDisplay();
+isAuthReady = true;
+listenForExerciseStatus();
+}
+}
+
+function listenForExerciseStatus() {
+if (!userId) return;
+
+// 1. Carga inmediata desde localStorage (respuesta ultrarrápida al abrir la página)
+try {
+const localData = JSON.parse(localStorage.getItem(`mam_exercise_data_${userId}`) || '{}');
+completedExerciseIds = new Set(localData.completed || []);
+exerciseLogs = localData.logs || {};
+calendarSelections = localData.calendar || {};
+updateUIState();
+} catch(e) {
+console.error("Error leyendo localStorage:", e);
+}
+
+// 2. Escucha y sincronización en tiempo real con Firebase Firestore
+if (db) {
+try {
+const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
+onSnapshot(docRef, (docSnap) => {
+if (docSnap.exists()) {
+const data = docSnap.data();
+completedExerciseIds = new Set(data.completed || []);
+exerciseLogs = data.logs || {};
+calendarSelections = data.calendar || {};
+
+// Guardamos la última copia en local
+localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(data));
+
+// Actualizamos los inputs y checks con la info recuperada de la nube
+updateUIState();
+}
+}, (err) => {
+console.error("Error en Snapshot de Firebase:", err);
+});
+} catch(e) {
+console.error("Error al escuchar Firestore:", e);
+}
+}
+}
+
+function updateUIState() {
+// Recorremos cada ejercicio para rellenar checkbox, pesos y repeticiones
+Object.keys(routineData).forEach(routineKey => {
+const routine = routineData[routineKey];
+routine.exercises.forEach((_, index) => {
+const id = `${routineKey}-${index}`;
+const container = document.getElementById(`container-${id}`);
+const checkbox = document.getElementById(`check-${id}`);
+const weightInput = document.getElementById(`weight-${id}`);
+const repsInput = document.getElementById(`reps-${id}`);
+
+const isDone = completedExerciseIds.has(id);
+if (container) {
+if (isDone) container.classList.add('completed');
+else container.classList.remove('completed');
+}
+if (checkbox) checkbox.checked = isDone;
+
+// Inyección garantizada de los pesos y repeticiones traídos de Firebase/localStorage
+if (exerciseLogs && exerciseLogs[id]) {
+if (weightInput && exerciseLogs[id].weight !== undefined) {
+weightInput.value = exerciseLogs[id].weight;
+}
+if (repsInput && exerciseLogs[id].reps !== undefined) {
+repsInput.value = exerciseLogs[id].reps;
+}
+}
+});
+});
+
+initCalendar();
+}
+
+async function saveExerciseData(id, weight, reps, isCompleted, routineKey, exerciseName) {
+if (!isAdminLoggedIn && !isDemoAdmin) {
+showToast("⚠️ Modo lectura: Inicia sesión o usa el 'Modo Admin (Demo)' para editar");
+return;
+}
+
+if (isCompleted) {
+completedExerciseIds.add(id);
+} else {
+completedExerciseIds.delete(id);
+}
+
+if (!exerciseLogs[id]) exerciseLogs[id] = {};
+if (weight !== undefined) exerciseLogs[id].weight = weight;
+if (reps !== undefined) exerciseLogs[id].reps = reps;
+
+// Guardado Local
+const saveData = {
+completed: Array.from(completedExerciseIds),
+logs: exerciseLogs,
+calendar: calendarSelections
+};
+localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
+
+const todayStr = new Date().toISOString().split('T')[0];
+
+// Guardar historial local
+let history = [];
+try {
+history = JSON.parse(localStorage.getItem('mam_exercise_history') || '[]');
+} catch(e) {}
+
+history.push({
+exerciseId: id,
+routineKey: routineKey,
+exerciseName: exerciseName,
+weight: weight,
+reps: reps,
+isCompleted: isCompleted,
+date: todayStr,
+timestamp: Date.now()
+});
+localStorage.setItem('mam_exercise_history', JSON.stringify(history));
+
+// Firestore sync
+if (db && userId) {
+try {
+const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
+await setDoc(docRef, saveData, { merge: true });
+
+const colRef = collection(db, `artifacts/${appId}/users/${userId}/exercise_history`);
+await addDoc(colRef, {
+exerciseId: id,
+routineKey: routineKey,
+exerciseName: exerciseName,
+weight: weight,
+reps: reps,
+isCompleted: isCompleted,
+date: todayStr,
+timestamp: Date.now()
+});
+} catch(e) {}
+}
+
+updateUIState();
+showToast("💾 Datos guardados correctamente");
+}
+
+function initAccordion() {
+const container = document.getElementById('accordion-container');
+if (!container) return;
+container.innerHTML = '';
+
+const keys = ['P1', 'H1', 'E1', 'P2', 'H2', 'E2', 'R'];
+
+keys.forEach((key) => {
+const routine = routineData[key];
+const card = document.createElement('div');
+card.className = "bg-card rounded-xl overflow-hidden shadow-lg border border-gray-800";
+
+let exercisesHTML = '';
+routine.exercises.forEach((ex, idx) => {
+const id = `${key}-${idx}`;
+exercisesHTML += `
+<div id="container-${id}" class="exercise-item-container px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+<div class="flex items-center space-x-3 flex-1">
+<input type="checkbox" id="check-${id}" data-id="${id}" data-key="${key}" data-name="${ex}"
+class="exercise-check w-5 h-5 rounded border-gray-700 text-emerald-500 focus:ring-emerald-400 bg-gray-800 cursor-pointer">
+<span class="exercise-title text-sm md:text-base font-semibold text-gray-200">${ex}</span>
+</div>
+${key !== 'R' ? `
+<div class="flex items-center space-x-2 pl-8 md:pl-0">
+<div class="flex items-center space-x-1">
+<input type="number" id="weight-${id}" placeholder="Kg"
+class="w-16 bg-gray-800 border border-gray-700 text-emerald-300 text-xs rounded px-2 py-1 focus:outline-none focus:border-emerald-400 font-mono">
+<span class="text-xs text-gray-400">kg</span>
+</div>
+<div class="flex items-center space-x-1">
+<input type="number" id="reps-${id}" placeholder="Reps"
+class="w-16 bg-gray-800 border border-gray-700 text-emerald-300 text-xs rounded px-2 py-1 focus:outline-none focus:border-emerald-400 font-mono">
+<span class="text-xs text-gray-400">reps</span>
+</div>
+<button data-id="${id}" data-key="${key}" data-name="${ex}"
+class="save-ex-btn px-2.5 py-1 bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 text-xs font-bold rounded border border-emerald-500/40 transition">
+💾
+</button>
+</div>
+` : ''}
+</div>
+`;
+});
+
+card.innerHTML = `
+<button class="accordion-button ${key} w-full text-left p-4 md:p-5 flex justify-between items-center transition" aria-expanded="false">
+<span class="font-extrabold text-base md:text-lg">${routine.title}</span>
+<span class="accordion-arrow text-xl">▼</span>
+</button>
+<div class="accordion-content hidden p-4 bg-gray-900/50">
+${exercisesHTML}
+</div>
+`;
+
+container.appendChild(card);
+});
+
+// Event Listeners Acordeón
+document.querySelectorAll('.accordion-button').forEach(btn => {
+btn.addEventListener('click', () => {
+const expanded = btn.getAttribute('aria-expanded') === 'true';
+btn.setAttribute('aria-expanded', !expanded);
+const content = btn.nextElementSibling;
+if (content) content.classList.toggle('hidden');
+});
+});
+
+// Listeners para checkboxes
+document.querySelectorAll('.exercise-check').forEach(chk => {
+chk.addEventListener('change', (e) => {
+const id = e.target.dataset.id;
+const key = e.target.dataset.key;
+const name = e.target.dataset.name;
+const weightVal = document.getElementById(`weight-${id}`)?.value;
+const repsVal = document.getElementById(`reps-${id}`)?.value;
+saveExerciseData(id, weightVal, repsVal, e.target.checked, key, name);
+});
+});
+
+// Listeners para botones de guardar
+document.querySelectorAll('.save-ex-btn').forEach(btn => {
+btn.addEventListener('click', (e) => {
+const id = btn.dataset.id;
+const key = btn.dataset.key;
+const name = btn.dataset.name;
+const isChecked = document.getElementById(`check-${id}`)?.checked || false;
+const weightVal = document.getElementById(`weight-${id}`)?.value;
+const repsVal = document.getElementById(`reps-${id}`)?.value;
+saveExerciseData(id, weightVal, repsVal, isChecked, key, name);
+});
+});
+}
+
+function initCalendar() {
+const grid = document.getElementById('calendar-grid-content');
+const dateInput = document.getElementById('cycle-start-date');
+if (!grid) return;
+
+if (dateInput && !dateInput.value) {
+dateInput.value = calendarStartDate;
+}
+
+grid.innerHTML = '';
+const cyclePattern = ['P1', 'H1', 'E1', 'R', 'P2', 'H2', 'E2', 'R'];
+const start = new Date(calendarStartDate + 'T00:00:00');
+const todayStr = new Date().toISOString().split('T')[0];
+
+const startDayOfWeek = start.getDay();
+const paddingDays = (startDayOfWeek + 6) % 7;
+
+for (let p = 0; p < paddingDays; p++) {
+const emptyEl = document.createElement('div');
+emptyEl.className = 'calendar-day-empty opacity-25 border border-dashed border-gray-800 rounded-lg min-h-[85px] pointer-events-none';
+grid.appendChild(emptyEl);
+}
+
+for (let i = 0; i < 30; i++) {
+const currentDate = new Date(start);
+currentDate.setDate(start.getDate() + i);
+
+const dateStr = currentDate.toISOString().split('T')[0];
+const dayNum = currentDate.getDate();
+
+const defaultRoutineKey = cyclePattern[i % cyclePattern.length];
+const routineKey = calendarSelections[dateStr] || defaultRoutineKey;
+const isToday = (dateStr === todayStr);
+
+let isAttended = false;
+if (routineData[routineKey] && routineData[routineKey].exercises) {
+Object.keys(routineData[routineKey].exercises).forEach((_, idx) => {
+if (completedExerciseIds.has(`${routineKey}-${idx}`)) isAttended = true;
+});
+}
+
+const dayEl = document.createElement('div');
+dayEl.className = `calendar-day ${routineKey} ${isToday ? 'is-today' : ''} ${isAttended ? 'attended' : ''}`;
+dayEl.innerHTML = `
+<span class="day-number">${dayNum}</span>
+<span class="day-label">${routineKey}</span>
+`;
+
+dayEl.addEventListener('click', () => {
+openDaySelectModal(dateStr, dayNum, routineKey);
+});
+
+grid.appendChild(dayEl);
+}
+}
+
+function openDaySelectModal(dateStr, dayNum, currentRoutineKey) {
+selectedDayDateStr = dateStr;
+const modal = document.getElementById('day-select-modal');
+const titleEl = document.getElementById('day-select-title');
+if (titleEl) titleEl.textContent = `Seleccionar Rutina para el Día ${dayNum}`;
+
+document.querySelectorAll('.day-option-btn').forEach(btn => {
+if (btn.dataset.key === currentRoutineKey) {
+btn.classList.add('ring-2', 'ring-emerald-400', 'scale-[1.02]');
+} else {
+btn.classList.remove('ring-2', 'ring-emerald-400', 'scale-[1.02]');
+}
+});
+
+if (modal) modal.classList.remove('hidden');
+}
+
+async function saveCalendarSelection(dateStr, selectedKey) {
+if (!isAdminLoggedIn && !isDemoAdmin) {
+showToast("⚠️ Modo lectura: Inicia sesión o usa 'Modo Admin (Demo)' para editar");
+return;
+}
+
+if (selectedKey) {
+calendarSelections[dateStr] = selectedKey;
+} else {
+delete calendarSelections[dateStr];
+}
+
+const saveData = {
+completed: Array.from(completedExerciseIds),
+logs: exerciseLogs,
+calendar: calendarSelections
+};
+localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
+
+if (db && userId) {
+try {
+const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
+await setDoc(docRef, saveData, { merge: true });
+} catch(e) {}
+}
+
+initCalendar();
+showToast(selectedKey ? `🗓️ Rutina cambiada a ${selectedKey}` : "🗓️ Día restablecido al patrón");
+}
+
+function setupCalendarInteractions() {
+const dateInput = document.getElementById('cycle-start-date');
+const resetBtn = document.getElementById('reset-date-btn');
+const dayModal = document.getElementById('day-select-modal');
+const closeDayModalBtn = document.getElementById('close-day-modal-btn');
+const resetDefaultBtn = document.getElementById('reset-day-default-btn');
+
+if (dateInput) {
+dateInput.addEventListener('change', (e) => {
+calendarStartDate = e.target.value;
+localStorage.setItem('mam_cycle_start_date', calendarStartDate);
+initCalendar();
+showToast("📅 Fecha de inicio actualizada");
+});
+}
+
+if (resetBtn) {
+resetBtn.addEventListener('click', () => {
+calendarStartDate = defaultStartDate;
+if (dateInput) dateInput.value = defaultStartDate;
+localStorage.setItem('mam_cycle_start_date', defaultStartDate);
+initCalendar();
+showToast("📅 Calendario restablecido");
+});
+}
+
+if (closeDayModalBtn) {
+closeDayModalBtn.addEventListener('click', () => {
+if (dayModal) dayModal.classList.add('hidden');
+});
+}
+
+document.querySelectorAll('.day-option-btn').forEach(btn => {
+btn.addEventListener('click', () => {
+const key = btn.dataset.key;
+if (selectedDayDateStr && key) {
+saveCalendarSelection(selectedDayDateStr, key);
+}
+if (dayModal) dayModal.classList.add('hidden');
+});
+});
+
+if (resetDefaultBtn) {
+resetDefaultBtn.addEventListener('click', () => {
+if (selectedDayDateStr) {
+saveCalendarSelection(selectedDayDateStr, null);
+}
+if (dayModal) dayModal.classList.add('hidden');
+});
+}
+}
+
+function setupAuthModals() {
+const authActionBtn = document.getElementById('auth-action-btn');
+const demoModeBtn = document.getElementById('demo-mode-btn');
+const loginModal = document.getElementById('login-modal');
+const cancelLoginBtn = document.getElementById('cancel-login-btn');
+const submitLoginBtn = document.getElementById('submit-login-btn');
+const toggleAuthModeBtn = document.getElementById('toggle-auth-mode-btn');
+const resetPasswordBtn = document.getElementById('reset-password-btn');
+const loginEmailInput = document.getElementById('login-email');
+const loginPasswordInput = document.getElementById('login-password');
+const loginErrorMsg = document.getElementById('login-error');
+const modalTitle = document.getElementById('login-modal-title');
+const modalDesc = document.getElementById('login-modal-desc');
+
+if (demoModeBtn) {
+demoModeBtn.addEventListener('click', () => {
+isDemoAdmin = !isDemoAdmin;
+updateAuthStatusUI(auth ? auth.currentUser : null);
+if (isDemoAdmin) {
+showToast("⚡ Modo Admin Demo Activado (puedes probar editar pesos y marcar asistencia)");
+} else {
+showToast("👁️ Volviste al Modo Lectura");
+}
+});
+}
+
+if (authActionBtn) {
+authActionBtn.addEventListener('click', async () => {
+if (isAdminLoggedIn) {
+try {
+isDemoAdmin = false;
+if (auth && auth.currentUser && !auth.currentUser.isAnonymous) {
+await signOut(auth);
+}
+updateAuthStatusUI(null);
+showToast("Sesión cerrada (Modo Lectura)");
+} catch (e) {
+showToast("Error al cerrar sesión");
+}
+} else {
+if (loginErrorMsg) loginErrorMsg.classList.add('hidden');
+if (loginModal) loginModal.classList.remove('hidden');
+}
+});
+}
+
+if (cancelLoginBtn) {
+cancelLoginBtn.addEventListener('click', () => {
+if (loginModal) loginModal.classList.add('hidden');
+});
+}
+
+if (toggleAuthModeBtn) {
+toggleAuthModeBtn.addEventListener('click', () => {
+isSignUpMode = !isSignUpMode;
+if (isSignUpMode) {
+modalTitle.textContent = "Crear Cuenta de Administrador";
+modalDesc.textContent = "Crea una cuenta con tu correo personal para otorgarte acceso permanente de edición.";
+submitLoginBtn.textContent = "Registrarme";
+toggleAuthModeBtn.textContent = "¿Ya tienes cuenta? Iniciar Sesión";
+} else {
+modalTitle.textContent = "Iniciar Sesión de Administrador";
+modalDesc.textContent = "Ingresa tu correo y contraseña para habilitar los permisos de modificación y guardado en la nube.";
+submitLoginBtn.textContent = "Iniciar Sesión";
+toggleAuthModeBtn.textContent = "¿Primera vez? Crear cuenta de administrador";
+}
+});
+}
+
+if (resetPasswordBtn) {
+resetPasswordBtn.addEventListener('click', async () => {
+const email = loginEmailInput?.value.trim();
+if (!email) {
+if (loginErrorMsg) {
+loginErrorMsg.textContent = "Por favor escribe tu correo electrónico arriba para enviarte el enlace de recuperación.";
+loginErrorMsg.classList.remove('hidden');
+}
+return;
+}
+try {
+if (auth) {
+await sendPasswordResetEmail(auth, email);
+showToast("📧 Correo de restablecimiento enviado. Revisa tu bandeja de entrada.");
+if (loginErrorMsg) loginErrorMsg.classList.add('hidden');
+}
+} catch (err) {
+if (loginErrorMsg) {
+loginErrorMsg.textContent = "No se pudo enviar el correo de recuperación. Verifica la dirección ingresada.";
+loginErrorMsg.classList.remove('hidden');
+}
+}
+});
+}
+
+if (submitLoginBtn) {
+submitLoginBtn.addEventListener('click', async () => {
+const email = loginEmailInput?.value.trim();
+const password = loginPasswordInput?.value.trim();
+
+if (!email || !password) {
+if (loginErrorMsg) {
+loginErrorMsg.textContent = "Ingresa correo y contraseña.";
+loginErrorMsg.classList.remove('hidden');
+}
+return;
+}
+
+try {
+if (isSignUpMode) {
+await createUserWithEmailAndPassword(auth, email, password);
+showToast("¡Cuenta creada con éxito!");
+} else {
+await signInWithEmailAndPassword(auth, email, password);
+showToast("¡Sesión iniciada como Admin!");
+}
+if (loginModal) loginModal.classList.add('hidden');
+if (loginEmailInput) loginEmailInput.value = '';
+if (loginPasswordInput) loginPasswordInput.value = '';
+} catch (error) {
+if (loginErrorMsg) {
+let msg = "Error al autenticar.";
+if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+msg = "Correo o contraseña incorrectos.";
+} else if (error.code === 'auth/email-already-in-use') {
+msg = "Ese correo ya está registrado. Intenta iniciar sesión.";
+} else if (error.code === 'auth/weak-password') {
+msg = "La contraseña debe tener al menos 6 caracteres.";
+}
+loginErrorMsg.textContent = msg;
+loginErrorMsg.classList.remove('hidden');
+}
+}
+});
+}
+}
+
+function setupSyncAndReportModals() {
+const copyKeyBtn = document.getElementById('copy-key-btn');
+const switchKeyBtn = document.getElementById('switch-key-btn');
+const exportReportBtn = document.getElementById('export-report-btn');
+const keyModal = document.getElementById('key-modal');
+const cancelKeyBtn = document.getElementById('cancel-key-btn');
+const saveKeyBtn = document.getElementById('save-key-btn');
+const syncKeyInput = document.getElementById('sync-key-input');
+
+const reportModal = document.getElementById('report-modal');
+const closeReportBtn = document.getElementById('close-report-btn');
+const copyReportTextBtn = document.getElementById('copy-report-text-btn');
+
+const tabCargas = document.getElementById('tab-report-cargas');
+const tabDias = document.getElementById('tab-report-dias');
+const tabVolumen = document.getElementById('tab-report-volumen');
+
+if (copyKeyBtn) {
+copyKeyBtn.addEventListener('click', () => {
+if (userId) {
+navigator.clipboard.writeText(userId);
+showToast("ID de usuario copiado");
+}
+});
+}
+
+if (switchKeyBtn) {
+switchKeyBtn.addEventListener('click', () => {
+if (syncKeyInput) syncKeyInput.value = userId || '';
+if (keyModal) keyModal.classList.remove('hidden');
+});
+}
+
+if (cancelKeyBtn) {
+cancelKeyBtn.addEventListener('click', () => {
+if (keyModal) keyModal.classList.add('hidden');
+});
+}
+
+if (saveKeyBtn) {
+saveKeyBtn.addEventListener('click', () => {
+const newKey = syncKeyInput ? syncKeyInput.value.trim() : '';
+if (newKey) {
+userId = newKey;
+localStorage.setItem('mam_custom_user_id', userId);
+updateUserIdDisplay();
+if (keyModal) keyModal.classList.add('hidden');
+listenForExerciseStatus();
+showToast("ID actualizado correctamente");
+}
+});
+}
+
+if (exportReportBtn) {
+exportReportBtn.addEventListener('click', async () => {
+setReportTab('cargas');
+if (reportModal) reportModal.classList.remove('hidden');
+});
+}
+
+if (closeReportBtn) {
+closeReportBtn.addEventListener('click', () => {
+if (reportModal) reportModal.classList.add('hidden');
+});
+}
+
+if (tabCargas) tabCargas.addEventListener('click', () => setReportTab('cargas'));
+if (tabDias) tabDias.addEventListener('click', () => setReportTab('dias'));
+if (tabVolumen) tabVolumen.addEventListener('click', () => setReportTab('volumen'));
+
+if (copyReportTextBtn) {
+copyReportTextBtn.addEventListener('click', () => {
+const reportTextArea = document.getElementById('report-text-area');
+if (reportTextArea) {
+reportTextArea.select();
+document.execCommand('copy');
+showToast("Reporte copiado al portapapeles");
+}
+});
+}
+}
+
+async function fetchHistoryRecords() {
+let historyRecords = [];
+if (db && userId) {
+try {
+const colRef = collection(db, `artifacts/${appId}/users/${userId}/exercise_history`);
+const q = query(colRef, orderBy("timestamp", "asc"));
+const snap = await getDocs(q);
+snap.forEach(docSnap => historyRecords.push(docSnap.data()));
+} catch (e) {}
+}
+if (historyRecords.length === 0) {
+try {
+historyRecords = JSON.parse(localStorage.getItem('mam_exercise_history') || '[]');
+} catch (e) {}
+}
+return historyRecords;
+}
+
+async function setReportTab(type) {
+activeReportType = type;
+const tabCargas = document.getElementById('tab-report-cargas');
+const tabDias = document.getElementById('tab-report-dias');
+const tabVolumen = document.getElementById('tab-report-volumen');
+const desc = document.getElementById('report-description');
+
+const activeClass = "bg-emerald-500 text-gray-900";
+const inactiveClass = "bg-gray-800 text-gray-300 hover:text-white";
+
+if (tabCargas) tabCargas.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'cargas' ? activeClass : inactiveClass}`;
+if (tabDias) tabDias.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'dias' ? activeClass : inactiveClass}`;
+if (tabVolumen) tabVolumen.className = `report-tab-btn flex-1 min-w-[140px] px-3 py-2 text-xs font-bold rounded-lg transition ${type === 'volumen' ? activeClass : inactiveClass}`;
+
+const historyRecords = await fetchHistoryRecords();
+
+if (type === 'cargas') {
+if (desc) desc.textContent = "Últimas cargas y repeticiones máximas registradas por cada grupo de entrenamiento.";
+generateReportCargas();
+} else if (type === 'dias') {
+if (desc) desc.textContent = "Conteo de días trabajados efectivamente y bitácora de asistencia.";
+generateReportDias(historyRecords);
+} else if (type === 'volumen') {
+if (desc) desc.textContent = "Comparativa de Volumen Esperado (Series/Repeticiones planificadas) vs. Volumen Real completado.";
+generateReportVolumen(historyRecords);
+}
+}
+
+function generateReportCargas() {
+const reportTextArea = document.getElementById('report-text-area');
+if (!reportTextArea) return;
+
+let lines = [];
+lines.push("=================================================");
+lines.push(" REPORTE 1: ÚLTIMAS CARGAS POR GRUPO (PPL)");
+lines.push("=================================================");
+lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
+lines.push(`Fecha de Emisión: ${new Date().toLocaleDateString('es-ES')} ${new Date().toLocaleTimeString('es-ES')}`);
+lines.push("");
+
+const groups = [
+{ name: "🦵 PIERNA Y HOMBRO (P1 / P2)", keys: ['P1', 'P2'] },
+{ name: "💪 HALÓN - ESPALDA Y BÍCEPS (H1 / H2)", keys: ['H1', 'H2'] },
+{ name: "🏋️ EMPUJE - PECHO Y TRÍCEPS (E1 / E2)", keys: ['E1', 'E2'] }
+];
+
+groups.forEach(group => {
+lines.push(`-------------------------------------------------`);
+lines.push(group.name);
+lines.push(`-------------------------------------------------`);
+
+group.keys.forEach(key => {
+const routine = routineData[key];
+if (!routine) return;
+lines.push(` 📌 ${routine.title}`);
+
+routine.exercises.forEach((ex, i) => {
+const id = `${key}-${i}`;
+const log = exerciseLogs[id];
+const isDone = completedExerciseIds.has(id);
+
+const weightStr = (log && log.weight) ? `${log.weight} kg` : 'Sin peso registrado';
+const repsStr = (log && log.reps) ? `${log.reps} reps` : 'Sin reps';
+const statusStr = isDone ? '[COMPLETADO]' : '[EN PROCESO]';
+
+lines.push(` • ${ex}`);
+lines.push(` ➔ Carga Actual: ${weightStr} | Reps: ${repsStr} ${statusStr}`);
+});
+lines.push("");
+});
+});
+
+lines.push("=================================================");
+reportTextArea.value = lines.join("\n");
+}
+
+function generateReportDias(historyRecords) {
+const reportTextArea = document.getElementById('report-text-area');
+if (!reportTextArea) return;
+
+let lines = [];
+lines.push("=================================================");
+lines.push(" REPORTE 2: DÍAS EFECTIVAMENTE TRABAJADOS");
+lines.push("=================================================");
+lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
+lines.push(`Fecha de Emisión: ${new Date().toLocaleDateString('es-ES')}`);
+lines.push("");
+
+const dateMap = {};
+
+historyRecords.forEach(rec => {
+const dateKey = rec.date || 'Sin Fecha';
+if (!dateMap[dateKey]) {
+dateMap[dateKey] = {
+count: 0,
+exercises: new Set(),
+routines: new Set()
+};
+}
+dateMap[dateKey].count++;
+if (rec.exerciseName) dateMap[dateKey].exercises.add(rec.exerciseName);
+if (rec.routineKey) dateMap[dateKey].routines.add(rec.routineKey);
+});
+
+const uniqueDays = Object.keys(dateMap);
+lines.push(`📊 RESUMEN DE ASISTENCIA:`);
+lines.push(` • Total de días activos registrados: ${uniqueDays.length} día(s)`);
+lines.push(` • Total de interacciones con ejercicios: ${historyRecords.length}`);
+lines.push(` • Ejercicios marcados actualmente como completos: ${completedExerciseIds.size}`);
+lines.push("");
+lines.push(`📅 HISTORIAL DETALLADO POR FECHA DE ENTRENAMIENTO:`);
+
+if (uniqueDays.length === 0) {
+lines.push(" (Aún no hay días registrados. Ingresa tus pesos y haz clic en 💾 para registrar tus días de entrenamiento).");
+} else {
+uniqueDays.forEach(date => {
+const info = dateMap[date];
+const routinesStr = Array.from(info.routines).join(", ") || 'Rutina';
+lines.push(` 🗓️ ${date} [Rutinas: ${routinesStr}]`);
+lines.push(` - Ejercicios trabajados: ${info.exercises.size}`);
+lines.push(` - Registros de carga realizados: ${info.count}`);
+});
+}
+
+lines.push("");
+lines.push("=================================================");
+reportTextArea.value = lines.join("\n");
+}
+
+function generateReportVolumen(historyRecords) {
+const reportTextArea = document.getElementById('report-text-area');
+if (!reportTextArea) return;
+
+let lines = [];
+lines.push("=================================================");
+lines.push(" REPORTE 3: VOLUMEN ESPERADO VS DESARROLLADO");
+lines.push("=================================================");
+lines.push(`Usuario: ${userId || 'MaxArechiga'}`);
+lines.push(`Fecha: ${new Date().toLocaleDateString('es-ES')}`);
+lines.push("");
+
+const targetVolume = {
+'Pecho': 21,
+'Tríceps': 20,
+'Espalda': 22,
+'Bíceps': 18,
+'Hombro': 18,
+'Pierna': 31
+};
+
+let totalCompletedExercises = completedExerciseIds.size;
+let totalRepsDone = 0;
+let totalWeightLiftedKg = 0;
+
+Object.keys(exerciseLogs).forEach(id => {
+const log = exerciseLogs[id];
+const reps = parseInt(log.reps || 0, 10);
+const weight = parseFloat(log.weight || 0);
+
+if (!isNaN(reps)) totalRepsDone += reps;
+if (!isNaN(reps) && !isNaN(weight)) totalWeightLiftedKg += (reps * weight);
+});
+
+lines.push(`🎯 METRICAS GENERALES DE RENDIMIENTO:`);
+lines.push(` • Ejercicios Totales en el Plan: 54 ejercicios`);
+lines.push(` • Ejercicios Completados: ${totalCompletedExercises} / 54 (${Math.round((totalCompletedExercises/54)*100)}% de avance)`);
+lines.push(` • Repeticiones Totales Levantadas: ${totalRepsDone} reps`);
+lines.push(` • Tonnage Estimado (Peso x Reps): ${totalWeightLiftedKg.toLocaleString('es-ES')} kg acumulados`);
+lines.push("");
+lines.push(`📈 COMPARATIVA DE VOLUMEN DE SERIES SEMANALES:`);
+lines.push(`-------------------------------------------------`);
+lines.push(` Grupo Muscular | Meta Semanal | Estado Activo`);
+lines.push(`-------------------------------------------------`);
+
+Object.keys(targetVolume).forEach(muscle => {
+const target = targetVolume[muscle];
+lines.push(` ${muscle.padEnd(16)} | ${target} series | En seguimiento`);
+});
+
+lines.push("-------------------------------------------------");
+lines.push("");
+lines.push("=================================================");
+reportTextArea.value = lines.join("\n");
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+initFirebase();
+
+const ctx = document.getElementById('volumeChart')?.getContext('2d');
+if (ctx) {
+new Chart(ctx, {
+type: 'bar',
+data: {
+labels: ['Pecho', 'Tríceps', 'Espalda', 'Bíceps', 'Hombro', 'Pierna'],
+datasets: [{
+label: 'Series',
+data: [21, 20, 22, 18, 18, 31],
+backgroundColor: ['#34d399', '#059669', '#16a34a', '#a3e635', '#eab308', '#f59e0b']
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+plugins: { legend: { display: false } },
+scales: {
+y: { beginAtZero: true, grid: { color: '#374151' }, ticks: { color: '#e5e7eb' } },
+x: { ticks: { color: '#e5e7eb' } }
+}
+}
+});
+}
+
+initCalendar();
+setupCalendarInteractions();
+initAccordion();
+setupAuthModals();
+setupSyncAndReportModals();
+});
+</script>
 </body>
 </html>
