@@ -930,6 +930,17 @@
             const start = new Date(calendarStartDate + 'T00:00:00');
             const todayStr = new Date().toISOString().split('T')[0];
 
+            // Alineación con el día de la semana correspondiente (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
+            const startDayOfWeek = start.getDay(); 
+            const paddingDays = (startDayOfWeek + 6) % 7; // Ajustar para que Lunes sea la primera columna (0)
+
+            // Insertar celdas vacías para alinear el inicio del calendario en su día real
+            for (let p = 0; p < paddingDays; p++) {
+                const emptyEl = document.createElement('div');
+                emptyEl.className = 'calendar-day-empty opacity-25 border border-dashed border-gray-800 rounded-lg min-h-[85px] pointer-events-none';
+                grid.appendChild(emptyEl);
+            }
+
             for (let i = 0; i < 30; i++) {
                 const currentDate = new Date(start);
                 currentDate.setDate(start.getDate() + i);
@@ -1494,7 +1505,6 @@
             if (ctx) {
                 new Chart(ctx, { 
                     type: 'bar', 
-                    data: { 
                         labels: ['Pecho', 'Tríceps', 'Espalda', 'Bíceps', 'Hombro', 'Pierna'], 
                         datasets: [{ 
                             label: 'Series', 
@@ -1523,3 +1533,4 @@
     </script>
 </body>
 </html>
+                    data: {
