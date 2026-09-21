@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -52,7 +53,7 @@
             gap: 4px;
         }
         .calendar-day {
-            min-height: 85px; 
+            min-height: 90px; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -86,6 +87,17 @@
             text-align: center;
         }
 
+        /* Indicador de cambio manual en día */
+        .calendar-day.is-customized::before {
+            content: '•';
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: 1.2rem;
+            color: #39E7B3;
+            line-height: 1;
+        }
+
         /* --- CALENDAR ATTENDANCE & TODAY HIGHLIGHT --- */
         .calendar-day.is-today {
             background-color: #0891b2 !important;
@@ -93,7 +105,7 @@
             border: 2px solid #a5f3fc !important;
             box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
         }
-        .calendar-day.is-today::before {
+        .calendar-day.is-today-label::after {
             content: 'HOY';
             position: absolute;
             top: 2px;
@@ -134,7 +146,7 @@
             <div class="flex flex-wrap items-center gap-3 text-sm">
                 <span id="auth-status-dot" class="inline-block w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></span>
                 <span id="auth-status-badge" class="font-medium text-yellow-300 bg-gray-800 px-2.5 py-1 rounded-md text-xs border border-yellow-500/30">
-                    👁️ Modo Lectura (Invitado)
+                    👁️ Modo Lectura / Local
                 </span>
                 <span class="text-gray-400 text-xs hidden sm:inline">|</span>
                 <span class="text-gray-300 text-xs font-medium">ID Usuario:</span>
@@ -165,7 +177,7 @@
                 Plan de Entrenamiento MAM & Recursos
             </h1>
             <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                Rutina PPL 6x (Pierna Primero) - Análisis, registro de cargas, calendario y reportes.
+                Rutina PPL 6x (Pierna Primero) - Análisis, registro de cargas, calendario interactivo y reportes.
             </p>
         </header>
 
@@ -220,7 +232,7 @@
                 <a href="https://youtu.be/8Nkfuhxsl-0?si=lCc2G_S9aiY4XUD" target="_blank"
                     class="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl rounded-2xl p-8 bg-card-alt border-b-4 border-lime-500 shadow-xl flex flex-col items-center justify-center text-center">
                     <svg class="w-12 h-12 text-lime-500 mb-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14.5 10c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5c-.84 0-1.5.66-1.5 1.5v3c0 .84.66 1.5 1.5 1.5h5zm-5 4c-.84 0-1.5.66-1.5 1.5v3c0 .84 1.5 1.5 1.5 1.5h5c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5zm-3 0h-2c-.84 0-1.5-.66-1.5-1.5v-3c0-.84-.66-1.5 1.5-1.5h2m13 0h2c.84 0 1.5.66 1.5 1.5v3c0 .84 1.5 1.5-1.5 1.5h-2"/></svg>
+                        <path d="M14.5 10c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5c-.84 0-1.5.66-1.5 1.5v3c0 .84 1.5 1.5 1.5 1.5h5zm-5 4c-.84 0-1.5.66-1.5 1.5v3c0 .84 1.5 1.5 1.5 1.5h5c.84 0 1.5-.66 1.5-1.5v-3c0-.84-.66-1.5-1.5-1.5h-5zm-3 0h-2c-.84 0-1.5-.66-1.5-1.5v-3c0-.84-.66-1.5 1.5-1.5h2m13 0h2c.84 0 1.5.66 1.5 1.5v3c0 .84 1.5 1.5-1.5 1.5h-2"/></svg>
                     <h2 class="text-2xl font-extrabold text-white">TRICEP</h2>
                 </a>
 
@@ -276,8 +288,11 @@
         </section>
 
         <section id="calendar" class="mb-16">
-            <h2 class="text-3xl font-bold text-center primary-color mb-8">Calendario de 30 Días</h2>
-            <p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-6">El patrón de entrenamiento es: <strong>3 Días Activos / 1 Día de Descanso</strong> (Pierna -&gt; Halón -&gt; Empuje).</p>
+            <h2 class="text-3xl font-bold text-center primary-color mb-8">Calendario de 30 Días (Interactivo)</h2>
+            <p class="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-6">
+                El patrón base es <strong>3 Días Activos / 1 Día de Descanso</strong> (Pierna -&gt; Halón -&gt; Empuje).
+                <br><span class="text-sm text-emerald-400">💡 Tip: Haz clic en cualquier día del calendario para cambiar la rutina realizada ese día.</span>
+            </p>
             
             <!-- CONTROLES DE FECHA DE INICIO DEL CICLO -->
             <div class="mb-6 bg-gray-900/80 border border-gray-800 p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 max-w-2xl mx-auto">
@@ -285,12 +300,12 @@
                     <span class="text-xl">📅</span>
                     <div>
                         <label for="cycle-start-date" class="block text-xs font-semibold text-emerald-400 uppercase tracking-wider">Fecha de Inicio del Ciclo</label>
-                        <p class="text-xs text-gray-400">Modifica la fecha aquí para ajustar el inicio de la rotación.</p>
+                        <p class="text-xs text-gray-400">Ajusta el primer día para rotar todo tu calendario.</p>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 w-full sm:w-auto">
                     <input type="date" id="cycle-start-date" class="bg-gray-800 border border-gray-700 text-emerald-300 text-sm rounded-lg px-3 py-2 font-mono focus:outline-none focus:border-emerald-400 w-full sm:w-auto">
-                    <button id="reset-date-btn" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 border border-gray-700 rounded-lg transition" title="Restablecer al primer día del mes actual">
+                    <button id="reset-date-btn" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 border border-gray-700 rounded-lg transition" title="Restablecer al inicio del mes actual">
                         Hoy/Mes
                     </button>
                 </div>
@@ -307,14 +322,19 @@
                     <div class="day-header">Dom</div>
                 </div>
                 <div class="calendar-grid" id="calendar-grid-content"></div>
-                <div class="mt-8">
-                    <h4 class="text-lg font-semibold primary-color mb-2">Clave de Rutinas:</h4>
-                    <div class="flex flex-wrap gap-4 text-sm">
-                        <span class="px-3 py-1 rounded-full P1 shadow-sm">P1/P2: Pierna/Hombro</span>
-                        <span class="px-3 py-1 rounded-full H1 shadow-sm">H1/H2: Halón</span>
-                        <span class="px-3 py-1 rounded-full E1 shadow-sm">E1/E2: Empuje</span>
-                        <span class="px-3 py-1 rounded-full R shadow-sm">R: Descanso</span>
+                <div class="mt-8 flex flex-wrap justify-between items-center gap-4">
+                    <div>
+                        <h4 class="text-sm font-semibold primary-color mb-2">Clave de Rutinas:</h4>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1 rounded-full P1 shadow-sm font-bold">P1/P2: Pierna</span>
+                            <span class="px-3 py-1 rounded-full H1 shadow-sm font-bold">H1/H2: Halón</span>
+                            <span class="px-3 py-1 rounded-full E1 shadow-sm font-bold">E1/E2: Empuje</span>
+                            <span class="px-3 py-1 rounded-full R shadow-sm font-bold">R: Descanso</span>
+                        </div>
                     </div>
+                    <button id="clear-custom-calendar-btn" class="text-xs text-gray-400 hover:text-red-400 underline transition">
+                        Restablecer personalizaciones del calendario
+                    </button>
                 </div>
             </div>
         </section>
@@ -329,14 +349,14 @@
         </footer>
     </div>
 
-    <!-- MODAL DE INICIO DE SESIÓN Y REGISTRO (AUTENTICACIÓN DE SEGURIDAD) -->
+    <!-- MODAL DE INICIO DE SESIÓN Y REGISTRO -->
     <div id="login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
             <h3 class="text-xl font-bold text-white mb-2 flex items-center space-x-2">
                 <span>🔐</span> <span id="login-modal-title">Iniciar Sesión de Administrador</span>
             </h3>
             <p class="text-sm text-gray-400 mb-4" id="login-modal-desc">
-                Ingresa tu correo y contraseña para habilitar los permisos de modificación y guardado en la nube.
+                Ingresa tu correo y contraseña para habilitar los permisos de modificación e interactividad en la nube.
             </p>
             
             <div id="login-error" class="hidden mb-4 p-3 bg-red-500/10 border border-red-500/30 text-red-400 text-xs rounded-lg"></div>
@@ -407,7 +427,7 @@
             </div>
 
             <p id="report-description" class="text-xs text-gray-400 mb-3">
-                Desglose de cargas máximas registradas por grupo muscular (P1/P2 Pierna-Hombro, H1/H2 Halón, E1/E2 Empuje).
+                Desglose de cargas máximas registradas por grupo muscular.
             </p>
 
             <textarea id="report-text-area" readonly class="w-full flex-grow bg-gray-800 border border-gray-700 text-emerald-300 rounded-lg p-4 font-mono text-xs focus:outline-none resize-none mb-4 min-h-[260px]"></textarea>
@@ -423,40 +443,44 @@
     <!-- MODAL PARA SELECCIONAR RUTINA DEL DÍA EN EL CALENDARIO -->
     <div id="day-select-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
-            <div class="flex justify-between items-center mb-3">
-                <h3 id="day-select-title" class="text-lg font-bold text-white flex items-center space-x-2">
-                    <span>🗓️</span> <span>Seleccionar Rutina Realizada</span>
-                </h3>
+            <div class="flex justify-between items-start mb-2">
+                <div>
+                    <h3 id="day-select-title" class="text-lg font-bold text-white flex items-center space-x-2">
+                        <span>🗓️</span> <span>Seleccionar Rutina Realizada</span>
+                    </h3>
+                    <p id="day-select-date" class="text-xs text-emerald-400 font-mono mt-0.5"></p>
+                </div>
                 <button id="close-day-modal-btn" class="text-gray-400 hover:text-white text-xl">✕</button>
             </div>
+            
             <p class="text-xs text-gray-400 mb-4">
-                Elige la rutina que realizaste este día para personalizar tu calendario.
+                Elige qué rutina o descanso realizaste este día específico.
             </p>
 
-            <div class="grid grid-cols-1 gap-2 mb-4">
+            <div class="grid grid-cols-1 gap-2 mb-4 max-h-[320px] overflow-y-auto pr-1">
                 <button data-key="P1" class="day-option-btn p-3 rounded-xl P1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>P1 - Pierna / Hombro (P1)</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Pierna</span>
+                    <span>P1 - Pierna / Hombro</span>
+                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Pierna 1</span>
                 </button>
                 <button data-key="H1" class="day-option-btn p-3 rounded-xl H1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>H1 - Halón - Espalda / Bíceps (H1)</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Halón</span>
+                    <span>H1 - Halón - Espalda / Bíceps</span>
+                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Halón 1</span>
                 </button>
                 <button data-key="E1" class="day-option-btn p-3 rounded-xl E1 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>E1 - Empuje - Pecho / Tríceps (E1)</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Empuje</span>
+                    <span>E1 - Empuje - Pecho / Tríceps</span>
+                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Empuje 1</span>
                 </button>
                 <button data-key="P2" class="day-option-btn p-3 rounded-xl P2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>P2 - Pierna / Hombro (P2)</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Pierna</span>
+                    <span>P2 - Pierna / Hombro</span>
+                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Pierna 2</span>
                 </button>
                 <button data-key="H2" class="day-option-btn p-3 rounded-xl H2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>H2 - Halón - Espalda / Bíceps (H2)</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Halón</span>
+                    <span>H2 - Halón - Espalda / Bíceps</span>
+                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Halón 2</span>
                 </button>
                 <button data-key="E2" class="day-option-btn p-3 rounded-xl E2 font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
-                    <span>E2 - Empuje - Pecho / Tríceps (E2)</span>
-                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Empuje</span>
+                    <span>E2 - Empuje - Pecho / Tríceps</span>
+                    <span class="text-xs font-mono bg-black/30 px-2 py-0.5 rounded">Empuje 2</span>
                 </button>
                 <button data-key="R" class="day-option-btn p-3 rounded-xl R font-bold text-sm text-left flex justify-between items-center transition hover:opacity-90 shadow">
                     <span>R - Día de Descanso / Recuperación</span>
@@ -464,9 +488,21 @@
                 </button>
             </div>
 
-            <div class="flex justify-between items-center pt-2 border-t border-gray-800">
+            <!-- OPCIÓN DE REAJUSTE DE SECUENCIA -->
+            <div class="mb-4 bg-gray-900 p-3 rounded-xl border border-gray-800 flex items-center justify-between">
+                <div>
+                    <label for="shift-sequence-checkbox" class="text-xs font-semibold text-gray-200 cursor-pointer block">🔄 Reajustar secuencia en adelante</label>
+                    <p class="text-[11px] text-gray-400">Ajusta los días siguientes para continuar el ciclo 3-1 desde esta rutina.</p>
+                </div>
+                <input type="checkbox" id="shift-sequence-checkbox" class="w-4 h-4 rounded text-emerald-500 bg-gray-800 border-gray-700 cursor-pointer">
+            </div>
+
+            <div class="flex justify-between items-center pt-2 border-t border-gray-800 gap-2">
                 <button id="reset-day-default-btn" class="text-xs text-gray-400 hover:text-amber-400 underline transition">
-                    Restablecer al patrón
+                    Restablecer al patrón base
+                </button>
+                <button id="jump-to-routine-btn" class="px-3 py-1.5 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 text-xs font-bold rounded-lg border border-emerald-500/40 transition flex items-center space-x-1">
+                    <span>🏋️ Ver Rutina</span>
                 </button>
             </div>
         </div>
@@ -587,8 +623,16 @@
             }
         };
 
-        // FECHA DE INICIO CONFIGURABLE DEL CICLO (Formato YYYY-MM-DD)
-        const defaultStartDate = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-01`;
+        // Formateador seguro de fecha YYYY-MM-DD sin desfasamiento de zona horaria
+        function formatDateKey(d) {
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        const now = new Date();
+        const defaultStartDate = formatDateKey(new Date(now.getFullYear(), now.getMonth(), 1));
         let calendarStartDate = localStorage.getItem('mam_cycle_start_date') || defaultStartDate;
 
         // CONFIGURACIÓN DE FIREBASE
@@ -615,6 +659,7 @@
         let calendarSelections = {};
         let activeReportType = 'cargas'; 
         let selectedDayDateStr = null;
+        let selectedDayRoutineKey = null;
 
         function showToast(text) {
             const toast = document.getElementById('toast-msg');
@@ -661,7 +706,7 @@
                 if (statusDot) statusDot.className = "inline-block w-3 h-3 rounded-full bg-yellow-400 animate-pulse";
                 if (statusBadge) {
                     statusBadge.className = "font-medium text-yellow-300 bg-gray-800 px-2.5 py-1 rounded-md text-xs border border-yellow-500/30";
-                    statusBadge.textContent = "👁️ Modo Lectura (Invitado)";
+                    statusBadge.textContent = "👁️ Modo Lectura / Local";
                 }
                 if (authActionBtn) {
                     authActionBtn.innerHTML = `<span>🔐 Iniciar Sesión</span>`;
@@ -756,11 +801,6 @@
         }
 
         async function saveExerciseData(id, weight, reps, isCompleted, routineKey, exerciseName) {
-            if (!isAdminLoggedIn && !isDemoAdmin) {
-                showToast("⚠️ Modo lectura: Inicia sesión o usa el 'Modo Admin (Demo)' para editar");
-                return;
-            }
-
             if (isCompleted) {
                 completedExerciseIds.add(id);
             } else {
@@ -779,7 +819,7 @@
             };
             localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
 
-            const todayStr = new Date().toISOString().split('T')[0];
+            const todayStr = formatDateKey(new Date());
 
             // Guardar historial local
             let history = [];
@@ -834,6 +874,7 @@
                 const routine = routineData[key];
                 const card = document.createElement('div');
                 card.className = "bg-card rounded-xl overflow-hidden shadow-lg border border-gray-800";
+                card.id = `accordion-card-${key}`;
 
                 let exercisesHTML = '';
                 routine.exercises.forEach((ex, idx) => {
@@ -868,11 +909,11 @@
                 });
 
                 card.innerHTML = `
-                    <button class="accordion-button ${key} w-full text-left p-4 md:p-5 flex justify-between items-center transition" aria-expanded="false">
+                    <button class="accordion-button ${key} w-full text-left p-4 md:p-5 flex justify-between items-center transition" aria-expanded="false" id="accordion-btn-${key}">
                         <span class="font-extrabold text-base md:text-lg">${routine.title}</span>
                         <span class="accordion-arrow text-xl">▼</span>
                     </button>
-                    <div class="accordion-content hidden p-4 bg-gray-900/50">
+                    <div class="accordion-content hidden p-4 bg-gray-900/50" id="accordion-content-${key}">
                         ${exercisesHTML}
                     </div>
                 `;
@@ -927,60 +968,86 @@
 
             grid.innerHTML = '';
             const cyclePattern = ['P1', 'H1', 'E1', 'R', 'P2', 'H2', 'E2', 'R'];
-            const start = new Date(calendarStartDate + 'T00:00:00');
-            const todayStr = new Date().toISOString().split('T')[0];
+            
+            const startParts = calendarStartDate.split('-');
+            const start = new Date(parseInt(startParts[0]), parseInt(startParts[1]) - 1, parseInt(startParts[2]));
+            const todayStr = formatDateKey(new Date());
 
-            // Alineación con el día de la semana correspondiente (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
+            // Alineación con el día de la semana correspondiente (0 = Domingo, 1 = Lunes)
             const startDayOfWeek = start.getDay(); 
-            const paddingDays = (startDayOfWeek + 6) % 7; // Ajustar para que Lunes sea la primera columna (0)
+            const paddingDays = (startDayOfWeek + 6) % 7; // Ajustar para que Lunes sea columna 0
 
-            // Insertar celdas vacías para alinear el inicio del calendario en su día real
+            // Insertar celdas vacías previa para alinear el inicio del mes o ciclo
             for (let p = 0; p < paddingDays; p++) {
                 const emptyEl = document.createElement('div');
-                emptyEl.className = 'calendar-day-empty opacity-25 border border-dashed border-gray-800 rounded-lg min-h-[85px] pointer-events-none';
+                emptyEl.className = 'calendar-day-empty opacity-20 border border-dashed border-gray-800 rounded-lg min-h-[90px] pointer-events-none';
                 grid.appendChild(emptyEl);
             }
 
-            for (let i = 0; i < 30; i++) {
-                const currentDate = new Date(start);
-                currentDate.setDate(start.getDate() + i);
+            // Calculamos los 30 días basándonos en selecciones y desplazamientos
+            let currentPatternIndex = 0;
 
-                const dateStr = currentDate.toISOString().split('T')[0];
+            for (let i = 0; i < 30; i++) {
+                const currentDate = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
+                const dateStr = formatDateKey(currentDate);
                 const dayNum = currentDate.getDate();
                 
-                // Usar la rutina elegida manualmente si existe, o la del patrón en rotación
-                const defaultRoutineKey = cyclePattern[i % cyclePattern.length];
-                const routineKey = calendarSelections[dateStr] || defaultRoutineKey;
+                let defaultRoutineKey = cyclePattern[currentPatternIndex % cyclePattern.length];
+                let isCustomized = false;
+                let routineKey = defaultRoutineKey;
+
+                if (calendarSelections[dateStr]) {
+                    routineKey = calendarSelections[dateStr];
+                    isCustomized = true;
+                    // Si hubo una rutina personalizada, ajustamos el índice del patrón si es el punto de partida
+                    const customIndex = cyclePattern.indexOf(routineKey);
+                    if (customIndex !== -1) {
+                        currentPatternIndex = customIndex;
+                    }
+                }
+
                 const isToday = (dateStr === todayStr);
 
                 // Comprobar si hubo ejercicios completados para esta rutina
                 let isAttended = false;
                 if (routineData[routineKey] && routineData[routineKey].exercises) {
-                    Object.keys(routineData[routineKey].exercises).forEach((_, idx) => {
+                    routineData[routineKey].exercises.forEach((_, idx) => {
                         if (completedExerciseIds.has(`${routineKey}-${idx}`)) isAttended = true;
                     });
                 }
 
                 const dayEl = document.createElement('div');
-                dayEl.className = `calendar-day ${routineKey} ${isToday ? 'is-today' : ''} ${isAttended ? 'attended' : ''}`;
+                dayEl.className = `calendar-day ${routineKey} ${isToday ? 'is-today is-today-label' : ''} ${isAttended ? 'attended' : ''} ${isCustomized ? 'is-customized' : ''}`;
+                dayEl.title = `Fecha: ${dateStr} - Rutina: ${routineData[routineKey] ? routineData[routineKey].title : routineKey} (Haz clic para cambiar)`;
+                
                 dayEl.innerHTML = `
-                    <span class="day-number">${dayNum}</span>
+                    <span class="day-number font-mono">${dayNum}</span>
                     <span class="day-label">${routineKey}</span>
                 `;
 
                 dayEl.addEventListener('click', () => {
-                    openDaySelectModal(dateStr, dayNum, routineKey);
+                    openDaySelectModal(dateStr, dayNum, routineKey, currentDate);
                 });
 
                 grid.appendChild(dayEl);
+                currentPatternIndex++;
             }
         }
 
-        function openDaySelectModal(dateStr, dayNum, currentRoutineKey) {
+        function openDaySelectModal(dateStr, dayNum, currentRoutineKey, dateObj) {
             selectedDayDateStr = dateStr;
+            selectedDayRoutineKey = currentRoutineKey;
+
             const modal = document.getElementById('day-select-modal');
             const titleEl = document.getElementById('day-select-title');
-            if (titleEl) titleEl.textContent = `Seleccionar Rutina para el Día ${dayNum}`;
+            const dateEl = document.getElementById('day-select-date');
+            
+            if (titleEl) titleEl.textContent = `Seleccionar Rutina (Día ${dayNum})`;
+            if (dateEl) {
+                const options = { weekday: 'long', month: 'short', day: 'numeric' };
+                const formattedDate = dateObj ? dateObj.toLocaleDateString('es-ES', options) : dateStr;
+                dateEl.textContent = `📅 ${formattedDate}`;
+            }
 
             document.querySelectorAll('.day-option-btn').forEach(btn => {
                 if (btn.dataset.key === currentRoutineKey) {
@@ -993,19 +1060,36 @@
             if (modal) modal.classList.remove('hidden');
         }
 
-        async function saveCalendarSelection(dateStr, selectedKey) {
-            if (!isAdminLoggedIn && !isDemoAdmin) {
-                showToast("⚠️ Modo lectura: Inicia sesión o usa 'Modo Admin (Demo)' para editar");
-                return;
-            }
+        async function saveCalendarSelection(dateStr, selectedKey, shouldShiftSequence = false) {
+            const cyclePattern = ['P1', 'H1', 'E1', 'R', 'P2', 'H2', 'E2', 'R'];
 
             if (selectedKey) {
                 calendarSelections[dateStr] = selectedKey;
+
+                // Si el usuario activó la casilla de reajustar la secuencia en adelante
+                if (shouldShiftSequence) {
+                    const startParts = calendarStartDate.split('-');
+                    const start = new Date(parseInt(startParts[0]), parseInt(startParts[1]) - 1, parseInt(startParts[2]));
+                    const targetParts = dateStr.split('-');
+                    const targetDate = new Date(parseInt(targetParts[0]), parseInt(targetParts[1]) - 1, parseInt(targetParts[2]));
+                    
+                    const daysDiff = Math.round((targetDate - start) / (1000 * 60 * 60 * 24));
+                    let currentPatternIdx = cyclePattern.indexOf(selectedKey);
+
+                    if (currentPatternIdx !== -1) {
+                        for (let i = daysDiff + 1; i < 60; i++) {
+                            currentPatternIdx = (currentPatternIdx + 1) % cyclePattern.length;
+                            const nextDate = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
+                            const nextDateStr = formatDateKey(nextDate);
+                            calendarSelections[nextDateStr] = cyclePattern[currentPatternIdx];
+                        }
+                    }
+                }
             } else {
                 delete calendarSelections[dateStr];
             }
 
-            // Guardado local
+            // Guardado local inmediato
             const saveData = {
                 completed: Array.from(completedExerciseIds),
                 logs: exerciseLogs,
@@ -1013,7 +1097,7 @@
             };
             localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
 
-            // Sync con Firestore
+            // Sync con Firestore en segundo plano si está disponible
             if (db && userId) {
                 try {
                     const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
@@ -1022,15 +1106,18 @@
             }
 
             initCalendar();
-            showToast(selectedKey ? `🗓️ Rutina cambiada a ${selectedKey}` : "🗓️ Día restablecido al patrón");
+            showToast(selectedKey ? `🗓️ Rutina actualizada a ${selectedKey}` : "🗓️ Día restablecido al patrón base");
         }
 
         function setupCalendarInteractions() {
             const dateInput = document.getElementById('cycle-start-date');
             const resetBtn = document.getElementById('reset-date-btn');
+            const clearCustomBtn = document.getElementById('clear-custom-calendar-btn');
             const dayModal = document.getElementById('day-select-modal');
             const closeDayModalBtn = document.getElementById('close-day-modal-btn');
             const resetDefaultBtn = document.getElementById('reset-day-default-btn');
+            const jumpToRoutineBtn = document.getElementById('jump-to-routine-btn');
+            const shiftCheckbox = document.getElementById('shift-sequence-checkbox');
 
             if (dateInput) {
                 dateInput.addEventListener('change', (e) => {
@@ -1051,6 +1138,26 @@
                 });
             }
 
+            if (clearCustomBtn) {
+                clearCustomBtn.addEventListener('click', async () => {
+                    calendarSelections = {};
+                    const saveData = {
+                        completed: Array.from(completedExerciseIds),
+                        logs: exerciseLogs,
+                        calendar: calendarSelections
+                    };
+                    localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
+                    if (db && userId) {
+                        try {
+                            const docRef = doc(db, `artifacts/${appId}/users/${userId}/exercise_data`, 'current');
+                            await setDoc(docRef, saveData, { merge: true });
+                        } catch(e) {}
+                    }
+                    initCalendar();
+                    showToast("🧹 Personalizaciones del calendario limpiadas");
+                });
+            }
+
             if (closeDayModalBtn) {
                 closeDayModalBtn.addEventListener('click', () => {
                     if (dayModal) dayModal.classList.add('hidden');
@@ -1060,8 +1167,9 @@
             document.querySelectorAll('.day-option-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const key = btn.dataset.key;
+                    const shouldShift = shiftCheckbox ? shiftCheckbox.checked : false;
                     if (selectedDayDateStr && key) {
-                        saveCalendarSelection(selectedDayDateStr, key);
+                        saveCalendarSelection(selectedDayDateStr, key, shouldShift);
                     }
                     if (dayModal) dayModal.classList.add('hidden');
                 });
@@ -1073,6 +1181,21 @@
                         saveCalendarSelection(selectedDayDateStr, null);
                     }
                     if (dayModal) dayModal.classList.add('hidden');
+                });
+            }
+
+            if (jumpToRoutineBtn) {
+                jumpToRoutineBtn.addEventListener('click', () => {
+                    if (dayModal) dayModal.classList.add('hidden');
+                    const key = selectedDayRoutineKey || 'P1';
+                    const accordionBtn = document.getElementById(`accordion-btn-${key}`);
+                    const accordionContent = document.getElementById(`accordion-content-${key}`);
+                    
+                    if (accordionBtn && accordionContent) {
+                        accordionBtn.setAttribute('aria-expanded', 'true');
+                        accordionContent.classList.remove('hidden');
+                        accordionBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 });
             }
         }
@@ -1096,9 +1219,9 @@
                     isDemoAdmin = !isDemoAdmin;
                     updateAuthStatusUI(auth ? auth.currentUser : null);
                     if (isDemoAdmin) {
-                        showToast("⚡ Modo Admin Demo Activado (puedes probar editar pesos y marcar asistencia)");
+                        showToast("⚡ Modo Admin Demo Activado (puedes probar editar pesos y sincronizar)");
                     } else {
-                        showToast("👁️ Volviste al Modo Lectura");
+                        showToast("👁️ Volviste al Modo Lectura / Local");
                     }
                 });
             }
