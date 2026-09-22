@@ -903,7 +903,7 @@ dateInput.value = calendarStartDate;
 grid.innerHTML = '';
 const cyclePattern = ['P1', 'H1', 'E1', 'R', 'P2', 'H2', 'E2', 'R'];
 const start = new Date(calendarStartDate + 'T00:00:00');
-const todayStr = new Date().toISOString().split('T')[0];
+const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Mexico_City' });
 
 const startDayOfWeek = start.getDay();
 const paddingDays = (startDayOfWeek + 6) % 7; 
