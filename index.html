@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plan Completo de Entrenamiento 3+1 Recursos (Basado en AthleanX)</title>
+<title>Plan Completo de Entrenamiento MAM y Recursos (Basado en AthleanX)</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -329,7 +329,7 @@ Hoy/Mes
 </footer>
 </div>
 
-<!-- MODAL DE INICIO DE SESIÓN Y REGISTRO (CON PROTECCIÓN DE USERNAME) -->
+<!-- MODAL DE INICIO DE SESIÓN Y REGISTRO -->
 <div id="login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
 <div class="bg-card border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
 <h3 class="text-xl font-bold text-white mb-2 flex items-center space-x-2">
@@ -441,7 +441,7 @@ Restablecer al patrón
 </div>
 </div>
 
-<!-- MODAL DE REPORTES MEJORADO CON 3 OPCIONES -->
+<!-- MODAL DE REPORTES -->
 <div id="report-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
 <div class="bg-card border border-gray-800 rounded-2xl max-w-3xl w-full p-6 shadow-2xl max-h-[90vh] flex flex-col">
 <div class="flex justify-between items-center mb-4">
@@ -713,7 +713,8 @@ calendar: calendarSelections
 };
 localStorage.setItem(`mam_exercise_data_${userId}`, JSON.stringify(saveData));
 
-const todayStr = new Date().toISOString().split('T')[0];
+// FECHA FIJADA CON EL HUSO HORARIO DE GUADALAJARA / MÉXICO
+const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Mexico_City' });
 
 let history = [];
 try {
@@ -903,6 +904,8 @@ dateInput.value = calendarStartDate;
 grid.innerHTML = '';
 const cyclePattern = ['P1', 'H1', 'E1', 'R', 'P2', 'H2', 'E2', 'R'];
 const start = new Date(calendarStartDate + 'T00:00:00');
+
+// FECHA FIJADA CON EL HUSO HORARIO DE GUADALAJARA / MÉXICO
 const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Mexico_City' });
 
 const startDayOfWeek = start.getDay();
@@ -1136,7 +1139,6 @@ loginErrorMsg.classList.remove('hidden');
 return;
 }
 
-// PROTECCIÓN: Bloquear el uso reservado de la cuenta principal MaxArechiga para nuevos usuarios
 if (customUsername.toLowerCase() === 'maxarechiga') {
 if (loginErrorMsg) {
 loginErrorMsg.textContent = 'El ID "MaxArechiga" está reservado para la cuenta principal. Elige otro ID.';
@@ -1180,7 +1182,6 @@ const userAccountSnap = await getDoc(doc(db, `artifacts/${appId}/account_mapping
 if (userAccountSnap.exists()) {
 userId = userAccountSnap.data().username;
 } else {
-// Si es la cuenta principal sin mapeo aún, asignar MaxArechiga por defecto
 userId = 'MaxArechiga';
 await setDoc(doc(db, `artifacts/${appId}/account_mapping`, user.uid), { username: 'MaxArechiga', email: email });
 }
